@@ -10,9 +10,13 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
+    model.cpp \
+    player.cpp \
     playerview.cpp
 
 HEADERS += \
+    model.h \
+    player.h \
     playerview.h
 
 FORMS += \
