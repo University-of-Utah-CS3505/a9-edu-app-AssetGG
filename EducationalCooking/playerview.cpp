@@ -1,9 +1,7 @@
 #include "playerview.h"
 #include "ui_playerview.h"
 
-PlayerView::PlayerView(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::PlayerView)
+PlayerView::PlayerView(Model& model, QWidget *parent): QMainWindow(parent), ui(new Ui::PlayerView)
 {
     ui->setupUi(this);
 }
