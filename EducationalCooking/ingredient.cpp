@@ -18,6 +18,23 @@ Ingredient::Ingredient(std::string name, QImage baseImage, QImage cutImage, bool
     burnt = false;
 }
 
+Ingredient::Ingredient()
+{
+    ingredientName = "tomato";
+
+
+    currentImage = QImage(":/sprites/Sprites/Tomato.png");
+    baseImage = QImage(":/sprites/Sprites/Tomato.png");
+    cutImage = QImage(":/sprites/Sprites/Tomato.png");
+
+    cuttable = true;
+    cookable = true;
+
+    cut = false;
+    cooked = false;
+    burnt = false;
+}
+
 std::string Ingredient::GetName()
 {
     return ingredientName;
