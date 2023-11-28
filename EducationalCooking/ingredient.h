@@ -7,10 +7,26 @@
 class Ingredient
 {
 public:
-    Ingredient();
+    Ingredient(QImage, std::string, QImage, bool, bool);
     int x, y;
+    std::string GetName();
+    QImage GetImage();
+    bool Cut();
+    bool Cooked();
 
-public slots:
+private:
+    std::string ingredientName;
+
+    QImage currentImage;
+    QImage baseImage;
+    QImage cutImage;
+
+    bool cuttable;
+    bool cookable;
+
+    bool cut;
+    bool cooked;
+    bool dirty;
 };
 
 #endif // INGREDIENT_H
