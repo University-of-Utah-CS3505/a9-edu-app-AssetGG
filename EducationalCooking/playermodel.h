@@ -2,6 +2,10 @@
 #define PLAYERMODEL_H
 
 #include <QObject>
+#include <QPoint>
+#include "ingredient.h"
+
+using std::vector;
 
 class PlayerModel : public QObject
 {
@@ -10,8 +14,13 @@ public:
     explicit PlayerModel(QObject *parent = nullptr);
 
 public slots:
+    void didClickOnIngredient(QPoint);
+    void notHoldingIngredient(QPoint);
+    void movingIngredientToPoint(QPoint);
 
 private:
+    vector<Ingredient> ingredients;
+    Ingredient currentlyClickedOn;
 
 
 signals:
