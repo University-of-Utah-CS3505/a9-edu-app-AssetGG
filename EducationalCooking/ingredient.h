@@ -9,11 +9,10 @@ public:
     Ingredient(QImage, std::string, QImage, bool, bool);
     std::string GetName();
     QImage GetImage();
-    void Cut();
-    void Cooked();
+    bool Cut();
+    bool Cooked();
 
 private:
-
     std::string ingredientName;
 
     QImage currentImage;
@@ -25,6 +24,7 @@ private:
 
     bool cut;
     bool cooked;
+    bool dirty;
 
 };
 

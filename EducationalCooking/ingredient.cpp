@@ -1,5 +1,6 @@
 #include "ingredient.h"
 #include <string>
+#include <QMouseEvent>
 
 Ingredient::Ingredient(std::string name, QImage baseImage, QImage cutImage, bool cuttable, bool cookable)
 {
@@ -14,6 +15,7 @@ Ingredient::Ingredient(std::string name, QImage baseImage, QImage cutImage, bool
 
     cut = false;
     cooked = false;
+    burnt = false;
 }
 
 std::string Ingredient::GetName()
@@ -26,21 +28,31 @@ QImage Ingredient::GetImage()
     return currentImage;
 }
 
-void Ingredient::Cut()
+bool Ingredient::Cut()
 {
-    if (cuttable)
+    if (cuttable && !cooked)
     {
         cut = true;
         currentImage = cutImage;
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
 
-void Ingredient::Cooked()
+bool Ingredient::Cooked()
 {
     if(cookable)
     {
         cooked = true;
     }
+    return cookable;
 }
 
+void Ingredient::Burned()
+{
+    burnt = true;
+}
 
