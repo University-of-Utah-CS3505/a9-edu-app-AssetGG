@@ -15,12 +15,12 @@ public:
 
 public slots:
     void didClickOnIngredient(QPoint);
-    void notHoldingIngredient(QPoint);
-    void movingIngredientToPoint(QPoint);
+    void dropIngredient(QPoint);
+    void moveIngredientToPoint(QPoint);
 
 private:
     vector<Ingredient> ingredients;
-    Ingredient currentlyClickedOn;
+    Ingredient* currentlyClickedOn;
 
 
 signals:

@@ -4,6 +4,9 @@
 PlayerView::PlayerView(PlayerModel& model, QWidget *parent): QMainWindow(parent), ui(new Ui::PlayerView)
 {
     ui->setupUi(this);
+    connect(this, &PlayerView::didClickOnIngredient, &model, &PlayerModel::didClickOnIngredient);
+    connect(this, &PlayerView::dropIngredient, &model, &PlayerModel::dropIngredient);
+    connect(this, &PlayerView::updateIngredientPosition, &model, &PlayerModel::moveIngredientToPoint);
 }
 
 PlayerView::~PlayerView()
@@ -23,7 +26,7 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
 
 void PlayerView::mouseReleaseEvent(QMouseEvent *event)
 {
-    emit unclickIngredient(event->pos());
+    emit dropIngredient(event->pos());
 }
 
 void PlayerView::mouseMoveEvent(QMouseEvent *event)

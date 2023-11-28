@@ -29,7 +29,7 @@ private:
 
 signals:
     void didClickOnIngredient(QPoint);
-    void unclickIngredient(QPoint);
+    void dropIngredient(QPoint);
     void updateIngredientPosition(QPoint);
 
 };

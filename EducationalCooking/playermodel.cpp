@@ -2,31 +2,32 @@
 
 PlayerModel::PlayerModel(QObject *parent): QObject{parent}
 {
-    currentlyClickedOn = NULL;
+    currentlyClickedOn = nullptr;
 }
 
 void PlayerModel::didClickOnIngredient(QPoint clickLocation)
 {
     for (Ingredient ingredient : ingredients)
-        if (ingredient.x == clickLocation.x() || ingredient.y == clickLocation.y())
-            currentlyClickedOn = ingredient;
+        if ((ingredient.x <= clickLocation.x() && ingredient.x >= clickLocation.x() - 20)
+            || (ingredient.y <= clickLocation.y() && ingredient.y >= clickLocation.y() - 20))
+            currentlyClickedOn = &ingredient;
 }
 
-void PlayerModel::notHoldingIngredient(QPoint dropLocation)
+void PlayerModel::dropIngredient(QPoint dropLocation)
 {
-    if (currentlyClickedOn != NULL)
+    if (currentlyClickedOn != nullptr)
     {
-        currentlyClickedOn.x = dropLocation.x();
-        currentlyClickedOn.y = dropLocation.y();
-        currentlyClickedOn = NULL;
+        currentlyClickedOn->x = dropLocation.x();
+        currentlyClickedOn->y = dropLocation.y();
+        currentlyClickedOn = nullptr;
     }
 }
 
-void PlayerModel::movingIngredientToPoint(QPoint moveLocation)
+void PlayerModel::moveIngredientToPoint(QPoint moveLocation)
 {
-    if (currentlyClickedOn != NULL)
+    if (currentlyClickedOn != nullptr)
     {
-        currentlyClickedOn.x = moveLocation.x();
-        currentlyClickedOn.y = moveLocation.y();
+        currentlyClickedOn->x = moveLocation.x();
+        currentlyClickedOn->y = moveLocation.y();
     }
 }
