@@ -1,6 +1,7 @@
 #include "playermodel.h"
 
-PlayerModel::PlayerModel(QObject *parent): QObject{parent}
+PlayerModel::PlayerModel(QObject *parent)
+    : QObject{parent}
 {
     currentlyClickedOn = nullptr;
 }
