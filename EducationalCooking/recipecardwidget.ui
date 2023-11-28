@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+  <class>RecipeCardWidget</class>
+  <widget class="QWidget" name="RecipeCardWidget">
+    <property name="geometry">
+      <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>200</width>
+        <height>100</height>
+      </rect>
+    </property>
+    <property name="windowTitle">
+      <string>RecipeCardWidget</string>
+    </property>
+    <widget class="QPushButton" name="cardButton">
+      <property name="geometry">
+        <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>180</width>
+          <height>80</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string>Card Button</string>
+      </property>
+    </widget>
+    <widget class="QLabel" name="recipeLabel">
+      <property name="geometry">
+        <rect>
+          <x>20</x>
+          <y>30</y>
+          <width>160</width>
+          <height>20</height>
+        </rect>
+      </property>
+      <property name="text">
+        <string>Recipe Name</string>
+      </property>
+    </widget>
+  </widget>
+  <resources/>
+  <connections/>
+</ui>

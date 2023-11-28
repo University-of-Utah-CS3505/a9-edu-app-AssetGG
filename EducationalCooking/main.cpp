@@ -1,12 +1,17 @@
 #include "playerview.h"
 #include <QApplication>
 #include "playermodel.h"
+#include "startupscreen.h"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
-    PlayerModel m;
-    PlayerView w(m);
-    w.show();
+
+    PlayerModel model; // Instance of PlayerModel
+
+    StartupScreen startupScreen(model);
+
+    startupScreen.show();
+
     return a.exec();
 }
+
