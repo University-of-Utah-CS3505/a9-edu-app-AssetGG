@@ -1,8 +1,9 @@
 #include "playermodel.h"
 
-PlayerModel::PlayerModel(QObject *parent): QObject{parent}
+PlayerModel::PlayerModel(QObject *parent)
+    : QObject{parent}
 {
-    currentlyClickedOn = NULL;
+    // currentlyClickedOn = NULL;
 }
 
 void PlayerModel::didClickOnIngredient(QPoint clickLocation)
@@ -14,19 +15,19 @@ void PlayerModel::didClickOnIngredient(QPoint clickLocation)
 
 void PlayerModel::notHoldingIngredient(QPoint dropLocation)
 {
-    if (currentlyClickedOn != NULL)
-    {
-        currentlyClickedOn.x = dropLocation.x();
-        currentlyClickedOn.y = dropLocation.y();
-        currentlyClickedOn = NULL;
-    }
+    //    if (currentlyClickedOn != NULL)
+    //    {
+    //        currentlyClickedOn.x = dropLocation.x();
+    //        currentlyClickedOn.y = dropLocation.y();
+    //        currentlyClickedOn = NULL;
+    //    }
 }
 
 void PlayerModel::movingIngredientToPoint(QPoint moveLocation)
 {
-    if (currentlyClickedOn != NULL)
+    /*f (currentlyClickedOn != NULL)
     {
         currentlyClickedOn.x = moveLocation.x();
         currentlyClickedOn.y = moveLocation.y();
-    }
+    }*/
 }

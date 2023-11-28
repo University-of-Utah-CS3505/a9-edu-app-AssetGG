@@ -1,7 +1,9 @@
 #include "playerview.h"
 #include "ui_playerview.h"
 
-PlayerView::PlayerView(PlayerModel& model, QWidget *parent): QMainWindow(parent), ui(new Ui::PlayerView)
+PlayerView::PlayerView(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::PlayerView)
 {
     ui->setupUi(this);
 }
@@ -11,10 +13,7 @@ PlayerView::~PlayerView()
     delete ui;
 }
 
-void PlayerView::paintEvent(QPaintEvent *event)
-{
-
-}
+void PlayerView::paintEvent(QPaintEvent *event) {}
 
 void PlayerView::mousePressEvent(QMouseEvent *event)
 {
