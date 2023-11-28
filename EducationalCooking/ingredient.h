@@ -2,17 +2,19 @@
 #define INGREDIENT_H
 
 #include <QObject>
+#include <QImage>
 #include <QPaintEvent>
 
 class Ingredient
 {
 public:
-    Ingredient(QImage, std::string, QImage, bool, bool);
+    Ingredient(std::string, QImage, QImage, bool, bool);
     int x, y;
     std::string GetName();
     QImage GetImage();
     bool Cut();
     bool Cooked();
+    void Burned();
 
 private:
     std::string ingredientName;
@@ -27,6 +29,7 @@ private:
     bool cut;
     bool cooked;
     bool dirty;
+    bool burnt;
 };
 
 #endif // INGREDIENT_H

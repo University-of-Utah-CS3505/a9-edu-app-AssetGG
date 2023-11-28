@@ -20,7 +20,7 @@ Ingredient::Ingredient(std::string name, QImage baseImage, QImage cutImage, bool
 
 std::string Ingredient::GetName()
 {
-    return name;
+    return ingredientName;
 }
 
 QImage Ingredient::GetImage()
