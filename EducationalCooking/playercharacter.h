@@ -14,7 +14,7 @@ public:
     explicit PlayerCharacter(QObject *parent = nullptr);
 
 public slots:
-    void paintEvent(QPaintEvent *);
+    void paintEvent(QPaintEvent *event);
 
 private:
     vector<QImage> forwardWalkingAnimation;
