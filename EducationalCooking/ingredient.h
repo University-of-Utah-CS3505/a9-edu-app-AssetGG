@@ -9,6 +9,7 @@ class Ingredient
 public:
     Ingredient();
     int x, y;
+    QImage* ingredientImage;
 
 public slots:
 };

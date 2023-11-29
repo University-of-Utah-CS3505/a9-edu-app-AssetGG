@@ -24,9 +24,11 @@ public slots:
     void mousePressEvent(QMouseEvent *);
     void mouseReleaseEvent(QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
+    void updateClickedIngredient(QImage*, int, int);
 
 private:
     Ui::PlayerView *ui;
+    QImage clickedIngredient;
 
 signals:
     void didClickOnIngredient(QPoint);

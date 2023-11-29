@@ -1,14 +1,10 @@
 #include "playerview.h"
 #include "ui_playerview.h"
+#include <QPainter>
 
-PlayerView::PlayerView(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::PlayerView)
+PlayerView::PlayerView(QWidget *parent): QMainWindow(parent), ui(new Ui::PlayerView)
 {
     ui->setupUi(this);
-    connect(this, &PlayerView::didClickOnIngredient, &model, &PlayerModel::didClickOnIngredient);
-    connect(this, &PlayerView::dropIngredient, &model, &PlayerModel::dropIngredient);
-    connect(this, &PlayerView::updateIngredientPosition, &model, &PlayerModel::moveIngredientToPoint);
 }
 
 PlayerView::~PlayerView()
@@ -16,7 +12,10 @@ PlayerView::~PlayerView()
     delete ui;
 }
 
-void PlayerView::paintEvent(QPaintEvent *event) {}
+void PlayerView::paintEvent(QPaintEvent *event)
+{
+
+}
 
 void PlayerView::mousePressEvent(QMouseEvent *event)
 {
@@ -31,4 +30,10 @@ void PlayerView::mouseReleaseEvent(QMouseEvent *event)
 void PlayerView::mouseMoveEvent(QMouseEvent *event)
 {
     emit updateIngredientPosition(event->pos());
+}
+
+void PlayerView::updateClickedIngredient(QImage* ingredient, int x, int y)
+{
+    ingredient.
+    update();
 }

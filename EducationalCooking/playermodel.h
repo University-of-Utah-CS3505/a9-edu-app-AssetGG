@@ -24,6 +24,7 @@ private:
 
 
 signals:
+    void updateIngredientOnScreen(QImage*, int, int);
 
 };
 

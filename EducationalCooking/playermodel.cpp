@@ -30,5 +30,7 @@ void PlayerModel::moveIngredientToPoint(QPoint moveLocation)
     {
         currentlyClickedOn->x = moveLocation.x();
         currentlyClickedOn->y = moveLocation.y();
+
+        emit updateIngredientOnScreen(currentlyClickedOn->ingredientImage, currentlyClickedOn->x, currentlyClickedOn->y);
     }
 }
