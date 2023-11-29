@@ -24,8 +24,16 @@ private:
     Ui::StartupScreen *ui;
     PlayerModel& playerModel;
 
+    QImage recipeCardImage1;
+    QImage recipeCardImage2;
+    QImage recipeCardImage3;
+    QImage recipeCardImage4;
+    QImage recipeCardImage5;
+    QImage recipeCardImage6;
+
     void createRecipeCards();
     void updateRecipeCard(RecipeCardWidget* card, const QString& recipeName);
+    void updateRecipeCardImage(RecipeCardWidget* card, const QString& imagePath);
 };
 
 #endif // STARTUPSCREEN_H
