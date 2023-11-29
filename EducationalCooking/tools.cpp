@@ -2,12 +2,33 @@
 #include <string>
 #include <QMouseEvent>
 
-Tools::Tools()
+Tools::Tools(CookingToolType type) : toolType(type)
 {
-    // TODO: Think what should go here
+    // Empty constructor
+    // Might need to rethink this
 }
 
-CookingToolType Tools::GetToolType() const
+void Tools::ProcessIngredient(Ingredient& ingredient)
 {
-    return toolType;
+    switch (toolType)
+    {
+    case CookingToolType::CuttingBoard:
+        // Might needd to move the if statements like is cookable/cuttable here from ingredients class
+        ingredient.Cut();
+        break;
+
+    case CookingToolType::Pot:
+        ingredient.Cooked();
+        break;
+
+    case CookingToolType::FryingPan:
+        // Add frying pan logic
+        break;
+
+     // Add more cases for other cooking tools
+
+    default:
+        // TODO: think about the default case
+        break;
+    }
 }

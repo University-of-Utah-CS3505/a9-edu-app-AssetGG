@@ -3,11 +3,12 @@
 
 #include <QImage>
 #include <QString>
+#include "ingredient.h"
 
 enum class CookingToolType
 {
     CuttingBoard,
-    Pan,
+    FryingPan,
     Pot,
     // TODO: Add other tools
 };
@@ -15,8 +16,8 @@ enum class CookingToolType
 class Tools
 {
 public:
-    Tools();
-    CookingToolType GetToolType() const;
+    Tools(CookingToolType type);
+    void ProcessIngredient(Ingredient& ingredient);
 
 private:
     CookingToolType toolType;
