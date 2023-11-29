@@ -64,7 +64,8 @@ SOURCES += \
     playerview.cpp \
     recipe.cpp \
     recipecardwidget.cpp \
-    startupscreen.cpp
+    startupscreen.cpp \
+    tools.cpp
 
 HEADERS += \
     Box2D/Box2D.h \
@@ -122,7 +123,8 @@ HEADERS += \
     playerview.h \
     recipe.h \
     recipecardwidget.h \
-    startupscreen.h
+    startupscreen.h \
+    tools.h
 
 FORMS += \
     playerview.ui \
