@@ -2,7 +2,7 @@
 #include <string>
 #include <QMouseEvent>
 
-Ingredient::Ingredient(std::string name, QImage baseImage, QImage cutImage, bool cuttable, bool cookable, int x, int y)
+Ingredient::Ingredient(std::string name, QImage baseImage, QImage cutImage, QImage cookedImage, bool cuttable, bool cookable, int x, int y)
 {
     ingredientName = name;
 
@@ -12,6 +12,7 @@ Ingredient::Ingredient(std::string name, QImage baseImage, QImage cutImage, bool
     currentImage = baseImage;
     baseImage = baseImage;
     cutImage = cutImage;
+    cookedImage = cookedImage;
 
     cuttable = cuttable;
     cookable = cookable;
@@ -28,6 +29,7 @@ Ingredient::Ingredient()
     currentImage = QImage(":/sprites/Sprites/Tomato.png");
     baseImage = QImage(":/sprites/Sprites/Tomato.png");
     cutImage = QImage(":/sprites/Sprites/Tomato.png");
+    cookedImage = QImage(":/sprites/Sprites/Tomato.png");
 
     cuttable = true;
     cookable = true;
@@ -72,6 +74,7 @@ bool Ingredient::Cooked()
     if(cookable)
     {
         cooked = true;
+        currentImage = cookedImage;
     }
     return cookable;
 }
