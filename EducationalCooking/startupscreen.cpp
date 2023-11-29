@@ -35,12 +35,12 @@ void StartupScreen::onLearnRecipeClicked() {
 }
 
 void StartupScreen::createRecipeCards() {
-    recipeCardImage1 = QImage(":/sprites/Sprites/Tomato.png");
-    recipeCardImage2 = QImage(":/sprites/Sprites/Tomato.png");
-    recipeCardImage3 = QImage(":/sprites/Sprites/Tomato.png");
-    recipeCardImage4 = QImage(":/sprites/Sprites/Tomato.png");
-    recipeCardImage5 = QImage(":/sprites/Sprites/Tomato.png");
-    recipeCardImage6 = QImage(":/sprites/Sprites/Tomato.png");
+    recipeCardImage1 = QImage(":/sprites/Sprites/Pasta Tomato.png");
+    recipeCardImage2 = QImage(":/sprites/Sprites/Salad Dish.png");
+    recipeCardImage3 = QImage(":/sprites/Sprites/Cheese Pasta.png");
+    recipeCardImage4 = QImage(":/sprites/Sprites/Chicken Soup.png");
+    recipeCardImage5 = QImage(":/sprites/Sprites/Cheeseburger.png");
+    recipeCardImage6 = QImage(":/sprites/Sprites/Pancakes.png");
 
     updateRecipeCard(ui->recipeCard1, "Spaghetti");
     updateRecipeCard(ui->recipeCard2, "Salad");
@@ -50,12 +50,12 @@ void StartupScreen::createRecipeCards() {
     updateRecipeCard(ui->recipeCard6, "Pancake");
 
     // Update recipe images
-    updateRecipeCardImage(ui->recipeCard1, ":/sprites/Sprites/Tomato.png");
-    updateRecipeCardImage(ui->recipeCard2, ":/sprites/Sprites/Tomato.png");
-    updateRecipeCardImage(ui->recipeCard3, ":/sprites/Sprites/Tomato.png");
-    updateRecipeCardImage(ui->recipeCard4, ":/sprites/Sprites/Tomato.png");
-    updateRecipeCardImage(ui->recipeCard5, ":/sprites/Sprites/Tomato.png");
-    updateRecipeCardImage(ui->recipeCard6, ":/sprites/Sprites/Tomato.png");
+    updateRecipeCardImage(ui->recipeCard1, ":/sprites/Sprites/Pasta Tomato.png");
+    updateRecipeCardImage(ui->recipeCard2, ":/sprites/Sprites/Salad Dish.png");
+    updateRecipeCardImage(ui->recipeCard3, ":/sprites/Sprites/Cheese Pasta.png");
+    updateRecipeCardImage(ui->recipeCard4, ":/sprites/Sprites/Chicken Soup.png");
+    updateRecipeCardImage(ui->recipeCard5, ":/sprites/Sprites/Cheeseburger.png");
+    updateRecipeCardImage(ui->recipeCard6, ":/sprites/Sprites/Pancakes.png");
 
     // Signal connections for when the recipe is selected
     connect(ui->recipeCard1, &RecipeCardWidget::clicked, this, [this]() {

@@ -2,5 +2,451 @@
     <qresource prefix="/sprites">
         <file>Sprites/Tomato.png</file>
         <file>Sprites/Kitchen.png</file>
+        <file>Sprites/Almond.png</file>
+        <file>Sprites/Alternate Red Velvet Cake.png</file>
+        <file>Sprites/Apple Pie Slice.png</file>
+        <file>Sprites/Apple Pie.png</file>
+        <file>Sprites/Apple Slice.png</file>
+        <file>Sprites/Aspergus.png</file>
+        <file>Sprites/Aubergine.png</file>
+        <file>Sprites/Baguette.png</file>
+        <file>Sprites/Baked Bacon.png</file>
+        <file>Sprites/Baked Egg.png</file>
+        <file>Sprites/Baklava.png</file>
+        <file>Sprites/Bananas.png</file>
+        <file>Sprites/Barbecue Sauce.png</file>
+        <file>Sprites/Beef Wellington.png</file>
+        <file>Sprites/Beer Can.png</file>
+        <file>Sprites/Beet Soup.png</file>
+        <file>Sprites/Beetroot Salad.png</file>
+        <file>Sprites/Bitten Green Mochi.png</file>
+        <file>Sprites/Bitten Pink Mochi.png</file>
+        <file>Sprites/Bitten Red Apple.png</file>
+        <file>Sprites/Bitten White Mochi.png</file>
+        <file>Sprites/Black Bean.png</file>
+        <file>Sprites/Black Olive Filled Egg.png</file>
+        <file>Sprites/Black Olive.png</file>
+        <file>Sprites/Blackberry Jam.png</file>
+        <file>Sprites/Blackberry.png</file>
+        <file>Sprites/Blackwalder Kirsch Slice.png</file>
+        <file>Sprites/Blackwalder Kirsch.png</file>
+        <file>Sprites/Bloodwurst.png</file>
+        <file>Sprites/Bloody Mary.png</file>
+        <file>Sprites/Blue Candy.png</file>
+        <file>Sprites/Blue Cheese Slice.png</file>
+        <file>Sprites/Blue Cheese.png</file>
+        <file>Sprites/Blue Laguna.png</file>
+        <file>Sprites/Blue Rock Candy.png</file>
+        <file>Sprites/Blueberry Muffin.png</file>
+        <file>Sprites/Blueberry Pancake.png</file>
+        <file>Sprites/Blueberry Pie Slice.png</file>
+        <file>Sprites/Blueberry Pie.png</file>
+        <file>Sprites/Blueberry Yoghurt.png</file>
+        <file>Sprites/Blueberry.png</file>
+        <file>Sprites/Bouillon.png</file>
+        <file>Sprites/Brocolli.png</file>
+        <file>Sprites/Brown Bean.png</file>
+        <file>Sprites/Brown Bread Slice.png</file>
+        <file>Sprites/Brown Bread.png</file>
+        <file>Sprites/Brown mushroom.png</file>
+        <file>Sprites/Brown Onion.png</file>
+        <file>Sprites/Brown Pudding.png</file>
+        <file>Sprites/Brownie.png</file>
+        <file>Sprites/Burrito.png</file>
+        <file>Sprites/Butter Waffle.png</file>
+        <file>Sprites/Butter.png</file>
+        <file>Sprites/Buttermilk.png</file>
+        <file>Sprites/Candy Cane.png</file>
+        <file>Sprites/Candy Donut.png</file>
+        <file>Sprites/Caprese Pizza Slice.png</file>
+        <file>Sprites/Caprese Pizza.png</file>
+        <file>Sprites/Caramel Apple.png</file>
+        <file>Sprites/Carrot Cake.png</file>
+        <file>Sprites/Carrot.png</file>
+        <file>Sprites/Cashew.png</file>
+        <file>Sprites/Cauliflower.png</file>
+        <file>Sprites/Caviar Cracker.png</file>
+        <file>Sprites/Caviar.png</file>
+        <file>Sprites/Checkered Cookie.png</file>
+        <file>Sprites/Cheddar.png</file>
+        <file>Sprites/Cheese Lasagne.png</file>
+        <file>Sprites/Cheese Pasta.png</file>
+        <file>Sprites/Cheese Pizza Slice.png</file>
+        <file>Sprites/Cheese Pizza.png</file>
+        <file>Sprites/Cheese Slice.png</file>
+        <file>Sprites/Cheese Wheel.png</file>
+        <file>Sprites/Cheeseburger.png</file>
+        <file>Sprites/Cherry Cake.png</file>
+        <file>Sprites/Cherry Tomatoes.png</file>
+        <file>Sprites/Cherry.png</file>
+        <file>Sprites/Chicken Nuggets.png</file>
+        <file>Sprites/Chicken Soup.png</file>
+        <file>Sprites/Chili Dish.png</file>
+        <file>Sprites/Chili Pot.png</file>
+        <file>Sprites/Chocolat Dip.png</file>
+        <file>Sprites/Chocolate Cake Slice.png</file>
+        <file>Sprites/Chocolate Cake.png</file>
+        <file>Sprites/Chocolate Chip Muffin.png</file>
+        <file>Sprites/Chocolate Chip.png</file>
+        <file>Sprites/Chocolate Churro.png</file>
+        <file>Sprites/Chocolate Coffee.png</file>
+        <file>Sprites/Chocolate Croissant.png</file>
+        <file>Sprites/Chocolate Donut.png</file>
+        <file>Sprites/Chocolate Egg.png</file>
+        <file>Sprites/Chocolate Ice Cream.png</file>
+        <file>Sprites/Chocolate Milk.png</file>
+        <file>Sprites/Chocolate Muffin.png</file>
+        <file>Sprites/Chocolate Pudding.png</file>
+        <file>Sprites/Chocolate Sauce Brownie.png</file>
+        <file>Sprites/Chocolate Strawberry.png</file>
+        <file>Sprites/Chocolate Whipped Cream.png</file>
+        <file>Sprites/Chocolaty Ice Cream.png</file>
+        <file>Sprites/Christmas Cake.png</file>
+        <file>Sprites/Christmas Cookie.png</file>
+        <file>Sprites/Churro.png</file>
+        <file>Sprites/Closed Peanut.png</file>
+        <file>Sprites/Coconut Drink.png</file>
+        <file>Sprites/Coconut Icecream.png</file>
+        <file>Sprites/Coconut.png</file>
+        <file>Sprites/Cod.png</file>
+        <file>Sprites/Coffee Cup.png</file>
+        <file>Sprites/Coffee.png</file>
+        <file>Sprites/Cola Glass.png</file>
+        <file>Sprites/Cola.png</file>
+        <file>Sprites/Cook Shashlik.png</file>
+        <file>Sprites/Cooked Chicken Leg.png</file>
+        <file>Sprites/Cooked Chicken.png</file>
+        <file>Sprites/Cooked Ribs.png</file>
+        <file>Sprites/Cooked Salmon.png</file>
+        <file>Sprites/Cooked Sausage.png</file>
+        <file>Sprites/Cooked Shrimp.png</file>
+        <file>Sprites/Cooked Steak.png</file>
+        <file>Sprites/Corn.png</file>
+        <file>Sprites/Corndog.png</file>
+        <file>Sprites/Cornflakes.png</file>
+        <file>Sprites/Cracker.png</file>
+        <file>Sprites/Cream Filled Donut.png</file>
+        <file>Sprites/Cream Waffle.png</file>
+        <file>Sprites/Croissants.png</file>
+        <file>Sprites/Cucumber Slices.png</file>
+        <file>Sprites/Cucumber.png</file>
+        <file>Sprites/Curry Dish.png</file>
+        <file>Sprites/Curry Soup.png</file>
+        <file>Sprites/Dark Chocolate Bar.png</file>
+        <file>Sprites/Dark Chocolate Cake Slice.png</file>
+        <file>Sprites/Dark Chocolate Cake.png</file>
+        <file>Sprites/Dark Chocolate Chip Cookie.png</file>
+        <file>Sprites/Dark Chocolate Piece.png</file>
+        <file>Sprites/Dark Kaiser Bread.png</file>
+        <file>Sprites/Dorito.png</file>
+        <file>Sprites/Double Espresso.png</file>
+        <file>Sprites/Dumpling.png</file>
+        <file>Sprites/Egg Muffin.png</file>
+        <file>Sprites/Egg Pizza Slice.png</file>
+        <file>Sprites/Egg Pizza.png</file>
+        <file>Sprites/Egg.png</file>
+        <file>Sprites/Eggnog.png</file>
+        <file>Sprites/Eggs and Bacon.png</file>
+        <file>Sprites/Empanada.png</file>
+        <file>Sprites/Empty Mussle Pot.png</file>
+        <file>Sprites/Empty Mussle.png</file>
+        <file>Sprites/Energy Drink.png</file>
+        <file>Sprites/Espresso.png</file>
+        <file>Sprites/Extra Chocolate Muffin.png</file>
+        <file>Sprites/Fancy Dish Pot.png</file>
+        <file>Sprites/Filled Donut.png</file>
+        <file>Sprites/Filled Egg.png</file>
+        <file>Sprites/Filled Kaiser.png</file>
+        <file>Sprites/Filled Pancake.png</file>
+        <file>Sprites/Filled Paprika.png</file>
+        <file>Sprites/Filled Potato.png</file>
+        <file>Sprites/Filled Powdered Donut.png</file>
+        <file>Sprites/Filled Pumpkin.png</file>
+        <file>Sprites/Finished Salmon Dish.png</file>
+        <file>Sprites/Fish Curry Soup.png</file>
+        <file>Sprites/Fish Dinner.png</file>
+        <file>Sprites/Flour.png</file>
+        <file>Sprites/Fortune Cookie.png</file>
+        <file>Sprites/Fried Dumpling.png</file>
+        <file>Sprites/Fries.png</file>
+        <file>Sprites/Fruit Doughnut.png</file>
+        <file>Sprites/Fudge.png</file>
+        <file>Sprites/Full Bread.png</file>
+        <file>Sprites/Garlic.png</file>
+        <file>Sprites/Ginger.png</file>
+        <file>Sprites/Goat Cheese Slice.png</file>
+        <file>Sprites/Goat Cheese.png</file>
+        <file>Sprites/Grain.png</file>
+        <file>Sprites/Green Apple Slice.png</file>
+        <file>Sprites/Green Apple.png</file>
+        <file>Sprites/Green Bean.png</file>
+        <file>Sprites/Green Bitten Apple.png</file>
+        <file>Sprites/Green Candy.png</file>
+        <file>Sprites/Green Chili Pepper.png</file>
+        <file>Sprites/Green Fresno.png</file>
+        <file>Sprites/Green Macaron.png</file>
+        <file>Sprites/Green Mochi.png</file>
+        <file>Sprites/Green Olive.png</file>
+        <file>Sprites/Green Paprika.png</file>
+        <file>Sprites/Green Tea.png</file>
+        <file>Sprites/Grilled Cheese Sandwich.png</file>
+        <file>Sprites/Guacamole Cracker.png</file>
+        <file>Sprites/Half Apple Green.png</file>
+        <file>Sprites/Half Apple.png</file>
+        <file>Sprites/Half Avocado.png</file>
+        <file>Sprites/Half brown onion.png</file>
+        <file>Sprites/Half Cucumber.png</file>
+        <file>Sprites/Half Kiwi.png</file>
+        <file>Sprites/Half Mushroom.png</file>
+        <file>Sprites/Half Pepperoni.png</file>
+        <file>Sprites/Half Pomegranate.png</file>
+        <file>Sprites/Half Red Onion.png</file>
+        <file>Sprites/Ham Cheese Pizza Slice.png</file>
+        <file>Sprites/Ham.png</file>
+        <file>Sprites/Hamburger Dish.png</file>
+        <file>Sprites/Hamburger Food.png</file>
+        <file>Sprites/Hamburger with Barbecue Sauce.png</file>
+        <file>Sprites/Hamburger.png</file>
+        <file>Sprites/Hamcheese Croissant.png</file>
+        <file>Sprites/Hawaiian Pizza.png</file>
+        <file>Sprites/Hazelnut.png</file>
+        <file>Sprites/Herring.png</file>
+        <file>Sprites/Honey Ham.png</file>
+        <file>Sprites/Honey Mustard Hotwing.png</file>
+        <file>Sprites/Honey.png</file>
+        <file>Sprites/Hot Chocolate.png</file>
+        <file>Sprites/Hotdog.png</file>
+        <file>Sprites/Hotpot.png</file>
+        <file>Sprites/Hotwing.png</file>
+        <file>Sprites/Ice Cream Brownie.png</file>
+        <file>Sprites/Ice Cream.png</file>
+        <file>Sprites/Ice Cube.png</file>
+        <file>Sprites/Ice Waffle.png</file>
+        <file>Sprites/Icecream Waffle.png</file>
+        <file>Sprites/Jalapeno Hotdog.png</file>
+        <file>Sprites/Jam Filled Donut.png</file>
+        <file>Sprites/Jam.png</file>
+        <file>Sprites/Jelly Beans.png</file>
+        <file>Sprites/Kaiser Bread.png</file>
+        <file>Sprites/Ketchup.png</file>
+        <file>Sprites/Kiwi.png</file>
+        <file>Sprites/Lasagne.png</file>
+        <file>Sprites/Latte.png</file>
+        <file>Sprites/Lava Cake.png</file>
+        <file>Sprites/Leek.png</file>
+        <file>Sprites/Lemon Olive Oil.png</file>
+        <file>Sprites/Lemon.png</file>
+        <file>Sprites/Lobster Dinner.png</file>
+        <file>Sprites/Lobster.png</file>
+        <file>Sprites/Lollypop.png</file>
+        <file>Sprites/Mackarel.png</file>
+        <file>Sprites/Mandarin Piece.png</file>
+        <file>Sprites/Marshmallow.png</file>
+        <file>Sprites/Mayonaisse Hotdog.png</file>
+        <file>Sprites/Mayonaisse.png</file>
+        <file>Sprites/Meat Pie.png</file>
+        <file>Sprites/Meat Pizza Slice.png</file>
+        <file>Sprites/Meat Stew.png</file>
+        <file>Sprites/Meatball.png</file>
+        <file>Sprites/Meatpie Fruit.png</file>
+        <file>Sprites/Milk Chocolate Bar.png</file>
+        <file>Sprites/Milk Chocolate Piece.png</file>
+        <file>Sprites/Milk.png</file>
+        <file>Sprites/Milkshake.png</file>
+        <file>Sprites/Mochi Stick.png</file>
+        <file>Sprites/Mozarella Caprese Pizza Slice.png</file>
+        <file>Sprites/Mozarella Caprese Pizza.png</file>
+        <file>Sprites/Muesli Bar.png</file>
+        <file>Sprites/Multi Ice Cream1.png</file>
+        <file>Sprites/Multi Ice Cream2.png</file>
+        <file>Sprites/Mushroom Pizza Slice.png</file>
+        <file>Sprites/Mushroom.png</file>
+        <file>Sprites/Mussle Pot.png</file>
+        <file>Sprites/Mussle.png</file>
+        <file>Sprites/Mustard Hotdog.png</file>
+        <file>Sprites/Mustard.png</file>
+        <file>Sprites/Olive Cracker.png</file>
+        <file>Sprites/Olive Oil.png</file>
+        <file>Sprites/Omelet.png</file>
+        <file>Sprites/Onigiri.png</file>
+        <file>Sprites/Onion Rings.png</file>
+        <file>Sprites/Open Pea Can.png</file>
+        <file>Sprites/Open Sardine Can.png</file>
+        <file>Sprites/Open Tomato Can.png</file>
+        <file>Sprites/Opened Coconut.png</file>
+        <file>Sprites/Opened Peanut.png</file>
+        <file>Sprites/Orange Ice Cream.png</file>
+        <file>Sprites/Orange Juice.png</file>
+        <file>Sprites/Orange.png</file>
+        <file>Sprites/Oyster.png</file>
+        <file>Sprites/Pancakes.png</file>
+        <file>Sprites/Panini.png</file>
+        <file>Sprites/Paprika Soup.png</file>
+        <file>Sprites/Pasta Alfredo.png</file>
+        <file>Sprites/Pasta Carbonara.png</file>
+        <file>Sprites/Pasta Tomato.png</file>
+        <file>Sprites/Pea Can.png</file>
+        <file>Sprites/Pea Pod.png</file>
+        <file>Sprites/Pea Soup.png</file>
+        <file>Sprites/Peach Slice.png</file>
+        <file>Sprites/Peach.png</file>
+        <file>Sprites/Pear.png</file>
+        <file>Sprites/Peas.png</file>
+        <file>Sprites/Pepper.png</file>
+        <file>Sprites/Pepperoni Pizza Slice.png</file>
+        <file>Sprites/Pepperoni Pizza.png</file>
+        <file>Sprites/Pesto Spaghetti.png</file>
+        <file>Sprites/Piece of Corn.png</file>
+        <file>Sprites/Pineapple Slice.png</file>
+        <file>Sprites/Pineapple.png</file>
+        <file>Sprites/Pink Beet.png</file>
+        <file>Sprites/Pink Cheesecake Slice.png</file>
+        <file>Sprites/Pink Cheesecake.png</file>
+        <file>Sprites/Pink Donut.png</file>
+        <file>Sprites/Pink Macaron.png</file>
+        <file>Sprites/Pink Mochi.png</file>
+        <file>Sprites/Pink Rock Candy.png</file>
+        <file>Sprites/Pink Speckled Donut.png</file>
+        <file>Sprites/Pistache Nut.png</file>
+        <file>Sprites/Pita Bread.png</file>
+        <file>Sprites/Pizza Cracker.png</file>
+        <file>Sprites/Pizza Mozarella.png</file>
+        <file>Sprites/Plain Cake Slice.png</file>
+        <file>Sprites/Plain Cake.png</file>
+        <file>Sprites/Plain Muffin.png</file>
+        <file>Sprites/Plain Pasta.png</file>
+        <file>Sprites/Plain Pizza.png</file>
+        <file>Sprites/Pomegranate.png</file>
+        <file>Sprites/Popcorn.png</file>
+        <file>Sprites/Potato Dish.png</file>
+        <file>Sprites/Potato Salad.png</file>
+        <file>Sprites/Potato.png</file>
+        <file>Sprites/Powdered Donut.png</file>
+        <file>Sprites/Powdered Fruit Dougnut.png</file>
+        <file>Sprites/Pumpkin.png</file>
+        <file>Sprites/Purple Berries.png</file>
+        <file>Sprites/Raspberry Muffin.png</file>
+        <file>Sprites/Raspberry.png</file>
+        <file>Sprites/Ratatouille.png</file>
+        <file>Sprites/Raw Bacon.png</file>
+        <file>Sprites/Raw Chicken Leg.png</file>
+        <file>Sprites/Raw Chicken.png</file>
+        <file>Sprites/Raw Hamburger.png</file>
+        <file>Sprites/Raw Ribs.png</file>
+        <file>Sprites/Raw Salmon.png</file>
+        <file>Sprites/Raw Sausage.png</file>
+        <file>Sprites/Raw Shashlik.png</file>
+        <file>Sprites/Raw Shrim.png</file>
+        <file>Sprites/Raw Steak.png</file>
+        <file>Sprites/Red Apple.png</file>
+        <file>Sprites/Red Bean.png</file>
+        <file>Sprites/Red Beet.png</file>
+        <file>Sprites/Red Berries.png</file>
+        <file>Sprites/Red Candy.png</file>
+        <file>Sprites/Red Chili Pepper.png</file>
+        <file>Sprites/Red Fresno.png</file>
+        <file>Sprites/Red Onion.png</file>
+        <file>Sprites/Red Paprika.png</file>
+        <file>Sprites/Red Pudding.png</file>
+        <file>Sprites/Red Snapper.png</file>
+        <file>Sprites/Red Velvet Cake Slice Alternate.png</file>
+        <file>Sprites/Red Velvet Cake Slice.png</file>
+        <file>Sprites/Red Velvet Cake.png</file>
+        <file>Sprites/Red Velvet Cookie.png</file>
+        <file>Sprites/Redberry Pie Slice.png</file>
+        <file>Sprites/Redberry Pie.png</file>
+        <file>Sprites/Rice Bowl.png</file>
+        <file>Sprites/Rye Bread.png</file>
+        <file>Sprites/Salad Dish.png</file>
+        <file>Sprites/Salmon Slice.png</file>
+        <file>Sprites/Salmon Sushi.png</file>
+        <file>Sprites/Salmon Sushi2.png</file>
+        <file>Sprites/Salmon.png</file>
+        <file>Sprites/Salt.png</file>
+        <file>Sprites/Sangria.png</file>
+        <file>Sprites/Sardine Can.png</file>
+        <file>Sprites/Sardine.png</file>
+        <file>Sprites/Seasoned Cheese Pizza.png</file>
+        <file>Sprites/Seasoned Egg Pizza.png</file>
+        <file>Sprites/Seasoned Tomato Pizza.png</file>
+        <file>Sprites/Simple Cake.png</file>
+        <file>Sprites/Sliced Aubergine.png</file>
+        <file>Sprites/Sliced Carrot.png</file>
+        <file>Sprites/Sliced Cucumber.png</file>
+        <file>Sprites/Sliced Sausage.png</file>
+        <file>Sprites/Small Egg.png</file>
+        <file>Sprites/Small Sushi 1.png</file>
+        <file>Sprites/Small Sushi 2.png</file>
+        <file>Sprites/Soy sauce.png</file>
+        <file>Sprites/Spaghetti and Meatballs.png</file>
+        <file>Sprites/Speckled Cake.png</file>
+        <file>Sprites/Speckled Icecream.png</file>
+        <file>Sprites/Speckled Whipped Cream.png</file>
+        <file>Sprites/Spinach Soup.png</file>
+        <file>Sprites/Spotted Bean.png</file>
+        <file>Sprites/Springroll 1.png</file>
+        <file>Sprites/Springroll 2.png</file>
+        <file>Sprites/Sprinkled Candy Apple.png</file>
+        <file>Sprites/Sprinkled Chocolate Donut.png</file>
+        <file>Sprites/Sriracha.png</file>
+        <file>Sprites/Steak Dinner.png</file>
+        <file>Sprites/Strawberry Cake Slice.png</file>
+        <file>Sprites/Strawberry Marshmallow.png</file>
+        <file>Sprites/Strawberry Milk.png</file>
+        <file>Sprites/Strawberry Muffin.png</file>
+        <file>Sprites/Strawberry Yoghurt.png</file>
+        <file>Sprites/Strawberry.png</file>
+        <file>Sprites/Sugar Cube.png</file>
+        <file>Sprites/Sushi Piece1.png</file>
+        <file>Sprites/Sushi Piece2.png</file>
+        <file>Sprites/Syrup Waffle.png</file>
+        <file>Sprites/Taco.png</file>
+        <file>Sprites/Take Out.png</file>
+        <file>Sprites/Tea.png</file>
+        <file>Sprites/Tiramisu.png</file>
+        <file>Sprites/Tomato Can.png</file>
+        <file>Sprites/Tomato Dish.png</file>
+        <file>Sprites/Tomato Lasagne.png</file>
+        <file>Sprites/Tomato Pizza.png</file>
+        <file>Sprites/Tomato Soup Pot.png</file>
+        <file>Sprites/Tomato Soup.png</file>
+        <file>Sprites/Tortilla.png</file>
+        <file>Sprites/Triangle Jam Sandwich.png</file>
+        <file>Sprites/Triangle Sandwich.png</file>
+        <file>Sprites/Tuna Slice.png</file>
+        <file>Sprites/Tuna Sushi.png</file>
+        <file>Sprites/Tuna Sushi2.png</file>
+        <file>Sprites/Tuna.png</file>
+        <file>Sprites/Vanilla Pudding.png</file>
+        <file>Sprites/Vegan Coffee Cup.png</file>
+        <file>Sprites/Veggie Cracker.png</file>
+        <file>Sprites/Veggie Pizza Slice.png</file>
+        <file>Sprites/Waffle.png</file>
+        <file>Sprites/Walnut.png</file>
+        <file>Sprites/Watermelon Slice.png</file>
+        <file>Sprites/Watermelon.png</file>
+        <file>Sprites/Whipped Cream.png</file>
+        <file>Sprites/Whiskey Sour.png</file>
+        <file>Sprites/White Berries.png</file>
+        <file>Sprites/White Bread Slice.png</file>
+        <file>Sprites/White Bread.png</file>
+        <file>Sprites/White Cheesecake Slice.png</file>
+        <file>Sprites/White Cheesecake.png</file>
+        <file>Sprites/White Chocolate Bar.png</file>
+        <file>Sprites/White Chocolate piece.png</file>
+        <file>Sprites/White Cream Cookie.png</file>
+        <file>Sprites/White Mochi.png</file>
+        <file>Sprites/White Powdered Christmas Cookie.png</file>
+        <file>Sprites/White Speckled Donut.png</file>
+        <file>Sprites/White Striped Chocolate Donut.png</file>
+        <file>Sprites/White Triangle Sandwich.png</file>
+        <file>Sprites/Wine.png</file>
+        <file>Sprites/Yellow Cherry Tomatoes.png</file>
+        <file>Sprites/Yellow Chili Pepper.png</file>
+        <file>Sprites/Yellow Fresno.png</file>
+        <file>Sprites/Yellow Macaron.png</file>
+        <file>Sprites/Yellow Paprika.png</file>
+        <file>Sprites/Yellow Tomato.png</file>
+        <file>Sprites/Yoghurt.png</file>
     </qresource>
 </RCC>
