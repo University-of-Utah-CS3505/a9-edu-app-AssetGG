@@ -17,7 +17,8 @@ vector<Ingredient> Recipe::getBaseIngredients(){
     return baseIngredients;
 }
 
-vector<Ingredient> Recipe::getBonusIngredients(){
+vector<Ingredient> Recipe::getBonusIngredients()
+{
     return bonusIngredients;
 }
 

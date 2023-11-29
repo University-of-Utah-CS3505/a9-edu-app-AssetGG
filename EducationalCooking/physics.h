@@ -36,7 +36,7 @@ private:
 public:
     /// Constructs a physics simulator that will update `updateHz` times
     /// a second when .start() is called.
-    explicit Physics(float updateHz = 60.0, QObject *parent = nullptr);
+    explicit Physics(float updateHz = 90.0, QObject *parent = nullptr);
 
     /// Adds a physics object to the system that is static, meaning it
     /// does not move. Requires the user to provide a shape and x, y

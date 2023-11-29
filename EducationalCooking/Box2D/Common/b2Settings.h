@@ -95,11 +95,11 @@ typedef double float64;
 
 /// The maximum angular position correction used when solving constraints. This helps to
 /// prevent overshoot.
-#define b2_maxAngularCorrection		(8.0f / 180.0f * b2_pi)
+#define b2_maxAngularCorrection (8.0f / 180.0f * b2_pi)
 
 /// The maximum linear velocity of a body. This limit is very large and is used
 /// to prevent numerical problems. You shouldn't need to adjust this.
-#define b2_maxTranslation			2.0f
+#define b2_maxTranslation 9.0f
 #define b2_maxTranslationSquared	(b2_maxTranslation * b2_maxTranslation)
 
 /// The maximum angular velocity of a body. This limit is very large and is used
