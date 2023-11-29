@@ -2,7 +2,9 @@
 #include "ui_playerview.h"
 #include <QPainter>
 #include <vector>
+#include <map>
 #include "ingredient.h"
+#include "physics.h"
 
 PlayerView::PlayerView(QWidget *parent): QMainWindow(parent), ui(new Ui::PlayerView)
 {
@@ -40,5 +42,16 @@ void PlayerView::mouseMoveEvent(QMouseEvent *event)
 void PlayerView::setUpView(std::vector<Ingredient>)
 {
     tomato = Ingredient("tomato", QImage(":/sprites/Sprites/Tomato.png"), QImage(":/sprites/Sprites/Tomato.png"), QImage(":/sprites/Sprites/Tomato.png"), true, true, 125, 125);
+}
+
+void updateSpritePositions(const std::map<std::string, Physics::PhysicsObject> &physicsObjects)
+{
+  //for (const auto&[name, physicsObject]: physicsObjects) {
+
+  //}
+    Physics::PhysicsObject *obj = physicsObjects.at("tomato");
+    Ingredient sprite = tomato;//getSpriteByName(name);
+    sprite.locX = obj.body.position.x;
+    sprite.locY = obj.body.position.y;
 }
 

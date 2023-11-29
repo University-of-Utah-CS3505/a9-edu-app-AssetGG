@@ -7,6 +7,8 @@
 #include <QPoint>
 #include "ingredient.h"
 #include <vector>
+#include <map>
+#include "physics.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -29,6 +31,7 @@ public slots:
 private:
     Ui::PlayerView *ui;
     Ingredient tomato;
+    void updateSpritePositions(const std::map<std::string, Physics::PhysicsObject>);
     void setUpView(std::vector<Ingredient>);
 
 signals:
