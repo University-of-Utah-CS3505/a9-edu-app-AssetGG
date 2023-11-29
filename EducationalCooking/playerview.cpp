@@ -23,8 +23,8 @@ void PlayerView::paintEvent(QPaintEvent *event)
 
 void PlayerView::mouseMoveEvent(QMouseEvent *event)
 {
-    if ((event->pos().x() >= tomato.locX - 20 && event->pos().x() <= (tomato.locX + tomato.GetImage().width()) + 20)
-        && (event->pos().y() >= tomato.locY - 20 && event->pos().y() <= (tomato.locY + tomato.GetImage().height() + 20)))
+    if ((event->pos().x() >= tomato.locX - 50 && event->pos().x() <= (tomato.locX + tomato.GetImage().width()) + 50)
+        && (event->pos().y() >= tomato.locY - 50 && event->pos().y() <= (tomato.locY + tomato.GetImage().height() + 50)))
     {
         tomato.locX = event->pos().x();
         tomato.locY = event->pos().y();
