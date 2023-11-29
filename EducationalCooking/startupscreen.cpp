@@ -85,20 +85,19 @@ void StartupScreen::updateRecipeCardImage(RecipeCardWidget* card, const QString&
 }
 
 void StartupScreen::handleRecipeCardClicked(const QString &recipeName) {
-    qDebug() << recipeName;
     playerModel.setCurrentRecipe(recipeName);
 }
 
 void StartupScreen::onRecipeCardClicked(int recipeIndex) {
     for (int i = 0; i < recipeCards.size(); ++i) {
         if (i == recipeIndex) {
-            qDebug() << recipeCards[i];
             recipeCards[i]->setProperty("selected", true);
             recipeCards[i]->setStyleSheet("border: 4px solid #4287f5; border-radius: 10px;");
         } else {
             recipeCards[i]->setProperty("selected", false);
             recipeCards[i]->setStyleSheet("");
         }
+
         recipeCards[i]->style()->polish(recipeCards[i]);
     }
 }
