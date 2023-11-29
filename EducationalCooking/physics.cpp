@@ -52,6 +52,15 @@ PhysicsObject &Physics::registerDynamicObject(std::string name, b2Shape *shape, 
     return objects.at(name);
 }
 
+PhysicsObject *Physics::get(std::string name)
+{
+    auto search = objects.find(name);
+    if (search == objects.end())
+        return nullptr;
+    else
+        return &search->second;
+}
+
 b2PolygonShape Physics::createBoxShape(float width, float height)
 {
     b2PolygonShape shape;
