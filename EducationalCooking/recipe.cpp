@@ -2,21 +2,29 @@
 #include <string>
 #include <vector>
 
+using std::vector;
+using std::string;
 
-Recipe::Recipe(std::string name, std::vector<Ingredient> list)
+Recipe::Recipe(string name, vector<Ingredient> baseList, vector<Ingredient> bonusList, vector<Ingredient> avaliableList)
 {
     recipeName = name;
-    ingredients.clear();
-    foreach (Ingredient n, list) {
-        ingredients.push_back(n);
-    }
+    baseIngredients.swap(baseList);
+    bonusIngredients.swap(bonusList);
+    avaliableIngredients.swap(avaliableList);
 }
 
-std::vector<Ingredient> Recipe::getIngredients(){
-    return ingredients;
+vector<Ingredient> Recipe::getBaseIngredients(){
+    return baseIngredients;
 }
 
+vector<Ingredient> Recipe::getBonusIngredients(){
+    return bonusIngredients;
+}
 
-std::string Recipe::getRecipeName(){
+vector<Ingredient> Recipe::getAvaliableIngredients(){
+    return avaliableIngredients;
+}
+
+string Recipe::getRecipeName(){
     return recipeName;
 }
