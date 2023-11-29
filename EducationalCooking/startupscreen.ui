@@ -92,7 +92,7 @@
       <item>
         <widget class="QLabel" name="instructionsLabel">
           <property name="text">
-            <string>Select a recipe, begin cooking the recipe, when done click the score button and your dish will be evaluated. *By clicking the 'learn recipe' button you agree to give us permission to mine bitcoin on your device :)</string>
+            <string>Select a recipe, begin cooking the recipe, when done click the score button and your dish will be evaluated</string>
           </property>
           <property name="wordWrap">
                       <bool>true</bool>
