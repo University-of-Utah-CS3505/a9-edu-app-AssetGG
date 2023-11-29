@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     PlayerModel m;
-    PlayerView v;
+    PlayerView v(m);
     Controller c(m, v);
     v.show();
     return a.exec();

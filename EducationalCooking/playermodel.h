@@ -14,9 +14,6 @@ public:
     explicit PlayerModel(QObject *parent = nullptr);
 
 public slots:
-    void didClickOnIngredient(QPoint);
-    void dropIngredient(QPoint);
-    void moveIngredientToPoint(QPoint);
 
 private:
     vector<Ingredient> ingredients;
