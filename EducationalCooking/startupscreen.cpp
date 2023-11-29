@@ -87,6 +87,6 @@ void StartupScreen::updateRecipeCardImage(RecipeCardWidget* card, const QString&
 }
 
 void StartupScreen::handleRecipeCardClicked(const QString &recipeName) {
-    // This is where you handle the recipe card click
+    qDebug() << recipeName;
     playerModel.setCurrentRecipe(recipeName);
 }
