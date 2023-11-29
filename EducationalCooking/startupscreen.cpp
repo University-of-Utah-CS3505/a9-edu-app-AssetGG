@@ -28,7 +28,7 @@ void StartupScreen::onRecipeCardClicked(int recipeIndex) {
 }
 
 void StartupScreen::onLearnRecipeClicked() {
-    PlayerView* playerView = new PlayerView(playerModel);
+    PlayerView* playerView = new PlayerView;
     playerView->show(); // Shows playerView after recipe is selected
 
     this->hide();

@@ -10,9 +10,9 @@ int main(int argc, char *argv[]) {
 
     PlayerModel model; // Instance of PlayerModel
 
-    PlayerView v;
+    PlayerView playerView;
     Physics physics;
-    Controller c(m, v);
+    Controller c(model, playerView);
 
     physics.start();
   
