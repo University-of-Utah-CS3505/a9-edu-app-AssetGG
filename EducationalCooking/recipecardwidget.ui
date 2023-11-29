@@ -7,46 +7,63 @@
         <x>0</x>
         <y>0</y>
         <width>200</width>
-        <height>100</height>
+        <height>250</height>
       </rect>
     </property>
-    <property name="windowTitle">
-      <string>RecipeCardWidget</string>
+    <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+      </sizepolicy>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="minimumSize">
+      <size>
+        <width>200</width>
+        <height>250</height>
+      </size>
+    </property>
+    <property name="maximumSize">
+      <size>
+        <width>200</width>
+        <height>250</height>
+      </size>
+    </property>
+    <property name="autoFillBackground">
+      <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+      <string notr="true">QWidget#RecipeCardWidget {
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+QLabel#recipeImageLabel {
+    margin: 5px;
+    border: 1px solid #888;
+    border-radius: 5px;
+}
+
+QLabel#recipeLabel {
+    text-align: center;
+    font-weight: bold;
+}
+</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
       <item>
-        <widget class="QLabel" name="recipeImageLabel">
-          <property name="geometry">
-            <rect>
-              <x>10</x>
-              <y>10</y>
-              <width>80</width>
-              <height>80</height>
-            </rect>
-          </property>
-          <property name="scaledContents">
-            <bool>true</bool>
+        <widget class="QLabel" name="recipeLabel">
+          <property name="text">
+            <string>Recipe Name</string>
           </property>
         </widget>
       </item>
       <item>
-        <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-            <widget class="QLabel" name="recipeLabel">
-              <property name="geometry">
-                <rect>
-                  <x>0</x>
-                  <y>0</y>
-                  <width>120</width>
-                  <height>20</height>
-                </rect>
-              </property>
-              <property name="text">
-                <string>Recipe Name</string>
-              </property>
-            </widget>
-          </item>
-        </layout>
+        <widget class="QLabel" name="recipeImageLabel">
+          <property name="text">
+            <string>Image</string>
+          </property>
+        </widget>
       </item>
     </layout>
   </widget>
