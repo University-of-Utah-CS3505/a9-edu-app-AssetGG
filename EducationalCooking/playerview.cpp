@@ -3,7 +3,9 @@
 #include <QPainter>
 #include "ingredient.h"
 
-PlayerView::PlayerView(PlayerModel &model, QWidget *parent): QMainWindow(parent), ui(new Ui::PlayerView)
+PlayerView::PlayerView(QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::PlayerView)
 {
     ui->setupUi(this);
     tomato = Ingredient("tomato", QImage(":/sprites/Sprites/Tomato.png"), QImage(":/sprites/Sprites/Tomato.png"), true, true, 125, 125);

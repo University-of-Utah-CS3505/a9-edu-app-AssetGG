@@ -6,7 +6,6 @@
 #include <QMouseEvent>
 #include <QPoint>
 #include "ingredient.h"
-#include "playermodel.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,7 +18,7 @@ class PlayerView : public QMainWindow
     Q_OBJECT
 
 public:
-    PlayerView(PlayerModel &model, QWidget *parent = nullptr);
+    PlayerView(QWidget *parent = nullptr);
     ~PlayerView();
 
 public slots:
