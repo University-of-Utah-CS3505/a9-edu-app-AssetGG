@@ -23,8 +23,6 @@ public:
 
 public slots:
     void paintEvent(QPaintEvent *);
-    void mousePressEvent(QMouseEvent *);
-    void mouseReleaseEvent(QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
 
 private:
