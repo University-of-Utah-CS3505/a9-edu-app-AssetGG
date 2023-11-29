@@ -18,6 +18,7 @@ public:
 
 private slots:
     void onRecipeCardClicked(int recipeIndex);
+    void handleRecipeCardClicked(const QString &recipeName);
     void onLearnRecipeClicked();
 
 private:

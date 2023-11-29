@@ -7,12 +7,12 @@ StartupScreen::StartupScreen(PlayerModel& model, QWidget *parent)
     : QWidget(parent), ui(new Ui::StartupScreen), playerModel(model) {
     ui->setupUi(this);
 
-    connect(ui->recipeCard1, &RecipeCardWidget::clicked, this, [this]() { onRecipeCardClicked(0); });
-    connect(ui->recipeCard2, &RecipeCardWidget::clicked, this, [this]() { onRecipeCardClicked(1); });
-    connect(ui->recipeCard3, &RecipeCardWidget::clicked, this, [this]() { onRecipeCardClicked(2); });
-    connect(ui->recipeCard4, &RecipeCardWidget::clicked, this, [this]() { onRecipeCardClicked(3); });
-    connect(ui->recipeCard5, &RecipeCardWidget::clicked, this, [this]() { onRecipeCardClicked(4); });
-    connect(ui->recipeCard6, &RecipeCardWidget::clicked, this, [this]() { onRecipeCardClicked(5); });
+    connect(ui->recipeCard1, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard1->getRecipeName()); });
+    connect(ui->recipeCard2, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard1->getRecipeName()); });
+    connect(ui->recipeCard3, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard1->getRecipeName()); });
+    connect(ui->recipeCard4, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard1->getRecipeName()); });
+    connect(ui->recipeCard5, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard1->getRecipeName()); });
+    connect(ui->recipeCard6, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard1->getRecipeName()); });
 
     connect(ui->learnRecipeButton, &QPushButton::clicked, this, &StartupScreen::onLearnRecipeClicked);
 
@@ -84,4 +84,9 @@ void StartupScreen::updateRecipeCard(RecipeCardWidget* card, const QString& reci
 
 void StartupScreen::updateRecipeCardImage(RecipeCardWidget* card, const QString& imagePath) {
     card->setRecipeImage(imagePath);
+}
+
+void StartupScreen::handleRecipeCardClicked(const QString &recipeName) {
+    // This is where you handle the recipe card click
+    playerModel.setCurrentRecipe(recipeName);
 }
