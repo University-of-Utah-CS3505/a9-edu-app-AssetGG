@@ -35,51 +35,34 @@ void StartupScreen::onLearnRecipeClicked() {
 }
 
 void StartupScreen::createRecipeCards() {
-    // Instances of recipe cards
-    RecipeCardWidget* spaghetti = new RecipeCardWidget(this);
-    RecipeCardWidget* salad = new RecipeCardWidget(this);
-    RecipeCardWidget* pizza = new RecipeCardWidget(this);
-    RecipeCardWidget* soup = new RecipeCardWidget(this);
-    RecipeCardWidget* hamburger = new RecipeCardWidget(this);
-    RecipeCardWidget* pancake = new RecipeCardWidget(this);
-
-    QVBoxLayout* verticalLayout = new QVBoxLayout;
-
-    // Set properties for recipe name
-    spaghetti->setRecipeName("Spaghetti");
-    salad->setRecipeName("Salad");
-    pizza->setRecipeName("Pizza");
-    soup->setRecipeName("Soup");
-    hamburger->setRecipeName("Hamburger");
-    pancake->setRecipeName("Pancake");
-
-    // Add recipes to layout
-    verticalLayout->addWidget(spaghetti);
-    verticalLayout->addWidget(salad);
-    verticalLayout->addWidget(pizza);
-    verticalLayout->addWidget(soup);
-    verticalLayout->addWidget(hamburger);
-    verticalLayout->addWidget(pancake);
-
-    ui->verticalLayout->addLayout(verticalLayout);
+    updateRecipeCard(ui->recipeCard1, "Spaghetti");
+    updateRecipeCard(ui->recipeCard2, "Salad");
+    updateRecipeCard(ui->recipeCard3, "Pizza");
+    updateRecipeCard(ui->recipeCard4, "Soup");
+    updateRecipeCard(ui->recipeCard5, "Hamburger");
+    updateRecipeCard(ui->recipeCard6, "Pancake");
 
     // Signal connections for when the recipe is selected
-    connect(spaghetti, &RecipeCardWidget::clicked, this, [this]() {
+    connect(ui->recipeCard1, &RecipeCardWidget::clicked, this, [this]() {
         onRecipeCardClicked(0);
     });
-    connect(salad, &RecipeCardWidget::clicked, this, [this]() {
+    connect(ui->recipeCard2, &RecipeCardWidget::clicked, this, [this]() {
         onRecipeCardClicked(1);
     });
-    connect(pizza, &RecipeCardWidget::clicked, this, [this]() {
+    connect(ui->recipeCard3, &RecipeCardWidget::clicked, this, [this]() {
         onRecipeCardClicked(2);
     });
-    connect(soup, &RecipeCardWidget::clicked, this, [this]() {
+    connect(ui->recipeCard4, &RecipeCardWidget::clicked, this, [this]() {
         onRecipeCardClicked(3);
     });
-    connect(hamburger, &RecipeCardWidget::clicked, this, [this]() {
+    connect(ui->recipeCard5, &RecipeCardWidget::clicked, this, [this]() {
         onRecipeCardClicked(4);
     });
-    connect(pancake, &RecipeCardWidget::clicked, this, [this]() {
+    connect(ui->recipeCard6, &RecipeCardWidget::clicked, this, [this]() {
         onRecipeCardClicked(5);
     });
+}
+
+void StartupScreen::updateRecipeCard(RecipeCardWidget* card, const QString& recipeName) {
+    card->setRecipeName(recipeName);
 }

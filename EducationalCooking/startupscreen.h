@@ -25,6 +25,7 @@ private:
     PlayerModel& playerModel;
 
     void createRecipeCards();
+    void updateRecipeCard(RecipeCardWidget* card, const QString& recipeName);
 };
 
 #endif // STARTUPSCREEN_H
