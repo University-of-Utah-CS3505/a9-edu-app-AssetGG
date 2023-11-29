@@ -85,7 +85,7 @@ Ingredient *PlayerView::getSpriteByName(std::string name)
         return &search->second;
 }
 
-void PlayerView::setUpScene(Recipe &recipe)
+void PlayerView::setupScene(Recipe &recipe)
 {
     for (Ingredient &ingredient : recipe.getAvaliableIngredients()) {
         ingredientSprites.insert({ingredient.GetName(), ingredient});

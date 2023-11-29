@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
 
     Recipe recipe = testRecipe();
     model.setupScene(recipe);
-    playerView.setUpScene(recipe);
+    playerView.setupScene(recipe);
 
     Controller c(model, playerView);
 

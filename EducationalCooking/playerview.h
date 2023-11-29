@@ -25,7 +25,7 @@ public:
 
     PlayerView(QWidget *parent = nullptr);
     ~PlayerView();
-    void setUpScene(Recipe &recipe);
+    void setupScene(Recipe &recipe);
     void updateSpritePositions(const std::map<std::string, Physics::PhysicsObject> &physicsObjects);
 
 public slots:
