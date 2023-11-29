@@ -2,10 +2,13 @@
 #include "startupscreen.h"
 #include "recipecardwidget.h"
 #include "playerview.h"
+#include <QStyle>
 
 StartupScreen::StartupScreen(PlayerModel& model, QWidget *parent)
     : QWidget(parent), ui(new Ui::StartupScreen), playerModel(model) {
     ui->setupUi(this);
+
+    recipeCards << ui->recipeCard1 << ui->recipeCard2 << ui->recipeCard3 << ui->recipeCard4 << ui->recipeCard5 << ui->recipeCard6;
 
     connect(ui->recipeCard1, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard1->getRecipeName()); });
     connect(ui->recipeCard2, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard2->getRecipeName()); });
@@ -21,10 +24,6 @@ StartupScreen::StartupScreen(PlayerModel& model, QWidget *parent)
 
 StartupScreen::~StartupScreen() {
     delete ui;
-}
-
-void StartupScreen::onRecipeCardClicked(int recipeIndex) {
-    //Todo: update selected recipe
 }
 
 void StartupScreen::onLearnRecipeClicked() {
@@ -56,6 +55,25 @@ void StartupScreen::createRecipeCards() {
     updateRecipeCardImage(ui->recipeCard4, ":/sprites/Sprites/Chicken Soup.png");
     updateRecipeCardImage(ui->recipeCard5, ":/sprites/Sprites/Cheeseburger.png");
     updateRecipeCardImage(ui->recipeCard6, ":/sprites/Sprites/Pancakes.png");
+
+    connect(ui->recipeCard1, &RecipeCardWidget::clicked, this, [this]() {
+        onRecipeCardClicked(0);
+    });
+    connect(ui->recipeCard2, &RecipeCardWidget::clicked, this, [this]() {
+        onRecipeCardClicked(1);
+    });
+    connect(ui->recipeCard3, &RecipeCardWidget::clicked, this, [this]() {
+        onRecipeCardClicked(2);
+    });
+    connect(ui->recipeCard4, &RecipeCardWidget::clicked, this, [this]() {
+        onRecipeCardClicked(3);
+    });
+    connect(ui->recipeCard5, &RecipeCardWidget::clicked, this, [this]() {
+        onRecipeCardClicked(4);
+    });
+    connect(ui->recipeCard6, &RecipeCardWidget::clicked, this, [this]() {
+        onRecipeCardClicked(5);
+    });
 }
 
 void StartupScreen::updateRecipeCard(RecipeCardWidget* card, const QString& recipeName) {
@@ -67,6 +85,19 @@ void StartupScreen::updateRecipeCardImage(RecipeCardWidget* card, const QString&
 }
 
 void StartupScreen::handleRecipeCardClicked(const QString &recipeName) {
-    qDebug() << recipeName;
     playerModel.setCurrentRecipe(recipeName);
+}
+
+void StartupScreen::onRecipeCardClicked(int recipeIndex) {
+    for (int i = 0; i < recipeCards.size(); ++i) {
+        if (i == recipeIndex) {
+            recipeCards[i]->setProperty("selected", true);
+            recipeCards[i]->setStyleSheet("border: 4px solid #4287f5; border-radius: 10px;");
+        } else {
+            recipeCards[i]->setProperty("selected", false);
+            recipeCards[i]->setStyleSheet("");
+        }
+
+        recipeCards[i]->style()->polish(recipeCards[i]);
+    }
 }

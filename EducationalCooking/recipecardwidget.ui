@@ -7,7 +7,7 @@
         <x>0</x>
         <y>0</y>
         <width>200</width>
-        <height>250</height> <!-- Adjust the width and height as needed -->
+        <height>250</height>
       </rect>
     </property>
     <property name="sizePolicy">
@@ -19,13 +19,13 @@
     <property name="minimumSize">
       <size>
         <width>200</width>
-        <height>250</height> <!-- Adjust the minimum width and height as needed -->
+        <height>250</height>
       </size>
     </property>
     <property name="maximumSize">
       <size>
         <width>200</width>
-        <height>250</height> <!-- Adjust the maximum width and height as needed -->
+        <height>250</height>
       </size>
     </property>
     <property name="autoFillBackground">
@@ -36,6 +36,11 @@
     border: 2px solid #333;
     border-radius: 10px;
     background-color: #fff;
+}
+
+QGridLayout {
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
 }
 
 QLabel#recipeImageLabel {
@@ -53,15 +58,15 @@ QLabel#recipeLabel {
 }
 </string>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
-      <item>
+    <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
         <widget class="QLabel" name="recipeImageLabel">
           <property name="text">
             <string>Image</string>
           </property>
         </widget>
       </item>
-      <item>
+      <item row="1" column="0" alignment="Qt::AlignHCenter|Qt::AlignVCenter">
         <widget class="QLabel" name="recipeLabel">
           <property name="text">
             <string>Recipe Name</string>
