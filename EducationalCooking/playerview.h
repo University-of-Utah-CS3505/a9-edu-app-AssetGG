@@ -19,13 +19,11 @@ class PlayerView : public QMainWindow
     Q_OBJECT
 
 public:
-    PlayerView(PlayerModel &model, QWidget *parent = nullptr);
+    PlayerView(QWidget *parent = nullptr);
     ~PlayerView();
 
 public slots:
     void paintEvent(QPaintEvent *);
-    void mousePressEvent(QMouseEvent *);
-    void mouseReleaseEvent(QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
 
 private:
