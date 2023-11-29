@@ -22,6 +22,7 @@ private slots:
     void onLearnRecipeClicked();
 
 private:
+    QVector<RecipeCardWidget*> recipeCards;
     Ui::StartupScreen *ui;
     PlayerModel& playerModel;
 

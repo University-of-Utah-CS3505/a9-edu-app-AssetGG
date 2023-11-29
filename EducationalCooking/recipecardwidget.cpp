@@ -36,17 +36,12 @@ void RecipeCardWidget::mousePressEvent(QMouseEvent *event)
 
     onCardClicked();
 
-    selected = !selected;
-
-    if (selected)
-        setStyleSheet("background-color: lightblue;");
-    else
-        setStyleSheet("background-color: white;");
 
     emit clicked();
 }
 
-QString RecipeCardWidget::getRecipeName() {
+QString RecipeCardWidget::getRecipeName()
+{
     return ui->recipeLabel->text();
 }
 
