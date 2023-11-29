@@ -62,7 +62,9 @@ SOURCES += \
     playercharacter.cpp \
     playermodel.cpp \
     playerview.cpp \
-    recipe.cpp
+    recipe.cpp \
+    recipecardwidget.cpp \
+    startupscreen.cpp
 
 HEADERS += \
     Box2D/Box2D.h \
@@ -118,10 +120,14 @@ HEADERS += \
     playercharacter.h \
     playermodel.h \
     playerview.h \
-    recipe.h
+    recipe.h \
+    recipecardwidget.h \
+    startupscreen.h
 
 FORMS += \
-    playerview.ui
+    playerview.ui \
+    recipecardwidget.ui \
+    startupscreen.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
