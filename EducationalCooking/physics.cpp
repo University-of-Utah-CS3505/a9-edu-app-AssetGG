@@ -1,22 +1,24 @@
-#include "physicsservice.h"
+#include "physics.h"
+#include <QTimer>
 #include "Box2D/box2d.h"
 
-using PhysicsObject = PhysicsService::PhysicsObject;
+using PhysicsObject = Physics::PhysicsObject;
 
-PhysicsService::PhysicsService(QObject *parent)
+Physics::Physics(float updateHz, QObject *parent)
     : QObject{parent}
+    , timeStep(1.0 / updateHz)
+    , timer{new QTimer(this)}
     , world(b2World(b2Vec2(0.0, 0.0)))
-{}
+{
+    connect(&timer, &QTimer::timeout, this, &Physics::update);
+}
 
-PhysicsService::PhysicsObject::PhysicsObject(b2Body *body, b2Fixture *fixture)
+Physics::PhysicsObject::PhysicsObject(b2Body *body, b2Fixture *fixture)
     : body(body)
     , fixture(fixture)
 {}
 
-PhysicsObject &PhysicsService::registerStaticObject(std::string name,
-                                                    b2Shape *shape,
-                                                    float x,
-                                                    float y)
+PhysicsObject &Physics::registerStaticObject(std::string name, b2Shape *shape, float x, float y)
 {
     b2BodyDef bodyDef;
     bodyDef.position.Set(x, y);
@@ -31,10 +33,7 @@ PhysicsObject &PhysicsService::registerStaticObject(std::string name,
     return objects.at(name);
 }
 
-PhysicsObject &PhysicsService::registerDynamicObject(std::string name,
-                                                     b2Shape *shape,
-                                                     float x,
-                                                     float y)
+PhysicsObject &Physics::registerDynamicObject(std::string name, b2Shape *shape, float x, float y)
 {
     b2BodyDef bodyDef;
     bodyDef.type = b2_dynamicBody;
@@ -53,20 +52,35 @@ PhysicsObject &PhysicsService::registerDynamicObject(std::string name,
     return objects.at(name);
 }
 
-b2PolygonShape PhysicsService::createBoxShape(float width, float height)
+b2PolygonShape Physics::createBoxShape(float width, float height)
 {
     b2PolygonShape shape;
     // their implementation takes in half-width and half-heights.
-    // For clarity, I'm undoing that decision.
     shape.SetAsBox(width / 2.0, height / 2.0);
 
     return shape;
 }
 
-b2CircleShape PhysicsService::createCircleShape(float radius)
+b2CircleShape Physics::createCircleShape(float radius)
 {
     b2CircleShape shape;
     shape.m_p.Set(0.0, 0.0);
     shape.m_radius = radius;
     return shape;
+}
+
+void Physics::update()
+{
+    world.Step(timeStep, 6, 2);
+    emit onUpdate(objects);
+}
+
+void Physics::start()
+{
+    timer.start(timeStep * 1000);
+}
+
+void Physics::stop()
+{
+    timer.stop();
 }

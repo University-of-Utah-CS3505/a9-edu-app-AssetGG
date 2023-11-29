@@ -58,7 +58,7 @@ SOURCES += \
     controller.cpp \
     ingredient.cpp \
     main.cpp \
-    physicsservice.cpp \
+    physics.cpp \
     playercharacter.cpp \
     playermodel.cpp \
     playerview.cpp \
@@ -114,7 +114,7 @@ HEADERS += \
     Box2D/Rope/b2Rope.h \
     controller.h \
     ingredient.h \
-    physicsservice.h \
+    physics.h \
     playercharacter.h \
     playermodel.h \
     playerview.h \
