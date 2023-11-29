@@ -16,6 +16,7 @@ public:
     ~RecipeCardWidget();
 
     void setRecipeName(const QString &name);
+    void setRecipeImage(const QString &imagePath);
     bool isSelected() const;
 
 signals:

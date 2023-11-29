@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "playermodel.h"
+#include "recipecardwidget.h"
 
 namespace Ui {
 class StartupScreen;
@@ -22,6 +23,8 @@ private slots:
 private:
     Ui::StartupScreen *ui;
     PlayerModel& playerModel;
+
+    void createRecipeCards();
 };
 
 #endif // STARTUPSCREEN_H

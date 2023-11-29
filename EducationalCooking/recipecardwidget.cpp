@@ -7,8 +7,6 @@ RecipeCardWidget::RecipeCardWidget(QWidget *parent) :
     selected(false)
 {
     ui->setupUi(this);
-
-    connect(ui->cardButton, &QPushButton::clicked, this, &RecipeCardWidget::clicked);
 }
 
 RecipeCardWidget::~RecipeCardWidget()
@@ -24,6 +22,12 @@ void RecipeCardWidget::setRecipeName(const QString &name)
 bool RecipeCardWidget::isSelected() const
 {
     return selected;
+}
+
+void RecipeCardWidget::setRecipeImage(const QString &imagePath)
+{
+    QPixmap image(imagePath);
+    ui->recipeImageLabel->setPixmap(image.scaledToHeight(80));
 }
 
 void RecipeCardWidget::mousePressEvent(QMouseEvent *event)

@@ -13,32 +13,42 @@
     <property name="windowTitle">
       <string>RecipeCardWidget</string>
     </property>
-    <widget class="QPushButton" name="cardButton">
-      <property name="geometry">
-        <rect>
-          <x>10</x>
-          <y>10</y>
-          <width>180</width>
-          <height>80</height>
-        </rect>
-      </property>
-      <property name="text">
-        <string>Card Button</string>
-      </property>
-    </widget>
-    <widget class="QLabel" name="recipeLabel">
-      <property name="geometry">
-        <rect>
-          <x>20</x>
-          <y>30</y>
-          <width>160</width>
-          <height>20</height>
-        </rect>
-      </property>
-      <property name="text">
-        <string>Recipe Name</string>
-      </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+        <widget class="QLabel" name="recipeImageLabel">
+          <property name="geometry">
+            <rect>
+              <x>10</x>
+              <y>10</y>
+              <width>80</width>
+              <height>80</height>
+            </rect>
+          </property>
+          <property name="scaledContents">
+            <bool>true</bool>
+          </property>
+        </widget>
+      </item>
+      <item>
+        <layout class="QVBoxLayout" name="verticalLayout">
+          <item>
+            <widget class="QLabel" name="recipeLabel">
+              <property name="geometry">
+                <rect>
+                  <x>0</x>
+                  <y>0</y>
+                  <width>120</width>
+                  <height>20</height>
+                </rect>
+              </property>
+              <property name="text">
+                <string>Recipe Name</string>
+              </property>
+            </widget>
+          </item>
+        </layout>
+      </item>
+    </layout>
   </widget>
   <resources/>
   <connections/>
