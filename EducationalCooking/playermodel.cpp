@@ -9,9 +9,8 @@ PlayerModel::PlayerModel(QObject *parent)
 void PlayerModel::didClickOnIngredient(QPoint clickLocation)
 {
     for (Ingredient ingredient : ingredients)
-        if ((ingredient.x <= clickLocation.x() && ingredient.x >= clickLocation.x() - 20)
-            || (ingredient.y <= clickLocation.y() && ingredient.y >= clickLocation.y() - 20))
-            currentlyClickedOn = &ingredient;
+        if (ingredient.locX == clickLocation.x() || ingredient.locY == clickLocation.y())
+            currentlyClickedOn = ingredient;
 }
 
 void PlayerModel::dropIngredient(QPoint dropLocation)

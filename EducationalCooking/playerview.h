@@ -2,8 +2,10 @@
 #define PLAYERVIEW_H
 
 #include <QMainWindow>
+#include <QPainter>
 #include <QMouseEvent>
 #include <QPoint>
+#include "ingredient.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,7 +30,7 @@ public slots:
 
 private:
     Ui::PlayerView *ui;
-    QImage clickedIngredient;
+    Ingredient tomato;
 
 signals:
     void didClickOnIngredient(QPoint);
