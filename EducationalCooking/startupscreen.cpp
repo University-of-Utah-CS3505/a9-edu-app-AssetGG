@@ -8,11 +8,11 @@ StartupScreen::StartupScreen(PlayerModel& model, QWidget *parent)
     ui->setupUi(this);
 
     connect(ui->recipeCard1, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard1->getRecipeName()); });
-    connect(ui->recipeCard2, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard1->getRecipeName()); });
-    connect(ui->recipeCard3, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard1->getRecipeName()); });
-    connect(ui->recipeCard4, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard1->getRecipeName()); });
-    connect(ui->recipeCard5, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard1->getRecipeName()); });
-    connect(ui->recipeCard6, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard1->getRecipeName()); });
+    connect(ui->recipeCard2, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard2->getRecipeName()); });
+    connect(ui->recipeCard3, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard3->getRecipeName()); });
+    connect(ui->recipeCard4, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard4->getRecipeName()); });
+    connect(ui->recipeCard5, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard5->getRecipeName()); });
+    connect(ui->recipeCard6, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard6->getRecipeName()); });
 
     connect(ui->learnRecipeButton, &QPushButton::clicked, this, &StartupScreen::onLearnRecipeClicked);
 
@@ -56,26 +56,6 @@ void StartupScreen::createRecipeCards() {
     updateRecipeCardImage(ui->recipeCard4, ":/sprites/Sprites/Chicken Soup.png");
     updateRecipeCardImage(ui->recipeCard5, ":/sprites/Sprites/Cheeseburger.png");
     updateRecipeCardImage(ui->recipeCard6, ":/sprites/Sprites/Pancakes.png");
-
-    // Signal connections for when the recipe is selected
-    connect(ui->recipeCard1, &RecipeCardWidget::clicked, this, [this]() {
-        onRecipeCardClicked(0);
-    });
-    connect(ui->recipeCard2, &RecipeCardWidget::clicked, this, [this]() {
-        onRecipeCardClicked(1);
-    });
-    connect(ui->recipeCard3, &RecipeCardWidget::clicked, this, [this]() {
-        onRecipeCardClicked(2);
-    });
-    connect(ui->recipeCard4, &RecipeCardWidget::clicked, this, [this]() {
-        onRecipeCardClicked(3);
-    });
-    connect(ui->recipeCard5, &RecipeCardWidget::clicked, this, [this]() {
-        onRecipeCardClicked(4);
-    });
-    connect(ui->recipeCard6, &RecipeCardWidget::clicked, this, [this]() {
-        onRecipeCardClicked(5);
-    });
 }
 
 void StartupScreen::updateRecipeCard(RecipeCardWidget* card, const QString& recipeName) {
