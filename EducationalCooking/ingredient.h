@@ -8,7 +8,7 @@
 class Ingredient
 {
 public:
-    Ingredient(std::string, QImage, QImage, bool, bool, int, int);
+    Ingredient(std::string, QImage, QImage, QImage, bool, bool, int, int);
     Ingredient();
     int locX, locY;
     std::string GetName();
@@ -24,6 +24,7 @@ private:
     QImage currentImage;
     QImage baseImage;
     QImage cutImage;
+    QImage cookedImage;
 
     bool cuttable;
     bool cookable;
