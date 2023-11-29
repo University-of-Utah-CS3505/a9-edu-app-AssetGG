@@ -7,46 +7,66 @@
         <x>0</x>
         <y>0</y>
         <width>200</width>
-        <height>100</height>
+        <height>250</height> <!-- Adjust the width and height as needed -->
       </rect>
     </property>
-    <property name="windowTitle">
-      <string>RecipeCardWidget</string>
+    <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+      </sizepolicy>
     </property>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <property name="minimumSize">
+      <size>
+        <width>200</width>
+        <height>250</height> <!-- Adjust the minimum width and height as needed -->
+      </size>
+    </property>
+    <property name="maximumSize">
+      <size>
+        <width>200</width>
+        <height>250</height> <!-- Adjust the maximum width and height as needed -->
+      </size>
+    </property>
+    <property name="autoFillBackground">
+      <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+      <string notr="true">QWidget#RecipeCardWidget {
+    border: 2px solid #333;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+QLabel#recipeImageLabel {
+    margin: 10px;
+    border: 1px solid #888;
+    border-radius: 5px;
+    aspect-ratio: 1:1; /* Maintain the aspect ratio of the image */
+}
+
+QLabel#recipeLabel {
+    text-align: center;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
       <item>
         <widget class="QLabel" name="recipeImageLabel">
-          <property name="geometry">
-            <rect>
-              <x>10</x>
-              <y>10</y>
-              <width>80</width>
-              <height>80</height>
-            </rect>
-          </property>
-          <property name="scaledContents">
-            <bool>true</bool>
+          <property name="text">
+            <string>Image</string>
           </property>
         </widget>
       </item>
       <item>
-        <layout class="QVBoxLayout" name="verticalLayout">
-          <item>
-            <widget class="QLabel" name="recipeLabel">
-              <property name="geometry">
-                <rect>
-                  <x>0</x>
-                  <y>0</y>
-                  <width>120</width>
-                  <height>20</height>
-                </rect>
-              </property>
-              <property name="text">
-                <string>Recipe Name</string>
-              </property>
-            </widget>
-          </item>
-        </layout>
+        <widget class="QLabel" name="recipeLabel">
+          <property name="text">
+            <string>Recipe Name</string>
+          </property>
+        </widget>
       </item>
     </layout>
   </widget>

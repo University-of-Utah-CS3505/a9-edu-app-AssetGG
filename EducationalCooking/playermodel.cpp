@@ -1,16 +1,32 @@
 #include "playermodel.h"
 #include "recipe.h"
 #include "ingredient.h"
+#include "recipecardwidget.h"
 #include <vector>
 
 using std::vector;
 
 PlayerModel::PlayerModel(QObject *parent)
-    : QObject{parent}
+    : QObject(parent), currentlyClickedOn(nullptr)
 {
-    currentlyClickedOn = nullptr;
-    vector<Ingredient> base;
+    // Todo: Initialize other properties
 
+}
+
+void PlayerModel::setCurrentRecipe(const QString& recipe)
+{
+    currentRecipe = recipe;
+    emit selectedRecipeChanged(currentRecipe); // May or may not be useful, as user cannot change recipe mid game
+}
+
+const QString& PlayerModel::getCurrentRecipe() const
+{
+    return currentRecipe;
+}
+
+void PlayerModel::handleRecipeClicked(const QString &recipeName)
+{
+    qDebug() << "Recipe clicked:" << recipeName;
 }
 
 /*

@@ -34,6 +34,8 @@ void RecipeCardWidget::mousePressEvent(QMouseEvent *event)
 {
     Q_UNUSED(event);
 
+    onCardClicked();
+
     selected = !selected;
 
     if (selected)
@@ -42,4 +44,15 @@ void RecipeCardWidget::mousePressEvent(QMouseEvent *event)
         setStyleSheet("background-color: white;");
 
     emit clicked();
+}
+
+QString RecipeCardWidget::getRecipeName() {
+    return ui->recipeLabel->text();
+}
+
+void RecipeCardWidget::onCardClicked()
+{
+    QString recipeName = ui->recipeLabel->text();
+
+    emit recipeClicked(recipeName);
 }
