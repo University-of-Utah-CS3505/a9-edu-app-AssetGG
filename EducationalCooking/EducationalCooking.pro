@@ -59,7 +59,6 @@ SOURCES += \
     ingredient.cpp \
     main.cpp \
     physics.cpp \
-    playercharacter.cpp \
     playermodel.cpp \
     playerview.cpp \
     recipe.cpp \
@@ -118,7 +117,6 @@ HEADERS += \
     controller.h \
     ingredient.h \
     physics.h \
-    playercharacter.h \
     playermodel.h \
     playerview.h \
     recipe.h \
