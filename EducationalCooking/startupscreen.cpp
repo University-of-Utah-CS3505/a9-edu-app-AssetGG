@@ -35,12 +35,27 @@ void StartupScreen::onLearnRecipeClicked() {
 }
 
 void StartupScreen::createRecipeCards() {
+    recipeCardImage1 = QImage(":/sprites/Sprites/Tomato.png");
+    recipeCardImage2 = QImage(":/sprites/Sprites/Tomato.png");
+    recipeCardImage3 = QImage(":/sprites/Sprites/Tomato.png");
+    recipeCardImage4 = QImage(":/sprites/Sprites/Tomato.png");
+    recipeCardImage5 = QImage(":/sprites/Sprites/Tomato.png");
+    recipeCardImage6 = QImage(":/sprites/Sprites/Tomato.png");
+
     updateRecipeCard(ui->recipeCard1, "Spaghetti");
     updateRecipeCard(ui->recipeCard2, "Salad");
     updateRecipeCard(ui->recipeCard3, "Pizza");
     updateRecipeCard(ui->recipeCard4, "Soup");
     updateRecipeCard(ui->recipeCard5, "Hamburger");
     updateRecipeCard(ui->recipeCard6, "Pancake");
+
+    // Update recipe images
+    updateRecipeCardImage(ui->recipeCard1, ":/sprites/Sprites/Tomato.png");
+    updateRecipeCardImage(ui->recipeCard2, ":/sprites/Sprites/Tomato.png");
+    updateRecipeCardImage(ui->recipeCard3, ":/sprites/Sprites/Tomato.png");
+    updateRecipeCardImage(ui->recipeCard4, ":/sprites/Sprites/Tomato.png");
+    updateRecipeCardImage(ui->recipeCard5, ":/sprites/Sprites/Tomato.png");
+    updateRecipeCardImage(ui->recipeCard6, ":/sprites/Sprites/Tomato.png");
 
     // Signal connections for when the recipe is selected
     connect(ui->recipeCard1, &RecipeCardWidget::clicked, this, [this]() {
@@ -65,4 +80,8 @@ void StartupScreen::createRecipeCards() {
 
 void StartupScreen::updateRecipeCard(RecipeCardWidget* card, const QString& recipeName) {
     card->setRecipeName(recipeName);
+}
+
+void StartupScreen::updateRecipeCardImage(RecipeCardWidget* card, const QString& imagePath) {
+    card->setRecipeImage(imagePath);
 }
