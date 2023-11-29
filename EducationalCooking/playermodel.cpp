@@ -9,7 +9,7 @@ PlayerModel::PlayerModel(QObject *parent)
 void PlayerModel::didClickOnIngredient(QPoint clickLocation)
 {
     for (Ingredient ingredient : ingredients)
-        if (ingredient.x == clickLocation.x() || ingredient.y == clickLocation.y())
+        if (ingredient.locX == clickLocation.x() || ingredient.locY == clickLocation.y())
             currentlyClickedOn = ingredient;
 }
 

@@ -2,9 +2,12 @@
 #include <string>
 #include <QMouseEvent>
 
-Ingredient::Ingredient(std::string name, QImage baseImage, QImage cutImage, bool cuttable, bool cookable)
+Ingredient::Ingredient(std::string name, QImage baseImage, QImage cutImage, bool cuttable, bool cookable, int x, int y)
 {
     ingredientName = name;
+
+    locX = x;
+    locY = y;
 
     currentImage = baseImage;
     baseImage = baseImage;
@@ -21,7 +24,6 @@ Ingredient::Ingredient(std::string name, QImage baseImage, QImage cutImage, bool
 Ingredient::Ingredient()
 {
     ingredientName = "tomato";
-
 
     currentImage = QImage(":/sprites/Sprites/Tomato.png");
     baseImage = QImage(":/sprites/Sprites/Tomato.png");
@@ -43,6 +45,12 @@ std::string Ingredient::GetName()
 QImage Ingredient::GetImage()
 {
     return currentImage;
+}
+
+QRect Ingredient::GetRect()
+{
+    QRect rectangle = QRect(locX, locY, currentImage.width(), currentImage.height());
+    return rectangle;
 }
 
 bool Ingredient::Cut()
