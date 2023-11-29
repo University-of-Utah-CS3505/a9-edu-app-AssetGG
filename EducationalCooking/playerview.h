@@ -6,6 +6,7 @@
 #include <QMouseEvent>
 #include <QPoint>
 #include "ingredient.h"
+#include <vector>
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,6 +29,7 @@ public slots:
 private:
     Ui::PlayerView *ui;
     Ingredient tomato;
+    void setUpView(std::vector<Ingredient>);
 
 signals:
     void didClickOnIngredient(QPoint);

@@ -1,12 +1,14 @@
 #include "playerview.h"
 #include "ui_playerview.h"
 #include <QPainter>
+#include <vector>
 #include "ingredient.h"
 
 PlayerView::PlayerView(QWidget *parent): QMainWindow(parent), ui(new Ui::PlayerView)
 {
     ui->setupUi(this);
-    tomato = Ingredient("tomato", QImage(":/sprites/Sprites/Tomato.png"), QImage(":/sprites/Sprites/Tomato.png"), QImage(":/sprites/Sprites/Tomato.png"), true, true, 125, 125);
+    std::vector<Ingredient> vect;
+    setUpView(vect);
 }
 
 PlayerView::~PlayerView()
@@ -33,5 +35,10 @@ void PlayerView::mouseMoveEvent(QMouseEvent *event)
 //    tomato.locX = event->pos().x();
 //    tomato.locY = event->pos().y();
     update();
+}
+
+void PlayerView::setUpView(std::vector<Ingredient>)
+{
+    tomato = Ingredient("tomato", QImage(":/sprites/Sprites/Tomato.png"), QImage(":/sprites/Sprites/Tomato.png"), QImage(":/sprites/Sprites/Tomato.png"), true, true, 125, 125);
 }
 
