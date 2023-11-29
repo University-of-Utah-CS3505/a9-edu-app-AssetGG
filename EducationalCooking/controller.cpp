@@ -2,4 +2,7 @@
 #include "playermodel.h"
 #include "playerview.h"
 
-Controller::Controller(PlayerModel &model, PlayerView &view) {}
+Controller::Controller(PlayerModel &model, PlayerView &view)
+{
+
+}

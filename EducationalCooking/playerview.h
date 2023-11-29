@@ -23,8 +23,6 @@ public:
 
 public slots:
     void paintEvent(QPaintEvent *);
-    void mousePressEvent(QMouseEvent *);
-    void mouseReleaseEvent(QMouseEvent *);
     void mouseMoveEvent(QMouseEvent *);
 
 private:
@@ -33,7 +31,7 @@ private:
 
 signals:
     void didClickOnIngredient(QPoint);
-    void unclickIngredient(QPoint);
+    void dropIngredient(QPoint);
     void updateIngredientPosition(QPoint);
 };
 #endif // PLAYERVIEW_H

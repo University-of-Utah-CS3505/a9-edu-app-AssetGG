@@ -14,16 +14,14 @@ public:
     explicit PlayerModel(QObject *parent = nullptr);
 
 public slots:
-    void didClickOnIngredient(QPoint);
-    void notHoldingIngredient(QPoint);
-    void movingIngredientToPoint(QPoint);
 
 private:
     vector<Ingredient> ingredients;
-    Ingredient currentlyClickedOn;
+    Ingredient* currentlyClickedOn;
 
 
 signals:
+    void updateIngredientOnScreen(QImage*, int, int);
 
 };
 
