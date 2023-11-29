@@ -5,6 +5,7 @@
 #include <QPoint>
 #include <QImage>
 #include "ingredient.h"
+#include "physics.h"
 #include "recipe.h"
 
 using std::vector;
@@ -13,7 +14,12 @@ class PlayerModel : public QObject
 {
     Q_OBJECT
 public:
-    explicit PlayerModel(QObject *parent = nullptr);
+    Physics &physics;
+
+    explicit PlayerModel(Physics &physics, QObject *parent = nullptr);
+
+    // sets up our scene, using a recipe to spawn ingredients on a table
+    void setupScene(Recipe &recipe);
 
     void setCurrentRecipe(const QString& recipe); // Used at startup
 
@@ -25,8 +31,11 @@ public slots:
 private:
     vector<Recipe> recipes;
     vector<Ingredient> ingredients;
-    Ingredient* currentlyClickedOn;
     QString currentRecipe;
+    Ingredient *currentlyClickedOn;
+
+    void setupWalls();
+    void setupIngredient(Ingredient &ingredient);
 
 signals:
     void recipeClicked(const QString &recipeName);

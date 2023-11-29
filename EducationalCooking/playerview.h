@@ -2,11 +2,12 @@
 #define PLAYERVIEW_H
 
 #include <QMainWindow>
-#include <QPainter>
 #include <QMouseEvent>
+#include <QPainter>
 #include <QPoint>
 #include "ingredient.h"
-#include <vector>
+#include "physics.h"
+#include "recipe.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,21 +20,28 @@ class PlayerView : public QMainWindow
     Q_OBJECT
 
 public:
+    std::map<std::string, Ingredient> ingredientSprites;
+    Ingredient tomato;
+
     PlayerView(QWidget *parent = nullptr);
     ~PlayerView();
+    void setUpScene(Recipe &recipe);
+    void updateSpritePositions(const std::map<std::string, Physics::PhysicsObject> &physicsObjects);
 
 public slots:
-    void paintEvent(QPaintEvent *);
-    void mouseMoveEvent(QMouseEvent *);
+    void paintEvent(QPaintEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
 
 private:
     Ui::PlayerView *ui;
-    Ingredient tomato;
-    void setUpView(std::vector<Ingredient>);
+
+    Ingredient *getSpriteByName(std::string name);
 
 signals:
-    void didClickOnIngredient(QPoint);
-    void dropIngredient(QPoint);
-    void updateIngredientPosition(QPoint);
+    void ingredientGrabbed(std::string ingredientName, QPoint mousePos);
+    void ingredientDropped(QPoint mousePos);
+    void updateIngredientPosition(QPoint mousePos);
 };
 #endif // PLAYERVIEW_H

@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "playermodel.h"
+#include "playerview.h"
 #include "recipecardwidget.h"
 
 namespace Ui {
@@ -13,7 +14,7 @@ class StartupScreen : public QWidget {
     Q_OBJECT
 
 public:
-    StartupScreen(PlayerModel& model, QWidget *parent = nullptr);
+    StartupScreen(PlayerModel &model, PlayerView &view, QWidget *parent = nullptr);
     ~StartupScreen();
 
 private slots:
@@ -25,6 +26,7 @@ private:
     QVector<RecipeCardWidget*> recipeCards;
     Ui::StartupScreen *ui;
     PlayerModel& playerModel;
+    PlayerView &playerView;
 
     QImage recipeCardImage1;
     QImage recipeCardImage2;

@@ -1,11 +1,16 @@
-#include "ui_startupscreen.h"
 #include "startupscreen.h"
-#include "recipecardwidget.h"
 #include "playerview.h"
 #include <QStyle>
+#include "recipecardwidget.h"
+#include "ui_startupscreen.h"
 
-StartupScreen::StartupScreen(PlayerModel& model, QWidget *parent)
-    : QWidget(parent), ui(new Ui::StartupScreen), playerModel(model) {
+StartupScreen::StartupScreen(PlayerModel &model, PlayerView &view, QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::StartupScreen)
+    , playerView(view)
+
+    , playerModel(model)
+{
     ui->setupUi(this);
 
     recipeCards << ui->recipeCard1 << ui->recipeCard2 << ui->recipeCard3 << ui->recipeCard4 << ui->recipeCard5 << ui->recipeCard6;
@@ -17,23 +22,28 @@ StartupScreen::StartupScreen(PlayerModel& model, QWidget *parent)
     connect(ui->recipeCard5, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard5->getRecipeName()); });
     connect(ui->recipeCard6, &RecipeCardWidget::clicked, this, [this]() { handleRecipeCardClicked(ui->recipeCard6->getRecipeName()); });
 
-    connect(ui->learnRecipeButton, &QPushButton::clicked, this, &StartupScreen::onLearnRecipeClicked);
+    connect(ui->learnRecipeButton,
+            &QPushButton::clicked,
+            this,
+            &StartupScreen::onLearnRecipeClicked);
 
     createRecipeCards();
 }
 
-StartupScreen::~StartupScreen() {
+StartupScreen::~StartupScreen()
+{
     delete ui;
 }
 
-void StartupScreen::onLearnRecipeClicked() {
-    PlayerView* playerView = new PlayerView;
-    playerView->show(); // Shows playerView after recipe is selected
+void StartupScreen::onLearnRecipeClicked()
+{
+    playerView.show(); // Shows playerView after recipe is selected
 
     this->hide();
 }
 
-void StartupScreen::createRecipeCards() {
+void StartupScreen::createRecipeCards()
+{
     recipeCardImage1 = QImage(":/sprites/Sprites/Pasta Tomato.png");
     recipeCardImage2 = QImage(":/sprites/Sprites/Salad Dish.png");
     recipeCardImage3 = QImage(":/sprites/Sprites/Cheese Pasta.png");
@@ -76,11 +86,13 @@ void StartupScreen::createRecipeCards() {
     });
 }
 
-void StartupScreen::updateRecipeCard(RecipeCardWidget* card, const QString& recipeName) {
+void StartupScreen::updateRecipeCard(RecipeCardWidget *card, const QString &recipeName)
+{
     card->setRecipeName(recipeName);
 }
 
-void StartupScreen::updateRecipeCardImage(RecipeCardWidget* card, const QString& imagePath) {
+void StartupScreen::updateRecipeCardImage(RecipeCardWidget *card, const QString &imagePath)
+{
     card->setRecipeImage(imagePath);
 }
 

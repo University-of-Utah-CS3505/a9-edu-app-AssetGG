@@ -39,11 +39,13 @@ PhysicsObject &Physics::registerDynamicObject(std::string name, b2Shape *shape, 
     bodyDef.type = b2_dynamicBody;
     bodyDef.position.Set(x, y);
     b2Body *body = world.CreateBody(&bodyDef);
+    body->SetLinearDamping(5.0);
 
     b2FixtureDef fixtureDef;
     fixtureDef.shape = shape;
     fixtureDef.density = 1.0;
     fixtureDef.friction = 0.3;
+    fixtureDef.restitution = 0.3;
 
     b2Fixture *fixture = body->CreateFixture(&fixtureDef);
 
