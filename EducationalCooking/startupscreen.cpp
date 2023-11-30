@@ -53,15 +53,15 @@ void StartupScreen::createRecipeCards()
 
     updateRecipeCard(ui->recipeCard1, "Spaghetti");
     updateRecipeCard(ui->recipeCard2, "Salad");
-    updateRecipeCard(ui->recipeCard3, "Pizza");
+    updateRecipeCard(ui->recipeCard3, "Pepperoni Pizza");
     updateRecipeCard(ui->recipeCard4, "Soup");
     updateRecipeCard(ui->recipeCard5, "Hamburger");
     updateRecipeCard(ui->recipeCard6, "Pancake");
 
     // Update recipe images
-    updateRecipeCardImage(ui->recipeCard1, ":/sprites/Sprites/Pasta Tomato.png");
+    updateRecipeCardImage(ui->recipeCard1, ":/sprites/Sprites/Spaghetti and Meatballs.png");
     updateRecipeCardImage(ui->recipeCard2, ":/sprites/Sprites/Salad Dish.png");
-    updateRecipeCardImage(ui->recipeCard3, ":/sprites/Sprites/Cheese Pasta.png");
+    updateRecipeCardImage(ui->recipeCard3, ":/sprites/Sprites/Pepperoni Pizza.png");
     updateRecipeCardImage(ui->recipeCard4, ":/sprites/Sprites/Chicken Soup.png");
     updateRecipeCardImage(ui->recipeCard5, ":/sprites/Sprites/Cheeseburger.png");
     updateRecipeCardImage(ui->recipeCard6, ":/sprites/Sprites/Pancakes.png");
