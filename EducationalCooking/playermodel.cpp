@@ -58,7 +58,7 @@ void PlayerModel::setupWalls()
 
 void PlayerModel::setupIngredient(Ingredient &ingredient)
 {
-    QRect spriteBounds = ingredient.GetRect();
+    QRect spriteBounds = ingredient.GetImage().rect();
     float radius = std::min(spriteBounds.width(), spriteBounds.height()) / 2.0;
     auto circle = Physics::createCircleShape(radius);
     auto obj = physics.registerDynamicObject(ingredient.GetName(),

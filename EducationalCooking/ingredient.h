@@ -8,7 +8,7 @@
 class Ingredient
 {
 public:
-    Ingredient(std::string, QImage, QImage, QImage, bool, bool, int, int);
+    Ingredient(std::string, QImage, QImage, QImage, bool, bool, int, int, float scaleFactor = 1.5);
     Ingredient();
     int locX, locY;
     std::string GetName();

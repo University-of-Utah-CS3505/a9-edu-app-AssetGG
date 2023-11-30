@@ -98,8 +98,9 @@ void PlayerView::updateSpritePositions(
     for (const auto &[name, obj] : physicsObjects) {
         auto sprite = getSpriteByName(name);
         if (sprite) {
-            sprite->locX = obj.body->GetPosition().x;
-            sprite->locY = obj.body->GetPosition().y;
+            auto size = sprite->GetImage().rect();
+            sprite->locX = obj.body->GetPosition().x - size.width() / 2.0;
+            sprite->locY = obj.body->GetPosition().y - size.height() / 2.0;
         }
     }
 

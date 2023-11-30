@@ -2,20 +2,29 @@
 #include <string>
 #include <QMouseEvent>
 
-Ingredient::Ingredient(std::string name, QImage baseImage, QImage cutImage, QImage cookedImage, bool cuttable, bool cookable, int x, int y)
+Ingredient::Ingredient(std::string name,
+                       QImage baseImage,
+                       QImage cutImage,
+                       QImage cookedImage,
+                       bool cuttable,
+                       bool cookable,
+                       int x,
+                       int y,
+                       float scaleFactor)
+    : currentImage(baseImage)
+    , baseImage(baseImage)
+    , cutImage(cutImage)
+    , cookedImage(cookedImage)
+    , cuttable(cuttable)
+    , cookable(cookable)
 {
     ingredientName = name;
 
     locX = x;
     locY = y;
 
-    currentImage = baseImage;
-    baseImage = baseImage;
-    cutImage = cutImage;
-    cookedImage = cookedImage;
-
-    cuttable = cuttable;
-    cookable = cookable;
+    currentImage = currentImage.scaled(currentImage.width() * scaleFactor,
+                                       currentImage.height() * scaleFactor);
 
     cut = false;
     cooked = false;

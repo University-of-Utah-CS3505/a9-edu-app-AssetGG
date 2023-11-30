@@ -19,14 +19,15 @@ Recipe testRecipe()
                                    true,
                                    240,
                                    240));
-    available.push_back(Ingredient("tomato2",
-                                   QImage(":/sprites/Sprites/Tomato.png"),
-                                   QImage(":/sprites/Sprites/Tomato.png"),
-                                   QImage(":/sprites/Sprites/Tomato.png"),
+    available.push_back(Ingredient("fishy",
+                                   QImage(":/sprites/Sprites/Mackarel.png"),
+                                   QImage(":/sprites/Sprites/Mackarel.png"),
+                                   QImage(":/sprites/Sprites/Mackarel.png"),
                                    true,
                                    true,
                                    200,
-                                   240));
+                                   240,
+                                   3.0));
 
     return Recipe("testRecipe", base, bonus, available);
 }
