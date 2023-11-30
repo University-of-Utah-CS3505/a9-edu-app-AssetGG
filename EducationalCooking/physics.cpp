@@ -26,6 +26,7 @@ PhysicsObject &Physics::registerStaticObject(std::string name, b2Shape *shape, f
 
     b2FixtureDef fixtureDef;
     fixtureDef.shape = shape;
+    fixtureDef.restitution = 0.25;
     b2Fixture *fixture = body->CreateFixture(&fixtureDef);
 
     PhysicsObject object(body, fixture);
