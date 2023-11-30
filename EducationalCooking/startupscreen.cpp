@@ -46,7 +46,7 @@ void StartupScreen::createRecipeCards()
 {
     recipeCardImage1 = QImage(":/sprites/Sprites/Pasta Tomato.png");
     recipeCardImage2 = QImage(":/sprites/Sprites/Salad Dish.png");
-    recipeCardImage3 = QImage(":/sprites/Sprites/Cheese Pasta.png");
+    recipeCardImage3 = QImage(":/sprites/Sprites/Pepperoni Pizza.png");
     recipeCardImage4 = QImage(":/sprites/Sprites/Chicken Soup.png");
     recipeCardImage5 = QImage(":/sprites/Sprites/Cheeseburger.png");
     recipeCardImage6 = QImage(":/sprites/Sprites/Pancakes.png");
