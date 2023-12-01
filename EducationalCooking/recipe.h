@@ -9,8 +9,9 @@
 #define RECIPE_H
 
 #include <QObject>
-#include "ingredient.h"
+#include <QImage>
 #include <vector>
+#include "ingredient.h"
 
 class Recipe
 {
@@ -20,6 +21,12 @@ public:
     std::vector<Ingredient> getBonusIngredients();
     std::vector<Ingredient> getAvaliableIngredients();
     std::string getRecipeName();
+    QImage helpSpriteSmall;
+    QImage helpSpriteLarge;
+    QImage getLargeHelpSprite();
+    QImage getSmallHelpSprite();
+    int getXLocation();
+    int getYLocation();
 
 private:
     // ingredients for the bare bones food
@@ -31,6 +38,9 @@ private:
     // all avaliable ingredients (including base/bonus/red herring ones)
     std::vector<Ingredient> avaliableIngredients;
     std::string recipeName;
+
+    // The xLocation and yLocation of the recipeHelp sprite
+    int xLoc, yLoc;
 };
 
 #endif // RECIPE_H
