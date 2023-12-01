@@ -36,6 +36,7 @@ private:
 
     void setupWalls();
     void setupIngredient(Ingredient &ingredient);
+    void setupRecipes();
 
 signals:
     void recipeClicked(const QString &recipeName);
