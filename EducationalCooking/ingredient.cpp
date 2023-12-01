@@ -93,3 +93,15 @@ void Ingredient::Burned()
     burnt = true;
 }
 
+bool Ingredient::IsCooked()
+{
+    return cooked;
+}
+bool Ingredient::IsCut()
+{
+    return cut;
+}
+bool Ingredient::IsBurned()
+{
+    return burnt;
+}

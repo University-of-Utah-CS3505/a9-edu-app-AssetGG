@@ -14,6 +14,9 @@ public:
     std::string GetName();
     QImage GetImage();
     QRect GetRect();
+    bool IsCooked();
+    bool IsCut();
+    bool IsBurned();
     bool Cut();
     bool Cooked();
     void Burned();

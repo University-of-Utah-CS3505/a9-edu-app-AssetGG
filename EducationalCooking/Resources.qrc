@@ -2,7 +2,6 @@
     <qresource prefix="/sprites">
         <file>Sprites/Tomato.png</file>
         <file>Sprites/Kitchen.png</file>
-        <file>Sprites/Almond.png</file>
         <file>Sprites/Alternate Red Velvet Cake.png</file>
         <file>Sprites/Apple Pie Slice.png</file>
         <file>Sprites/Apple Pie.png</file>
