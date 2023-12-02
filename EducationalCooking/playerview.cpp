@@ -9,17 +9,10 @@
 
 PlayerView::PlayerView(QWidget *parent)
     : QMainWindow(parent)
+    , tools(nullptr)
     , ui(new Ui::PlayerView)
 {
     ui->setupUi(this);
-    tomato = Ingredient("tomato",
-                        QImage(":/sprites/Sprites/Tomato.png"),
-                        QImage(":/sprites/Sprites/Tomato.png"),
-                        QImage(":/sprites/Sprites/Tomato.png"),
-                        true,
-                        true,
-                        125,
-                        125);
 }
 
 PlayerView::~PlayerView()
@@ -30,24 +23,50 @@ PlayerView::~PlayerView()
 void PlayerView::paintEvent(QPaintEvent *event)
 {
     QPainter imagePainter(this);
+    // draw the things that need to show up on top last. Background goes first.
     imagePainter.drawImage(QRect(0, 0, 640, 640), QImage(":/sprites/Sprites/Kitchen.png"));
 
-    for (auto &[spriteName, sprite] : ingredientSprites) {
-        QImage img = sprite.GetImage();
+    for (auto &[toolName, tool] : *tools) {
+        QImage img = tool.GetImage();
 
-        imagePainter.drawImage(QRect(sprite.locX, sprite.locY, img.width(), img.height()), img);
+        imagePainter.drawImage(QRect(tool.locX, tool.locY, img.width(), img.height()), img);
     }
+
+    // Finally, ingredients.
+    for (auto &[ingredientName, ingredient] : ingredientSprites) {
+        QImage img = ingredient.GetImage();
+
+        imagePainter.drawImage(QRect(ingredient.locX, ingredient.locY, img.width(), img.height()),
+                               img);
+    }
+}
+
+bool mouseOverSprite(QPoint mousePos, int x, int y, int w, int h)
+{
+    QRect spriteBounds(x, y, w, h);
+    return spriteBounds.contains(mousePos);
 }
 
 void PlayerView::mousePressEvent(QMouseEvent *event)
 {
-    int mouseX = event->pos().x();
-    int mouseY = event->pos().y();
+    QPoint mousePos = event->pos();
 
-    for (auto &[spriteName, sprite] : ingredientSprites) {
-        if (mouseX >= sprite.locX && mouseX <= (sprite.locX + sprite.GetImage().width())) {
-            if (mouseY >= sprite.locY && mouseY <= (sprite.locY + sprite.GetImage().height())) {
-                emit ingredientGrabbed(spriteName, event->pos());
+    // check if we're clicking on any ingredients first.
+
+    for (auto &[ingredientName, ingredient] : ingredientSprites) {
+        QImage img = ingredient.GetImage();
+        if (mouseOverSprite(mousePos, ingredient.locX, ingredient.locY, img.width(), img.height())) {
+            emit itemGrabbed(ingredientName, mousePos);
+            return;
+        }
+    }
+
+    for (auto &[toolName, tool] : *tools) {
+        QImage img = tool.GetImage();
+        if (tool.IsMovable()) {
+            if (mouseOverSprite(mousePos, tool.locX, tool.locY, img.width(), img.height())) {
+                emit itemGrabbed(toolName, mousePos);
+                return;
             }
         }
     }
@@ -55,28 +74,15 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
 
 void PlayerView::mouseMoveEvent(QMouseEvent *event)
 {
-    emit updateIngredientPosition(event->pos());
+    emit updateDragPosition(event->pos());
 }
 
 void PlayerView::mouseReleaseEvent(QMouseEvent *event)
 {
-    emit ingredientDropped(event->pos());
+    emit itemDropped(event->pos());
 }
 
-//void PlayerView::mouseMoveEvent(QMouseEvent *event)
-//{
-//    if ((event->pos().x() >= tomato.locX - 50
-//         && event->pos().x() <= (tomato.locX + tomato.GetImage().width()) + 50)
-//        && (event->pos().y() >= tomato.locY - 50
-//            && event->pos().y() <= (tomato.locY + tomato.GetImage().height() + 50))) {
-//        tomato.locX = event->pos().x();
-//        tomato.locY = event->pos().y();
-//    }
-
-//    update();
-//}
-
-Ingredient *PlayerView::getSpriteByName(std::string name)
+Ingredient *PlayerView::getIngredientByName(std::string name)
 {
     auto search = ingredientSprites.find(name);
     if (search == ingredientSprites.end())
@@ -85,22 +91,44 @@ Ingredient *PlayerView::getSpriteByName(std::string name)
         return &search->second;
 }
 
-void PlayerView::setupScene(Recipe &recipe)
+Tool *PlayerView::getToolByName(std::string name)
+{
+    auto search = tools->find(name);
+    if (search == tools->end())
+        return nullptr;
+    else
+        return &search->second;
+}
+
+void PlayerView::setupScene(Recipe &recipe, std::map<std::string, Tool> &tools)
 {
     for (Ingredient &ingredient : recipe.getAvaliableIngredients()) {
         ingredientSprites.insert({ingredient.GetName(), ingredient});
     }
+
+    this->tools = &tools;
 }
 
 void PlayerView::updateSpritePositions(
     const std::map<std::string, Physics::PhysicsObject> &physicsObjects)
 {
+    // for each physics object,
     for (const auto &[name, obj] : physicsObjects) {
-        auto sprite = getSpriteByName(name);
-        if (sprite) {
-            auto size = sprite->GetImage().rect();
-            sprite->locX = obj.body->GetPosition().x - size.width() / 2.0;
-            sprite->locY = obj.body->GetPosition().y - size.height() / 2.0;
+        // check if it's an ingredient first
+        auto ingredient = getIngredientByName(name);
+        if (ingredient) {
+            auto size = ingredient->GetImage().rect();
+            ingredient->locX = obj.body->GetPosition().x - size.width() / 2.0;
+            ingredient->locY = obj.body->GetPosition().y - size.height() / 2.0;
+            continue;
+        }
+        // ok maybe it's a tool?
+        auto tool = getToolByName(name);
+        if (tool) {
+            auto size = tool->GetImage().rect();
+            tool->locX = obj.body->GetPosition().x - size.width() / 2.0;
+            tool->locY = obj.body->GetPosition().y - size.height() / 2.0;
+            continue;
         }
     }
 

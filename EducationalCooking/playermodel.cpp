@@ -1,7 +1,8 @@
 #include "playermodel.h"
 #include "ingredient.h"
-#include "recipecardwidget.h"
 #include "recipe.h"
+#include "recipecardwidget.h"
+#include "tools.h"
 #include <vector>
 
 using std::vector;
@@ -168,17 +169,19 @@ void PlayerModel::handleRecipeClicked(const QString &recipeName)
     qDebug() << "Recipe clicked:" << recipeName;
 }
 
-void PlayerModel::setupScene(Recipe &recipe)
+void PlayerModel::setupScene(Recipe &recipe, std::map<std::string, Tool> &tools)
 {
     setupWalls();
 
     for (Ingredient &ingredient : recipe.getAvaliableIngredients()) {
         setupIngredient(ingredient);
     }
-    //Physics::PhysicsObject *obj = physicsObjects.at("tomato");
+
+    for (auto &[toolName, tool] : tools) {
+        setupCookingTool(tool);
+    }
 
     physics.start();
-    // set up ingredient collision objects
 }
 
 void PlayerModel::setupWalls()
@@ -204,9 +207,40 @@ void PlayerModel::setupIngredient(Ingredient &ingredient)
                                              ingredient.locX,
                                              ingredient.locY);
 
+    b2Filter collisionFilter;
+    // Walls are 0x0001 (by default), Ingredients are 0x0002, tools are 0x0004
+    collisionFilter.categoryBits = 0x0002;
+    // black magic meaning it can collide with walls or ingredients, but not tools.
+    collisionFilter.maskBits = 0x0001 | 0x0002;
+
     obj.fixture->SetFriction(0.2);
     obj.fixture->SetRestitution(0.1);
-    //obj.body->SetLinearVelocity(b2Vec2(0.0, -50.0));
+    obj.fixture->SetFilterData(collisionFilter);
+
+    obj.body->SetLinearDamping(5.0);
+}
+
+void PlayerModel::setupCookingTool(Tool tool)
+{
+    // create a physics object for the tool
+    auto boxShape = Physics::createBoxShape(tool.GetImage().width(), tool.GetImage().height());
+
+    b2Filter collisionFilter;
+    // Walls are 0x0001, Ingredients are 0x0002, tools are 0x0004
+    collisionFilter.categoryBits = 0x0004;
+    // black magic meaning it can collide with walls or tools, but not ingredients.
+    collisionFilter.maskBits = 0x0001 | 0x0004;
+
+    Physics::PhysicsObject *obj = nullptr;
+    if (tool.IsMovable()) {
+        obj = &physics.registerDynamicObject(tool.GetName(), &boxShape, tool.locX, tool.locY);
+
+    } else {
+        obj = &physics.registerStaticObject(tool.GetName(), &boxShape, tool.locX, tool.locY);
+    }
+
+    obj->body->SetLinearDamping(15.0);
+    obj->fixture->SetFilterData(collisionFilter);
 }
 
 /*

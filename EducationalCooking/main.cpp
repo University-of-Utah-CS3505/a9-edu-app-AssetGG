@@ -4,6 +4,7 @@
 #include "playermodel.h"
 #include "playerview.h"
 #include "startupscreen.h"
+#include "tools.h"
 
 Recipe testRecipe()
 {
@@ -32,6 +33,13 @@ Recipe testRecipe()
     return Recipe("testRecipe", base, bonus, available);
 }
 
+std::map<std::string, Tool> defaultTools()
+{
+    std::map<std::string, Tool> map;
+    map.insert({"CuttingBoard", CuttingBoard(230, 410)});
+    return map;
+}
+
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -41,8 +49,10 @@ int main(int argc, char *argv[])
     PlayerModel model(physics); // Instance of PlayerModel
 
     Recipe recipe = testRecipe();
-    model.setupScene(recipe);
-    playerView.setupScene(recipe);
+    auto tools = defaultTools();
+
+    model.setupScene(recipe, tools);
+    playerView.setupScene(recipe, tools);
 
     Controller c(model, playerView);
 
