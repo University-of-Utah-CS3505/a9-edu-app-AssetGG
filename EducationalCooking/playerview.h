@@ -9,6 +9,7 @@
 #include "ingredient.h"
 #include "physics.h"
 #include "recipe.h"
+#include "tools.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -19,15 +20,15 @@ QT_END_NAMESPACE
 class PlayerView : public QMainWindow
 {
     Q_OBJECT
+    std::map<std::string, Tool> *tools;
+    std::map<std::string, Ingredient> ingredientSprites;
 
 public:
-    std::map<std::string, Ingredient> ingredientSprites;
-    Ingredient tomato;
-
     PlayerView(QWidget *parent = nullptr);
     ~PlayerView();
-    void setupScene(Recipe &recipe);
+    void setupScene(Recipe &recipe, std::map<std::string, Tool> &tools);
     void updateSpritePositions(const std::map<std::string, Physics::PhysicsObject> &physicsObjects);
+    void onScoreButtonClicked();
 
 public slots:
     void paintEvent(QPaintEvent *event);
@@ -48,10 +49,14 @@ private:
     void setupRecipeHelpLine2(Recipe);
     void setupRecipeHelpLine3(Recipe);
     void setupRecipeHelpLine4(Recipe);
+    Ingredient *getIngredientByName(std::string name);
+    Tool *getToolByName(std::string name);
+    int calculateScore();
 
 signals:
-    void ingredientGrabbed(std::string ingredientName, QPoint mousePos);
-    void ingredientDropped(QPoint mousePos);
-    void updateIngredientPosition(QPoint mousePos);
+    void itemGrabbed(std::string itemName, QPoint mousePos);
+    void itemDropped(QPoint mousePos);
+    void updateDragPosition(QPoint mousePos);
+    void calculateScoreRequested();
 };
 #endif // PLAYERVIEW_H

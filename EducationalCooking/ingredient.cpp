@@ -48,7 +48,7 @@ Ingredient::Ingredient()
     burnt = false;
 }
 
-std::string Ingredient::GetName()
+std::string Ingredient::GetName() const
 {
     return ingredientName;
 }

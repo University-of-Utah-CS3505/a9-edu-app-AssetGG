@@ -4,11 +4,13 @@
 #include "playermodel.h"
 #include "playerview.h"
 #include "startupscreen.h"
+#include "comparisoningredient.h"
+#include "tools.h"
 
 Recipe testRecipe()
 {
-    std::vector<Ingredient> base;
-    std::vector<Ingredient> bonus;
+    std::vector<ComparisonIngredient> base;
+    std::vector<ComparisonIngredient> bonus;
     std::vector<Ingredient> available;
 
     available.push_back(Ingredient("tomato",
@@ -29,7 +31,14 @@ Recipe testRecipe()
                                    240,
                                    3.0));
 
-    return Recipe("testRecipe", base, bonus, available);
+    return Recipe("testRecipe", base, bonus, available, QImage());
+}
+
+std::map<std::string, Tool> defaultTools()
+{
+    std::map<std::string, Tool> map;
+    map.insert({"CuttingBoard", CuttingBoard(230, 410)});
+    return map;
 }
 
 int main(int argc, char *argv[])
@@ -41,8 +50,10 @@ int main(int argc, char *argv[])
     PlayerModel model(physics); // Instance of PlayerModel
 
     Recipe recipe = testRecipe();
-    model.setupScene(recipe);
-    playerView.setupScene(recipe);
+    auto tools = defaultTools();
+
+    model.setupScene(recipe, tools);
+    playerView.setupScene(recipe, tools);
 
     Controller c(model, playerView);
 

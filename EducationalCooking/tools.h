@@ -5,22 +5,39 @@
 #include <QString>
 #include "ingredient.h"
 
-enum class CookingToolType
-{
+enum class CookingToolType {
     CuttingBoard,
     FryingPan,
     Pot,
     // TODO: Add other tools
 };
 
-class Tools
+class Tool
 {
-public:
-    Tools(CookingToolType type);
-    void ProcessIngredient(Ingredient& ingredient);
+    std::string name;
+    bool movable;
 
-private:
-    CookingToolType toolType;
+protected:
+    QImage currentImage;
+    QImage baseImage;
+    QImage inUseImage;
+
+public:
+    int locX;
+    int locY;
+
+    Tool(std::string name, bool movable, int locX, int locY);
+
+    bool IsMovable();
+    QImage GetImage();
+    std::string GetName();
+
+    void ProcessIngredient(Ingredient &ingredient);
 };
 
+class CuttingBoard : public Tool
+{
+public:
+    CuttingBoard(int locX, int locY);
+};
 #endif // TOOLS_H

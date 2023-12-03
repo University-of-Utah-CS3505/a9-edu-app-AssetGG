@@ -1,34 +1,37 @@
 #include "tools.h"
-#include <string>
 #include <QMouseEvent>
+#include <string>
 
-Tools::Tools(CookingToolType type) : toolType(type)
+Tool::Tool(std::string name, bool movable, int locX, int locY)
+    : name(name)
+    , movable(movable)
+    , locX(locX)
+    , locY(locY)
 {
     // Empty constructor
     // Might need to rethink this
 }
 
-void Tools::ProcessIngredient(Ingredient& ingredient)
+bool Tool::IsMovable()
 {
-    switch (toolType)
-    {
-    case CookingToolType::CuttingBoard:
-        // Might needd to move the if statements like is cookable/cuttable here from ingredients class
-        ingredient.Cut();
-        break;
+    return movable;
+}
 
-    case CookingToolType::Pot:
-        ingredient.Cooked();
-        break;
+QImage Tool::GetImage()
+{
+    return baseImage;
+}
 
-    case CookingToolType::FryingPan:
-        // Add frying pan logic
-        break;
+std::string Tool::GetName()
+{
+    return name;
+}
 
-     // Add more cases for other cooking tools
-
-    default:
-        // TODO: think about the default case
-        break;
-    }
+CuttingBoard::CuttingBoard(int locX, int locY)
+    : Tool("CuttingBoard", true, locX, locY)
+{
+    baseImage = QImage(":/sprites/Sprites/CuttingBoard.png");
+    baseImage = baseImage.scaled(baseImage.width() * 3.0, baseImage.height() * 3.0);
+    currentImage = baseImage;
+    currentImage = baseImage;
 }

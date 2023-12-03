@@ -4,11 +4,14 @@
 #include "physics.h"
 #include "recipe.h"
 #include "ui_playerview.h"
+#include "finalscreen.h"
 #include <map>
 #include <vector>
+#include <QGraphicsBlurEffect>
 
 PlayerView::PlayerView(QWidget *parent)
     : QMainWindow(parent)
+    , tools(nullptr)
     , ui(new Ui::PlayerView)
 {
     ui->setupUi(this);
@@ -21,6 +24,8 @@ PlayerView::PlayerView(QWidget *parent)
                         125,
                         125);
     showRecipeHelp = false;
+
+    connect(ui->scoreButton, &QPushButton::clicked, this, &PlayerView::onScoreButtonClicked);
 }
 
 PlayerView::~PlayerView()
@@ -31,23 +36,36 @@ PlayerView::~PlayerView()
 void PlayerView::paintEvent(QPaintEvent *event)
 {
     QPainter imagePainter(this);
+    // draw the things that need to show up on top last. Background goes first.
     imagePainter.drawImage(QRect(0, 0, 640, 640), QImage(":/sprites/Sprites/Kitchen.png"));
     imagePainter.drawImage(QRect(240, 370, 50, 50), QImage(":/sprites/Sprites/recipeHelp.png"));
 
-    for (auto &[spriteName, sprite] : ingredientSprites) {
-        QImage img = sprite.GetImage();
+    for (auto &[toolName, tool] : *tools) {
+        QImage img = tool.GetImage();
 
-        imagePainter.drawImage(QRect(sprite.locX, sprite.locY, img.width(), img.height()), img);
+        imagePainter.drawImage(QRect(tool.locX, tool.locY, img.width(), img.height()), img);
     }
 
     if(showRecipeHelp)
         imagePainter.drawImage(QRect(25, 100, 600, 600), QImage(":/sprites/Sprites/fullSizeRecipeHelp.png"));
+    // Finally, ingredients.
+    for (auto &[ingredientName, ingredient] : ingredientSprites) {
+        QImage img = ingredient.GetImage();
+
+        imagePainter.drawImage(QRect(ingredient.locX, ingredient.locY, img.width(), img.height()),
+                               img);
+    }
+}
+
+bool mouseOverSprite(QPoint mousePos, int x, int y, int w, int h)
+{
+    QRect spriteBounds(x, y, w, h);
+    return spriteBounds.contains(mousePos);
 }
 
 void PlayerView::mousePressEvent(QMouseEvent *event)
 {
-    int mouseX = event->pos().x();
-    int mouseY = event->pos().y();
+    QPoint mousePos = event->pos();
 
     if (showRecipeHelp)
     {
@@ -70,6 +88,22 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
         if (mouseX >= sprite.locX && mouseX <= (sprite.locX + sprite.GetImage().width())) {
             if (mouseY >= sprite.locY && mouseY <= (sprite.locY + sprite.GetImage().height())) {
                 emit ingredientGrabbed(spriteName, event->pos());
+    // check if we're clicking on any ingredients first.
+
+    for (auto &[ingredientName, ingredient] : ingredientSprites) {
+        QImage img = ingredient.GetImage();
+        if (mouseOverSprite(mousePos, ingredient.locX, ingredient.locY, img.width(), img.height())) {
+            emit itemGrabbed(ingredientName, mousePos);
+            return;
+        }
+    }
+
+    for (auto &[toolName, tool] : *tools) {
+        QImage img = tool.GetImage();
+        if (tool.IsMovable()) {
+            if (mouseOverSprite(mousePos, tool.locX, tool.locY, img.width(), img.height())) {
+                emit itemGrabbed(toolName, mousePos);
+                return;
             }
         }
     }
@@ -77,15 +111,15 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
 
 void PlayerView::mouseMoveEvent(QMouseEvent *event)
 {
-    emit updateIngredientPosition(event->pos());
+    emit updateDragPosition(event->pos());
 }
 
 void PlayerView::mouseReleaseEvent(QMouseEvent *event)
 {
-    emit ingredientDropped(event->pos());
+    emit itemDropped(event->pos());
 }
 
-Ingredient *PlayerView::getSpriteByName(std::string name)
+Ingredient *PlayerView::getIngredientByName(std::string name)
 {
     auto search = ingredientSprites.find(name);
     if (search == ingredientSprites.end())
@@ -94,7 +128,16 @@ Ingredient *PlayerView::getSpriteByName(std::string name)
         return &search->second;
 }
 
-void PlayerView::setupScene(Recipe &recipe)
+Tool *PlayerView::getToolByName(std::string name)
+{
+    auto search = tools->find(name);
+    if (search == tools->end())
+        return nullptr;
+    else
+        return &search->second;
+}
+
+void PlayerView::setupScene(Recipe &recipe, std::map<std::string, Tool> &tools)
 {
     setupRecipeHelpLine1(recipe);
     setupRecipeHelpLine2(recipe);
@@ -104,17 +147,30 @@ void PlayerView::setupScene(Recipe &recipe)
     for (Ingredient &ingredient : recipe.getAvaliableIngredients()) {
         ingredientSprites.insert({ingredient.GetName(), ingredient});
     }
+
+    this->tools = &tools;
 }
 
 void PlayerView::updateSpritePositions(
     const std::map<std::string, Physics::PhysicsObject> &physicsObjects)
 {
+    // for each physics object,
     for (const auto &[name, obj] : physicsObjects) {
-        auto sprite = getSpriteByName(name);
-        if (sprite) {
-            auto size = sprite->GetImage().rect();
-            sprite->locX = obj.body->GetPosition().x - size.width() / 2.0;
-            sprite->locY = obj.body->GetPosition().y - size.height() / 2.0;
+        // check if it's an ingredient first
+        auto ingredient = getIngredientByName(name);
+        if (ingredient) {
+            auto size = ingredient->GetImage().rect();
+            ingredient->locX = obj.body->GetPosition().x - size.width() / 2.0;
+            ingredient->locY = obj.body->GetPosition().y - size.height() / 2.0;
+            continue;
+        }
+        // ok maybe it's a tool?
+        auto tool = getToolByName(name);
+        if (tool) {
+            auto size = tool->GetImage().rect();
+            tool->locX = obj.body->GetPosition().x - size.width() / 2.0;
+            tool->locY = obj.body->GetPosition().y - size.height() / 2.0;
+            continue;
         }
     }
 
@@ -166,4 +222,18 @@ void PlayerView::setupRecipeHelpLine4(Recipe recipe)
     recipeHelpLine4->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
     recipeHelpLine4->setGeometry(QRect(175, 500, 350, 50));
     recipeHelpLine4->setHidden(true);
+void PlayerView::onScoreButtonClicked()
+{
+    emit calculateScoreRequested();
+
+    // Blurs out the background
+    QGraphicsBlurEffect *blurEffect = new QGraphicsBlurEffect;
+    blurEffect->setBlurRadius(20);
+    this->setGraphicsEffect(blurEffect);
+
+    // Creation of final screen
+    FinalScreen* finalScreen = new FinalScreen;
+    finalScreen->show();
+
+    ui->centralwidget->setGraphicsEffect(nullptr);
 }
