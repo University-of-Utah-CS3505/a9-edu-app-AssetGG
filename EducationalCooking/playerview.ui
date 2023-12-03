@@ -13,7 +13,37 @@
   <property name="windowTitle">
    <string>PlayerView</string>
   </property>
-  <widget class="QWidget" name="centralwidget"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QFrame" name="plateFrame">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>370</y>
+      <width>100</width>
+      <height>100</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QFrame#plateFrame {
+    background-color: #f5f5f5;
+    border-radius: 50px;
+}</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="scoreButton">
+       <property name="geometry">
+           <rect>
+               <x>30</x>
+               <y>475</y>
+               <width>80</width>
+               <height>30</height>
+           </rect>
+       </property>
+       <property name="text">
+           <string>Score</string>
+       </property>
+   </widget>
+  </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
