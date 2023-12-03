@@ -11,9 +11,6 @@ Recipe::Recipe(string name, vector<Ingredient> baseList, vector<Ingredient> bonu
     baseIngredients.swap(baseList);
     bonusIngredients.swap(bonusList);
     avaliableIngredients.swap(avaliableList);
-
-    helpSpriteSmall = QImage(":/sprites/Sprites/recipeHelp.png");
-    helpSpriteLarge = QImage(":/sprites/Sprites/fullSizeRecipeHelp.png");
 }
 
 vector<Ingredient> Recipe::getBaseIngredients(){
@@ -31,16 +28,6 @@ vector<Ingredient> Recipe::getAvaliableIngredients(){
 
 string Recipe::getRecipeName(){
     return recipeName;
-}
-
-QImage Recipe::getSmallHelpSprite()
-{
-    return helpSpriteSmall;
-}
-
-QImage Recipe::getLargeHelpSprite()
-{
-    return helpSpriteLarge;
 }
 
 int Recipe::getXLocation()

@@ -447,5 +447,7 @@
         <file>Sprites/Yellow Paprika.png</file>
         <file>Sprites/Yellow Tomato.png</file>
         <file>Sprites/Yoghurt.png</file>
+        <file>Sprites/recipeHelp.png</file>
+        <file>Sprites/fullSizeRecipeHelp.png</file>
     </qresource>
 </RCC>

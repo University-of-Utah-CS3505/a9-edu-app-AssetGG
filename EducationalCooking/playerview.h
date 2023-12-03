@@ -5,6 +5,7 @@
 #include <QMouseEvent>
 #include <QPainter>
 #include <QPoint>
+#include <QLabel>
 #include "ingredient.h"
 #include "physics.h"
 #include "recipe.h"
@@ -36,8 +37,17 @@ public slots:
 
 private:
     Ui::PlayerView *ui;
+    QLabel *recipeHelpLine1;
+    QLabel *recipeHelpLine2;
+    QLabel *recipeHelpLine3;
+    QLabel *recipeHelpLine4;
+    bool showRecipeHelp;
 
     Ingredient *getSpriteByName(std::string name);
+    void setupRecipeHelpLine1(Recipe);
+    void setupRecipeHelpLine2(Recipe);
+    void setupRecipeHelpLine3(Recipe);
+    void setupRecipeHelpLine4(Recipe);
 
 signals:
     void ingredientGrabbed(std::string ingredientName, QPoint mousePos);

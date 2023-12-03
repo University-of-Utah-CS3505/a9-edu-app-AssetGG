@@ -21,10 +21,6 @@ public:
     std::vector<Ingredient> getBonusIngredients();
     std::vector<Ingredient> getAvaliableIngredients();
     std::string getRecipeName();
-    QImage helpSpriteSmall;
-    QImage helpSpriteLarge;
-    QImage getLargeHelpSprite();
-    QImage getSmallHelpSprite();
     int getXLocation();
     int getYLocation();
 
