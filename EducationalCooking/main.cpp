@@ -4,12 +4,13 @@
 #include "playermodel.h"
 #include "playerview.h"
 #include "startupscreen.h"
+#include "comparisoningredient.h"
 #include "tools.h"
 
 Recipe testRecipe()
 {
-    std::vector<Ingredient> base;
-    std::vector<Ingredient> bonus;
+    std::vector<ComparisonIngredient> base;
+    std::vector<ComparisonIngredient> bonus;
     std::vector<Ingredient> available;
 
     available.push_back(Ingredient("tomato",
@@ -30,7 +31,7 @@ Recipe testRecipe()
                                    240,
                                    3.0));
 
-    return Recipe("testRecipe", base, bonus, available);
+    return Recipe("testRecipe", base, bonus, available, QImage());
 }
 
 std::map<std::string, Tool> defaultTools()

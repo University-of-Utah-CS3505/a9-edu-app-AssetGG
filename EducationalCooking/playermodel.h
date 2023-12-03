@@ -8,6 +8,7 @@
 #include "physics.h"
 #include "recipe.h"
 #include "tools.h"
+#include "comparisoningredient.h"
 
 using std::vector;
 
