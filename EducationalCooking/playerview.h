@@ -43,6 +43,7 @@ private:
     QLabel *recipeHelpLine3;
     QLabel *recipeHelpLine4;
     bool showRecipeHelp;
+    Recipe chosenRecipe;
 
     Ingredient *getSpriteByName(std::string name);
     void setupRecipeHelpLine1(Recipe);

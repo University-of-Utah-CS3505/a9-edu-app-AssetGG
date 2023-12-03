@@ -43,7 +43,6 @@ string Recipe::getRecipeName() const
     return recipeName;
 }
 
-int Recipe::getXLocation()
 QImage Recipe::getSmallHelpSprite() const
 {
     return helpSpriteSmall;
