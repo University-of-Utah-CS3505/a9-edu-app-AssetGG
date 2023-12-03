@@ -4,8 +4,10 @@
 #include "physics.h"
 #include "recipe.h"
 #include "ui_playerview.h"
+#include "finalscreen.h"
 #include <map>
 #include <vector>
+#include <QGraphicsBlurEffect>
 
 PlayerView::PlayerView(QWidget *parent)
     : QMainWindow(parent)
@@ -13,6 +15,8 @@ PlayerView::PlayerView(QWidget *parent)
     , ui(new Ui::PlayerView)
 {
     ui->setupUi(this);
+
+    connect(ui->scoreButton, &QPushButton::clicked, this, &PlayerView::onScoreButtonClicked);
 }
 
 PlayerView::~PlayerView()
@@ -133,4 +137,19 @@ void PlayerView::updateSpritePositions(
     }
 
     update();
+}
+
+void PlayerView::onScoreButtonClicked()
+{
+    // Blurs out the background
+    QGraphicsBlurEffect *blurEffect = new QGraphicsBlurEffect;
+    blurEffect->setBlurRadius(20);
+    this->setGraphicsEffect(blurEffect);
+
+    // Creation of final screen
+    FinalScreen* finalScreen = new FinalScreen;
+    finalScreen->show();
+
+    // Unfreeze the view after the final screen is closed
+    ui->centralwidget->setGraphicsEffect(nullptr);
 }

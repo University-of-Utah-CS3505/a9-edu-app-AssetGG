@@ -57,6 +57,7 @@ SOURCES += \
     Box2D/Rope/b2Rope.cpp \
     comparisoningredient.cpp \
     controller.cpp \
+    finalscreen.cpp \
     ingredient.cpp \
     main.cpp \
     physics.cpp \
@@ -117,6 +118,7 @@ HEADERS += \
     Box2D/Rope/b2Rope.h \
     comparisoningredient.h \
     controller.h \
+    finalscreen.h \
     ingredient.h \
     physics.h \
     playermodel.h \
@@ -127,6 +129,7 @@ HEADERS += \
     tools.h
 
 FORMS += \
+    finalscreen.ui \
     playerview.ui \
     recipecardwidget.ui \
     startupscreen.ui

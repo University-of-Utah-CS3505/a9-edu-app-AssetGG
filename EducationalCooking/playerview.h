@@ -27,6 +27,7 @@ public:
     ~PlayerView();
     void setupScene(Recipe &recipe, std::map<std::string, Tool> &tools);
     void updateSpritePositions(const std::map<std::string, Physics::PhysicsObject> &physicsObjects);
+    void onScoreButtonClicked();
 
 public slots:
     void paintEvent(QPaintEvent *event);
