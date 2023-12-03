@@ -448,6 +448,8 @@
         <file>Sprites/Yellow Tomato.png</file>
         <file>Sprites/Yoghurt.png</file>
         <file>Sprites/CuttingBoard.png</file>
+        <file>Sprites/Cabbage.png</file>
+        <file>Sprites/Raw Patty.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

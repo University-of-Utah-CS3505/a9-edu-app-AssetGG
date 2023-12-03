@@ -162,7 +162,7 @@ void PlayerModel::setupRecipes(){
     avaliable.push_back(Ingredient("tuna", QImage(folder + "Tuna.png"),
                                    QImage(folder + "Tuna Slice.png"), QImage(), true, false, 0, 0));
     // missing
-    avaliable.push_back(Ingredient("cabbage", QImage(folder + "Tomato.png"),
+    avaliable.push_back(Ingredient("cabbage", QImage(folder + "Cabbage.png"),
                                    QImage(), QImage(), true, false, 0, 0));
     recipes.push_back(Recipe("soup", base, bonus, avaliable, QImage()));
 
@@ -185,7 +185,7 @@ void PlayerModel::setupRecipes(){
     avaliable.push_back(Ingredient("bun", QImage(folder + "Tomato.png"),
                                    QImage(), QImage(), false, true, 0, 0));
     // missing
-    avaliable.push_back(Ingredient("patty", QImage(folder + "meat1.png"),
+    avaliable.push_back(Ingredient("patty", QImage(folder + "Raw Patty.png"),
                                    QImage(), QImage(), false, true, 0, 0));
     avaliable.push_back(Ingredient("cheese", QImage(folder + "Cheese Slice.png"),
                                    QImage(folder + "Cheddar"), QImage(), true, false, 0, 0));
@@ -209,7 +209,7 @@ void PlayerModel::setupRecipes(){
     avaliable.push_back(Ingredient("chocolate", QImage(folder + "Milk Chocolate Bar.png"),
                                    QImage(), QImage(), true, false, 0, 0));
     // missing
-    avaliable.push_back(Ingredient("cabbage", QImage(folder + "Tomato.png"),
+    avaliable.push_back(Ingredient("cabbage", QImage(folder + "Cabbage.png"),
                                    QImage(), QImage(), true, false, 0, 0));
     avaliable.push_back(Ingredient("meatballs", QImage(folder + "Meatball.png"),
                                    QImage(), QImage(), false, true, 0, 0));
@@ -256,7 +256,7 @@ void PlayerModel::setupRecipes(){
     avaliable.push_back(Ingredient("onion", QImage(folder + "Brown Onion.png"),
                                    QImage(folder + "Half brown onion"), QImage(), true, false, 0, 0));
     // missing
-    avaliable.push_back(Ingredient("cabbage", QImage(folder + "Tomato.png"),
+    avaliable.push_back(Ingredient("cabbage", QImage(folder + "Cabbage.png"),
                                    QImage(), QImage(), true, false, 0, 0));
     avaliable.push_back(Ingredient("cucumber", QImage(folder + "Cucumber.png"),
                                    QImage(folder + "Cucumber Slices.png"), QImage(), true, true, 0, 0));
