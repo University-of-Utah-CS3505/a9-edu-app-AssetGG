@@ -40,10 +40,12 @@ private:
 
     Ingredient *getIngredientByName(std::string name);
     Tool *getToolByName(std::string name);
+    int calculateScore();
 
 signals:
     void itemGrabbed(std::string itemName, QPoint mousePos);
     void itemDropped(QPoint mousePos);
     void updateDragPosition(QPoint mousePos);
+    void calculateScoreRequested();
 };
 #endif // PLAYERVIEW_H

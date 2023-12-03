@@ -16,6 +16,10 @@ ComparisonIngredient::ComparisonIngredient()
     name = "default";
 }
 
+std::string ComparisonIngredient::GetName() const {
+    return name;
+}
+
 bool ComparisonIngredient::legalIngredient(Ingredient ingredient)
 {
     if(ingredient.IsCut() != cut || ingredient.IsCooked() != cooked)

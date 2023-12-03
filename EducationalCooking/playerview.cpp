@@ -141,6 +141,8 @@ void PlayerView::updateSpritePositions(
 
 void PlayerView::onScoreButtonClicked()
 {
+    emit calculateScoreRequested();
+
     // Blurs out the background
     QGraphicsBlurEffect *blurEffect = new QGraphicsBlurEffect;
     blurEffect->setBlurRadius(20);
@@ -150,6 +152,5 @@ void PlayerView::onScoreButtonClicked()
     FinalScreen* finalScreen = new FinalScreen;
     finalScreen->show();
 
-    // Unfreeze the view after the final screen is closed
     ui->centralwidget->setGraphicsEffect(nullptr);
 }

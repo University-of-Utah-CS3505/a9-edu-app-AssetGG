@@ -14,6 +14,7 @@ PlayerModel::PlayerModel(Physics &physics, QObject *parent)
 {
     currentlyClickedOn = nullptr;
     vector<Ingredient> base;
+    finalScore = 0;
 }
 
 // incomplete
@@ -358,4 +359,51 @@ void PlayerModel::setupCookingTool(Tool tool)
 
     obj->body->SetLinearDamping(15.0);
     obj->fixture->SetFilterData(collisionFilter);
+}
+
+void PlayerModel::calculateScore()
+{
+    int totalPoints = 100; // Score starts at 100
+
+    Recipe recipe;
+    for (const auto &rec : recipes) {
+        if (QString::fromStdString(rec.getRecipeName()) == currentRecipe) {
+            recipe = rec;
+            break;
+        }
+    }
+
+    // Checks for correct ingredient usage
+    for (const auto &requiredIngredient : recipe.getBaseIngredients()) {
+        bool found = false;
+
+        for (const auto &usedIngredient : finalIngredients) {
+            if (requiredIngredient.GetName() == usedIngredient.GetName()) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            totalPoints -= 10; // Deducts points for missing ingredients
+        }
+    }
+
+    // Checks for usage of bonus ingredients
+    for (const auto &bonusIngredient : recipe.getBonusIngredients()) {
+        for (const auto &usedIngredient : finalIngredients) {
+            if (bonusIngredient.GetName() == usedIngredient.GetName()) {
+                totalPoints += 10;
+            }
+        }
+    }
+
+    totalPoints = std::max(totalPoints, 0); // Prevents negative points
+
+    finalScore = totalPoints;
+}
+
+int PlayerModel::getFinalScore() const
+{
+    return finalScore;
 }

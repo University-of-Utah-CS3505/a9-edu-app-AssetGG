@@ -18,16 +18,17 @@ class Recipe
 {
 public:
     Recipe(std::string, std::vector<ComparisonIngredient>, std::vector<ComparisonIngredient>, std::vector<Ingredient>, QImage);
-    std::vector<ComparisonIngredient> getBaseIngredients();
-    std::vector<ComparisonIngredient> getBonusIngredients();
-    std::vector<Ingredient> getAvaliableIngredients();
-    std::string getRecipeName();
+    Recipe();
+    std::vector<ComparisonIngredient> getBaseIngredients() const;
+    std::vector<ComparisonIngredient> getBonusIngredients() const;
+    std::vector<Ingredient> getAvaliableIngredients() const;
+    std::string getRecipeName() const;
     QImage helpSpriteSmall;
     QImage helpSpriteLarge;
-    QImage getLargeHelpSprite();
-    QImage getSmallHelpSprite();
-    int getXLocation();
-    int getYLocation();
+    QImage getLargeHelpSprite() const;
+    QImage getSmallHelpSprite() const;
+    int getXLocation() const;
+    int getYLocation() const;
 
 private:
     // ingredients for the bare bones food

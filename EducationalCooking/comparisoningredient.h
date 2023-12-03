@@ -10,6 +10,8 @@ public:
     ComparisonIngredient(std::string, bool, bool);
     ComparisonIngredient();
     bool legalIngredient(Ingredient);
+
+    std::string GetName() const;
 private:
     bool cut;
     bool cooked;

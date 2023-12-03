@@ -25,14 +25,19 @@ public:
     void setCurrentRecipe(const QString& recipe); // Used at startup
     const QString& getCurrentRecipe() const;
 
+    int getFinalScore() const;
+
 public slots:
     void handleRecipeClicked(const QString &recipeName);
+    void calculateScore();
 
 private:
     vector<Recipe> recipes;
     vector<Ingredient> ingredients;
+    vector<Ingredient> finalIngredients;
     QString currentRecipe;
     Ingredient *currentlyClickedOn;
+    int finalScore;
 
     void setupWalls();
     void setupIngredient(Ingredient &ingredient);
