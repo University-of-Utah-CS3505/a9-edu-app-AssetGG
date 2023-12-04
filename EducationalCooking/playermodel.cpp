@@ -357,6 +357,8 @@ void PlayerModel::setupIngredients()
 void PlayerModel::setupTools()
 {
     tools.insert({"CuttingBoard", CuttingBoard(230, 410)});
+    tools.insert({"FryingPan", FryingPan(290, 90)});
+    tools.insert({"Pot", Pot(350, 90)});
     for(auto &[toolName, tool] : tools) {
         setupCookingTool(tool);
     }

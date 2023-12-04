@@ -33,11 +33,25 @@ public:
     std::string GetName();
 
     void ProcessIngredient(Ingredient &ingredient);
+
+    bool isOverlapping(Ingredient& ingredient);
 };
 
 class CuttingBoard : public Tool
 {
 public:
     CuttingBoard(int locX, int locY);
+};
+
+class FryingPan : public Tool
+{
+public:
+    FryingPan(int locX, int locY);
+};
+
+class Pot : public Tool
+{
+public:
+    Pot(int locX, int locY);
 };
 #endif // TOOLS_H
