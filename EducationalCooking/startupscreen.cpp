@@ -37,8 +37,9 @@ StartupScreen::~StartupScreen()
 
 void StartupScreen::onLearnRecipeClicked()
 {
+    playerModel.setupScene();
+    playerView.setupScene(playerModel.getSelectedRecipe(), playerModel.getTools());
     playerView.show(); // Shows playerView after recipe is selected
-
     this->hide();
 }
 

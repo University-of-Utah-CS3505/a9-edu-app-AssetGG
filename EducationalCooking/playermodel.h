@@ -8,7 +8,7 @@
 #include "physics.h"
 #include "recipe.h"
 #include "tools.h"
-#include "comparisoningredient.h"
+#include <map>
 
 using std::vector;
 
@@ -21,11 +21,13 @@ public:
     explicit PlayerModel(Physics &physics, QObject *parent = nullptr);
 
     // sets up our scene, using a recipe to spawn ingredients on a table
-    void setupScene(Recipe &recipe, std::map<std::string, Tool> &tools);
+    void setupScene();
     void setCurrentRecipe(const QString& recipe); // Used at startup
     const QString& getCurrentRecipe() const;
+    Recipe& getSelectedRecipe();
 
     int getFinalScore() const;
+    std::map<std::string, Tool>& getTools();
 
 public slots:
     void handleRecipeClicked(const QString &recipeName);
@@ -38,11 +40,15 @@ private:
     QString currentRecipe;
     Ingredient *currentlyClickedOn;
     int finalScore;
+    Recipe selectedRecipe;
+    std::map<std::string, Tool> tools;
 
     void setupWalls();
     void setupIngredient(Ingredient &ingredient);
     void setupCookingTool(Tool tool);
     void setupRecipes();
+    void setupTools();
+    void setupIngredients();
 
 signals:
     void recipeClicked(const QString &recipeName);

@@ -34,13 +34,6 @@ Recipe testRecipe()
     return Recipe("testRecipe", base, bonus, available, QImage());
 }
 
-std::map<std::string, Tool> defaultTools()
-{
-    std::map<std::string, Tool> map;
-    map.insert({"CuttingBoard", CuttingBoard(230, 410)});
-    return map;
-}
-
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
@@ -50,10 +43,6 @@ int main(int argc, char *argv[])
     PlayerModel model(physics); // Instance of PlayerModel
 
     Recipe recipe = testRecipe();
-    auto tools = defaultTools();
-
-    model.setupScene(recipe, tools);
-    playerView.setupScene(recipe, tools);
 
     Controller c(model, playerView);
 
