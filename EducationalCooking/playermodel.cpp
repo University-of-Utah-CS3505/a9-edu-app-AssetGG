@@ -25,11 +25,6 @@ PlayerModel::PlayerModel(Physics &physics, QObject *parent)
 void PlayerModel::setupRecipes(){
     QString folder = ":/sprites/Sprites/";
 
-
-
-    int width = 100;
-    int height = 200;
-
     // std::string name, QImage baseImage, QImage cutImage, QImage cookedImage, bool cuttable, bool cookable, int x, int y)
 
     /*
@@ -340,7 +335,7 @@ void PlayerModel::setupScene()
 
 void PlayerModel::setupIngredients()
 {
-    for(Recipe r : recipes)
+    for(Recipe &r : recipes)
     {
         if(currentRecipe.toStdString() == r.getRecipeName())
         {
