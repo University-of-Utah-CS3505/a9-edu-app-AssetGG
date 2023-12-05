@@ -52,11 +52,13 @@ void FinalScreen::setupLayout() {
     scoreLabel->setAlignment(Qt::AlignHCenter);
 
     centerSection->addLayout(starsLayout);
-    centerSection->addSpacing(-150);
+    centerSection->addSpacing(-300);
     centerSection->addWidget(scoreLabel);
 
     // Initialize dishOrTrashLabel
     dishOrTrashLabel = new QLabel;
+    dishOrTrashLabel->setAlignment(Qt::AlignHCenter);
+    centerSection->addSpacing(-400);
     centerSection->addWidget(dishOrTrashLabel);
 
     mainLayout->addWidget(centerWidget);
@@ -78,17 +80,23 @@ void FinalScreen::displayDishOrTrash(int score) {
     QImage imageOfDish;
 
     if (score > 60) {
-        imageOfDish = QImage(":/sprites/Sprites/Pasta Tomato.png");
-        imageOfDish = QImage(":/sprites/Sprites/Salad Dish.png");
-        imageOfDish = QImage(":/sprites/Sprites/Pepperoni Pizza.png");
-        imageOfDish = QImage(":/sprites/Sprites/Chicken Soup.png");
-        imageOfDish = QImage(":/sprites/Sprites/Cheeseburger.png");
-        imageOfDish = QImage(":/sprites/Sprites/Pancakes.png");
+        if(currentRecipeName.toLower() == "spaghetti")
+            imageOfDish = QImage(":/sprites/Sprites/Pasta Tomato.png");
+        else if(currentRecipeName.toLower() == "salad")
+            imageOfDish = QImage(":/sprites/Sprites/Salad Dish.png");
+        else if(currentRecipeName.toLower() == "pepperoni pizza")
+            imageOfDish = QImage(":/sprites/Sprites/Pepperoni Pizza.png");
+        else if(currentRecipeName.toLower() == "soup")
+            imageOfDish = QImage(":/sprites/Sprites/Chicken Soup.png");
+        else if(currentRecipeName.toLower() == "hamburger")
+            imageOfDish = QImage(":/sprites/Sprites/Cheeseburger.png");
+        else if(currentRecipeName.toLower() == "pancakes")
+            imageOfDish = QImage(":/sprites/Sprites/Pancakes.png");
     } else {
-        imageOfDish = QImage(":/sprites/Sprites/Pancakes.png");
+        imageOfDish = QImage(":/sprites/Sprites/Trash.png");
     }
 
-    dishOrTrashLabel->setPixmap(QPixmap::fromImage(imageOfDish));
+    dishOrTrashLabel->setPixmap(QPixmap::fromImage(imageOfDish).scaled(200, 200));
 }
 
 void FinalScreen::displayIngredients() {
