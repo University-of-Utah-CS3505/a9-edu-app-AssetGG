@@ -19,6 +19,7 @@ Controller::Controller(PlayerModel &model, PlayerView &view, QObject *parent)
     setupGrabConnections();
 }
 
+/// establishes connections between the view's grab-specific events and the slots on this class
 void Controller::setupGrabConnections()
 {
     connect(&view, &PlayerView::itemGrabbed, this, &Controller::onItemGrabbed);
@@ -26,6 +27,7 @@ void Controller::setupGrabConnections()
     connect(&view, &PlayerView::updateDragPosition, this, &Controller::onMouseMoved);
 }
 
+/// Uses hooke's law equations to move the grabbed object towards the mouse
 void Controller::updateGrabForces()
 {
     if (grabbedPhysicsObject) {
@@ -39,6 +41,8 @@ void Controller::updateGrabForces()
     }
 }
 
+/// finds the physics object for the grabbed item and preps it
+/// so the updateGrabForces() method will start moving it around.
 void Controller::onItemGrabbed(std::string itemName, bool isIngredient, QPoint mousePos)
 {
     if (canGrab) {
@@ -52,11 +56,14 @@ void Controller::onItemGrabbed(std::string itemName, bool isIngredient, QPoint m
     }
 }
 
+/// Updates the controller's copy of the mousePos, for use by updateGrabForces()
 void Controller::onMouseMoved(QPoint mousePos)
 {
     this->mousePos = mousePos;
 }
 
+/// Returns a pointer to the tool under the position provided, if one exists.
+/// Otherwise returns a nullptr. Useful for telling which tool a user is mousing over.
 Tool *Controller::getToolAtPoint(QPoint point)
 {
     for (auto &[toolName, tool] : model.getTools()) {
@@ -75,6 +82,8 @@ Tool *Controller::getToolAtPoint(QPoint point)
     return nullptr;
 }
 
+/// Temporarily decreases friction on the grabbed object for some
+/// satisfying "throwing" and then clears up references to the dragged object.
 void Controller::onItemDropped(QPoint mousePos)
 {
     this->mousePos = mousePos;
