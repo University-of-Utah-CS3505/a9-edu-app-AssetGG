@@ -1,9 +1,12 @@
 #include "finalscreen.h"
 #include <QPixmap>
 #include <QHBoxLayout>
+#include <QCoreApplication>
 
 FinalScreen::FinalScreen(QWidget *parent) : QWidget(parent) {
     setupLayout();
+
+    connect(this, &FinalScreen::destroyed, qApp, &QCoreApplication::quit);
 }
 
 void FinalScreen::setScore(int score) {
@@ -30,6 +33,26 @@ void FinalScreen::setupLayout() {
     centerWidget->setLayout(centerSection);
     centerWidget->setFixedSize(400, 600);
     centerWidget->setStyleSheet("background-color: lightgreen;");
+    mainLayout->addWidget(centerWidget);
+
+    // Stars
+    QHBoxLayout *starsLayout = new QHBoxLayout;
+    starsLayout->setAlignment(Qt::AlignTop);
+
+    for (int i = 0; i < 5; ++i) {
+        QLabel *star = new QLabel;
+        QImage starImage(":/sprites/Sprites/Dorito.png");
+        star->setPixmap(QPixmap::fromImage(starImage).scaled(40, 40));
+        stars.push_back(star);
+        starsLayout->addWidget(star);
+    }
+
+    centerSection->addLayout(starsLayout);
+
+    // Initialize dishOrTrashLabel
+    dishOrTrashLabel = new QLabel;
+    centerSection->addWidget(dishOrTrashLabel);
+
     mainLayout->addWidget(centerWidget);
 
     // Right Section
