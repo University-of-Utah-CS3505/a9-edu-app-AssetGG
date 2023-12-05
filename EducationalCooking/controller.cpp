@@ -19,30 +19,6 @@ Controller::Controller(PlayerModel &model, PlayerView &view, QObject *parent)
     setupGrabConnections();
 }
 
-/// establishes connections between the view's grab-specific events and the slots on this class
-void Controller::setupGrabConnections()
-{
-    connect(&view, &PlayerView::itemGrabbed, this, &Controller::onItemGrabbed);
-    connect(&view, &PlayerView::itemDropped, this, &Controller::onItemDropped);
-    connect(&view, &PlayerView::updateDragPosition, this, &Controller::onMouseMoved);
-}
-
-/// Uses hooke's law equations to move the grabbed object towards the mouse
-void Controller::updateGrabForces()
-{
-    if (grabbedPhysicsObject) {
-        b2Body *body = grabbedPhysicsObject->body;
-
-        b2Vec2 delta = b2Vec2(mousePos.x() - body->GetPosition().x,
-                              mousePos.y() - body->GetPosition().y);
-
-        b2Vec2 force = 120.0 * body->GetMass() * delta;
-        grabbedPhysicsObject->body->ApplyForceToCenter(force, true);
-    }
-}
-
-/// finds the physics object for the grabbed item and preps it
-/// so the updateGrabForces() method will start moving it around.
 void Controller::onItemGrabbed(std::string itemName, bool isIngredient, QPoint mousePos)
 {
     if (canGrab) {
@@ -56,34 +32,11 @@ void Controller::onItemGrabbed(std::string itemName, bool isIngredient, QPoint m
     }
 }
 
-/// Updates the controller's copy of the mousePos, for use by updateGrabForces()
 void Controller::onMouseMoved(QPoint mousePos)
 {
     this->mousePos = mousePos;
 }
 
-/// Returns a pointer to the tool under the position provided, if one exists.
-/// Otherwise returns a nullptr. Useful for telling which tool a user is mousing over.
-Tool *Controller::getToolAtPoint(QPoint point)
-{
-    for (auto &[toolName, tool] : model.getTools()) {
-        PhysicsObject *physObj = model.physics.get(toolName);
-        if (physObj) {
-            b2Transform transform = physObj->body->GetTransform();
-            bool pointInShape = physObj->fixture->GetShape()->TestPoint(transform,
-                                                                        b2Vec2(point.x(),
-                                                                               point.y()));
-            if (pointInShape) {
-                return tool;
-            }
-        }
-    }
-
-    return nullptr;
-}
-
-/// Temporarily decreases friction on the grabbed object for some
-/// satisfying "throwing" and then clears up references to the dragged object.
 void Controller::onItemDropped(QPoint mousePos)
 {
     this->mousePos = mousePos;
@@ -111,4 +64,42 @@ void Controller::onItemDropped(QPoint mousePos)
             tempRef->SetLinearDamping(tempRef->GetLinearDamping() * 7.0);
         });
     }
+}
+
+void Controller::setupGrabConnections()
+{
+    connect(&view, &PlayerView::itemGrabbed, this, &Controller::onItemGrabbed);
+    connect(&view, &PlayerView::itemDropped, this, &Controller::onItemDropped);
+    connect(&view, &PlayerView::updateDragPosition, this, &Controller::onMouseMoved);
+}
+
+void Controller::updateGrabForces()
+{
+    if (grabbedPhysicsObject) {
+        b2Body *body = grabbedPhysicsObject->body;
+
+        b2Vec2 delta = b2Vec2(mousePos.x() - body->GetPosition().x,
+                              mousePos.y() - body->GetPosition().y);
+
+        b2Vec2 force = 120.0 * body->GetMass() * delta;
+        grabbedPhysicsObject->body->ApplyForceToCenter(force, true);
+    }
+}
+
+Tool *Controller::getToolAtPoint(QPoint point)
+{
+    for (auto &[toolName, tool] : model.getTools()) {
+        PhysicsObject *physObj = model.physics.get(toolName);
+        if (physObj) {
+            b2Transform transform = physObj->body->GetTransform();
+            bool pointInShape = physObj->fixture->GetShape()->TestPoint(transform,
+                                                                        b2Vec2(point.x(),
+                                                                               point.y()));
+            if (pointInShape) {
+                return tool;
+            }
+        }
+    }
+
+    return nullptr;
 }

@@ -5,8 +5,6 @@
 #include "recipe.h"
 #include "ui_playerview.h"
 #include "finalscreen.h"
-#include <map>
-#include <vector>
 #include <QGraphicsBlurEffect>
 
 PlayerView::PlayerView(QWidget *parent)
