@@ -32,6 +32,7 @@ private:
 
     QLabel *scoreLabel;
     QList<QLabel *> stars;
+    QLabel *gordonLabel;
     QLabel *dishOrTrashLabel;
 };
 

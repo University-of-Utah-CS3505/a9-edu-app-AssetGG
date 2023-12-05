@@ -51,14 +51,22 @@ void FinalScreen::setupLayout() {
     scoreLabel->setStyleSheet("font-size: 24pt;");
     scoreLabel->setAlignment(Qt::AlignHCenter);
 
-    centerSection->addLayout(starsLayout);
-    centerSection->addSpacing(-400);
-    centerSection->addWidget(scoreLabel);
 
-    // Initialize dishOrTrashLabel
+    // Initialize dishOrTrashLabel and gordonLabel
+    gordonLabel = new QLabel;
     dishOrTrashLabel = new QLabel;
+
+    gordonLabel->setAlignment(Qt::AlignHCenter);
     dishOrTrashLabel->setAlignment(Qt::AlignHCenter);
-    centerSection->addSpacing(-400);
+
+    gordonLabel->setPixmap(QPixmap::fromImage(QImage(":/sprites/Sprites/ramsay1.png")).scaled(300,300));
+
+    centerSection->addLayout(starsLayout);
+    centerSection->addSpacing(20);
+    centerSection->addWidget(scoreLabel);
+    centerSection->addSpacing(20);
+    centerSection->addWidget(gordonLabel);
+    centerSection->addSpacing(20);
     centerSection->addWidget(dishOrTrashLabel);
 
     mainLayout->addWidget(centerWidget);
