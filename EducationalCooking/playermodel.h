@@ -27,7 +27,7 @@ public:
     Recipe& getSelectedRecipe();
 
     int getFinalScore() const;
-    std::map<std::string, Tool>& getTools();
+    std::map<std::string, Tool*>& getTools();
     Ingredient *getIngredientFromName(std::string ingredientName);
 
 public slots:
@@ -42,7 +42,7 @@ private:
     Ingredient *currentlyClickedOn;
     int finalScore;
     Recipe selectedRecipe;
-    std::map<std::string, Tool> tools;
+    std::map<std::string, Tool*> tools;
 
     void setupWalls();
     void setupIngredientPhysics(Ingredient &ingredient);

@@ -50,6 +50,13 @@ CuttingBoard::CuttingBoard(int locX, int locY)
     currentImage = baseImage;
 }
 
+void CuttingBoard::ProcessIngredient(Ingredient &ingredient)
+{
+    if (ingredient.IsCuttable()) {
+        ingredient.Cut();
+    }
+}
+
 FryingPan::FryingPan(int locX, int locY)
     : Tool("FryingPan", true, locX, locY)
 {
@@ -65,7 +72,8 @@ Pot::Pot(int locX, int locY)
 {
     // Could not find the sprite for pan
     baseImage = QImage(":/sprites/Sprites/Black Olive.png");
-    baseImage = baseImage.scaled(baseImage.width() * 3.0, baseImage.height() * 3.0);
+    baseImage = baseImage.scaled(baseImage.width() * 4.0, baseImage.height() * 4.0);
     currentImage = baseImage;
     currentImage = baseImage;
 }
+

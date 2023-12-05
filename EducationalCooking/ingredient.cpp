@@ -1,6 +1,6 @@
 #include "ingredient.h"
-#include <string>
 #include <QMouseEvent>
+#include <string>
 
 Ingredient::Ingredient(std::string name,
                        QImage baseImage,
@@ -23,25 +23,13 @@ Ingredient::Ingredient(std::string name,
     locX = x;
     locY = y;
 
-    currentImage = currentImage.scaled(currentImage.width() * scaleFactor,
-                                       currentImage.height() * scaleFactor);
+    int w = currentImage.width() * scaleFactor;
+    int h = currentImage.height() * scaleFactor;
 
-    cut = false;
-    cooked = false;
-    burnt = false;
-}
-
-Ingredient::Ingredient()
-{
-    ingredientName = "tomato";
-
-    currentImage = QImage(":/sprites/Sprites/Tomato.png");
-    baseImage = QImage(":/sprites/Sprites/Tomato.png");
-    cutImage = QImage(":/sprites/Sprites/Tomato.png");
-    cookedImage = QImage(":/sprites/Sprites/Tomato.png");
-
-    cuttable = true;
-    cookable = true;
+    this->currentImage = currentImage.scaled(w, h);
+    this->baseImage = baseImage.scaled(w, h);
+    this->cutImage = cutImage.scaled(w, h);
+    this->cookedImage = cookedImage.scaled(w, h);
 
     cut = false;
     cooked = false;
@@ -66,22 +54,18 @@ QRect Ingredient::GetRect()
 
 bool Ingredient::Cut()
 {
-    if (cuttable && !cooked)
-    {
+    if (cuttable && !cooked) {
         cut = true;
         currentImage = cutImage;
         return true;
-    }
-    else
-    {
+    } else {
         return false;
     }
 }
 
 bool Ingredient::Cooked()
 {
-    if(cookable)
-    {
+    if (cookable) {
         cooked = true;
         currentImage = cookedImage;
     }
@@ -101,6 +85,12 @@ bool Ingredient::IsCut()
 {
     return cut;
 }
+
+bool Ingredient::IsCuttable()
+{
+    return cuttable;
+}
+
 bool Ingredient::IsBurned()
 {
     return burnt;

@@ -221,7 +221,7 @@ void PlayerModel::setupRecipes(){
                                    QImage(folder + "Half brown onion"), QImage(), true, false, 350, 300));
     //missing
     avaliableHamburger.push_back(Ingredient("ketchup", QImage(folder + "Tomato.png"),
-                                   QImage(), QImage(), true, true, 400, 300));
+                                   QImage(), QImage(), false, false, 400, 300));
     // missing
     avaliableHamburger.push_back(Ingredient("avocado", QImage(folder + "Tomato.png"),
                                    QImage(), QImage(), true, false, 450, 300));
@@ -314,7 +314,7 @@ Recipe& PlayerModel::getSelectedRecipe()
     return selectedRecipe;
 }
 
-std::map<std::string, Tool>& PlayerModel::getTools(){
+std::map<std::string, Tool*>& PlayerModel::getTools(){
     return tools;
 }
 
@@ -361,11 +361,15 @@ void PlayerModel::setupIngredients()
 // Note for David: this method is being called for tools
 void PlayerModel::setupTools()
 {
-    tools.insert({"CuttingBoard", CuttingBoard(230, 410)});
-    tools.insert({"FryingPan", FryingPan(290, 90)});
-    tools.insert({"Pot", Pot(350, 90)});
+    // polymorphism in cpp is braindead, so we're forced to
+    // make our tools map a map of pointers to the Base type.
+    // Only way to get a pointer a Tool with a lifetime longer than
+    // The scope of this method is to allocate on the heap.
+    tools.insert({"CuttingBoard", new CuttingBoard(230, 410)});
+    tools.insert({"FryingPan", new FryingPan(290, 90)});
+    tools.insert({"Pot",  new Pot(350, 90)});
     for(auto &[toolName, tool] : tools) {
-        setupCookingToolPhysics(tool);
+        setupCookingToolPhysics(*tool);
     }
 }
 

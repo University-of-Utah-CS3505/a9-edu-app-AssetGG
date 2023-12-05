@@ -36,9 +36,9 @@ void PlayerView::paintEvent(QPaintEvent *event)
 
     for (auto &[toolName, tool] : *tools)
     {
-        QImage img = tool.GetImage();
+        QImage img = tool->GetImage();
 
-        imagePainter.drawImage(QRect(tool.locX, tool.locY, img.width(), img.height()), img);
+        imagePainter.drawImage(QRect(tool->locX, tool->locY, img.width(), img.height()), img);
     }
 
     // Finally, ingredients.
@@ -95,9 +95,9 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
 
     for (auto &[toolName, tool] : *tools)
     {
-        QImage img = tool.GetImage();
-        if (tool.IsMovable()) {
-            if (mouseOverSprite(mousePos, tool.locX, tool.locY, img.width(), img.height())) {
+        QImage img = tool->GetImage();
+        if (tool->IsMovable()) {
+            if (mouseOverSprite(mousePos, tool->locX, tool->locY, img.width(), img.height())) {
                 emit itemGrabbed(toolName, false, mousePos);
                 return;
             }
@@ -130,10 +130,10 @@ Tool *PlayerView::getToolByName(std::string name)
     if (search == tools->end())
         return nullptr;
     else
-        return &search->second;
+        return search->second;
 }
 
-void PlayerView::setupScene(Recipe &recipe, std::map<std::string, Tool> &tools)
+void PlayerView::setupScene(Recipe &recipe, std::map<std::string, Tool*> &tools)
 {
     chosenRecipe = recipe;
     setupRecipeHelpLine1(recipe);

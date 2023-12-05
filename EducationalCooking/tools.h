@@ -5,13 +5,6 @@
 #include <QString>
 #include "ingredient.h"
 
-enum class CookingToolType {
-    CuttingBoard,
-    FryingPan,
-    Pot,
-    // TODO: Add other tools
-};
-
 class Tool
 {
     std::string name;
@@ -32,15 +25,16 @@ public:
     QImage GetImage();
     std::string GetName();
 
-    void ProcessIngredient(Ingredient &ingredient);
+    virtual void ProcessIngredient(Ingredient &ingredient);
 
-    bool isOverlapping(Ingredient& ingredient);
+    bool isOverlapping(Ingredient &ingredient);
 };
 
 class CuttingBoard : public Tool
 {
 public:
     CuttingBoard(int locX, int locY);
+    void ProcessIngredient(Ingredient &ingredient);
 };
 
 class FryingPan : public Tool
