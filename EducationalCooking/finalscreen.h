@@ -12,14 +12,14 @@ class FinalScreen : public QWidget {
 public:
     FinalScreen(QWidget *parent = nullptr);
 
-    void setScore(int score);
+    void setScore(int score, const QString& recipeName);
 
 private:
     void setupLayout();
-    void displayStars(int score);
     void displayDishOrTrash(int score);
     void displayIngredients();
     void addIngredient(const QString &name, const QString &imagePath);
+    QString currentRecipeName;
 
     QVBoxLayout *leftSection;
     QWidget *leftWidget;
