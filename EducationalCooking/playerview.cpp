@@ -243,6 +243,7 @@ void PlayerView::onScoreButtonClicked()
 
     // Creation of final screen
     FinalScreen* finalScreen = new FinalScreen;
+    finalScreen->setScore(100, QString::fromStdString(chosenRecipe.getRecipeName())); // Todo: Pass in score from model
     finalScreen->show();
 
     this->close();

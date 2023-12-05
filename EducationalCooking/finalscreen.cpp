@@ -6,7 +6,8 @@ FinalScreen::FinalScreen(QWidget *parent) : QWidget(parent) {
     setupLayout();
 }
 
-void FinalScreen::setScore(int score) {
+void FinalScreen::setScore(int score, const QString& recipeName) {
+    currentRecipeName = recipeName;
     displayDishOrTrash(score);
     displayIngredients();
 }
@@ -73,10 +74,21 @@ void FinalScreen::setupLayout() {
 
 }
 
-
 void FinalScreen::displayDishOrTrash(int score) {
-    QString imagePath = (score > 60) ? ":/images/dish.png" : ":/images/trash.png";
-    dishOrTrashLabel->setPixmap(QPixmap(imagePath));
+    QImage imageOfDish;
+
+    if (score > 60) {
+        imageOfDish = QImage(":/sprites/Sprites/Pasta Tomato.png");
+        imageOfDish = QImage(":/sprites/Sprites/Salad Dish.png");
+        imageOfDish = QImage(":/sprites/Sprites/Pepperoni Pizza.png");
+        imageOfDish = QImage(":/sprites/Sprites/Chicken Soup.png");
+        imageOfDish = QImage(":/sprites/Sprites/Cheeseburger.png");
+        imageOfDish = QImage(":/sprites/Sprites/Pancakes.png");
+    } else {
+        imageOfDish = QImage(":/sprites/Sprites/Pancakes.png");
+    }
+
+    dishOrTrashLabel->setPixmap(QPixmap::fromImage(imageOfDish));
 }
 
 void FinalScreen::displayIngredients() {
