@@ -241,14 +241,9 @@ void PlayerView::onScoreButtonClicked()
 {
     emit calculateScoreRequested();
 
-    // Blurs out the background
-    QGraphicsBlurEffect *blurEffect = new QGraphicsBlurEffect;
-    blurEffect->setBlurRadius(20);
-    this->setGraphicsEffect(blurEffect);
-
     // Creation of final screen
     FinalScreen* finalScreen = new FinalScreen;
     finalScreen->show();
 
-    ui->centralwidget->setGraphicsEffect(nullptr);
+    this->close();
 }

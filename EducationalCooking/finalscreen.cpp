@@ -1,12 +1,9 @@
 #include "finalscreen.h"
 #include <QPixmap>
 #include <QHBoxLayout>
-#include <QCoreApplication>
 
 FinalScreen::FinalScreen(QWidget *parent) : QWidget(parent) {
     setupLayout();
-
-    connect(this, &FinalScreen::destroyed, qApp, &QCoreApplication::quit);
 }
 
 void FinalScreen::setScore(int score) {
