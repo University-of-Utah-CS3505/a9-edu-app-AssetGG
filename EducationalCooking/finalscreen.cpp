@@ -7,7 +7,6 @@ FinalScreen::FinalScreen(QWidget *parent) : QWidget(parent) {
 }
 
 void FinalScreen::setScore(int score) {
-    displayStars(score);
     displayDishOrTrash(score);
     displayIngredients();
 }
@@ -30,21 +29,30 @@ void FinalScreen::setupLayout() {
     centerWidget->setLayout(centerSection);
     centerWidget->setFixedSize(400, 600);
     centerWidget->setStyleSheet("background-color: lightgreen;");
+    centerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     mainLayout->addWidget(centerWidget);
 
     // Stars
     QHBoxLayout *starsLayout = new QHBoxLayout;
-    starsLayout->setAlignment(Qt::AlignTop);
+    starsLayout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
 
     for (int i = 0; i < 5; ++i) {
         QLabel *star = new QLabel;
         QImage starImage(":/sprites/Sprites/Dorito.png");
         star->setPixmap(QPixmap::fromImage(starImage).scaled(40, 40));
         stars.push_back(star);
+        stars[i]->setVisible(i < 100/20); // Todo: pass in score
         starsLayout->addWidget(star);
     }
 
+    // Score
+    scoreLabel = new QLabel(QString::number(100) + "/100"); // Todo: pass in score
+    scoreLabel->setStyleSheet("font-size: 24pt;");
+    scoreLabel->setAlignment(Qt::AlignHCenter);
+
     centerSection->addLayout(starsLayout);
+    centerSection->addSpacing(-150);
+    centerSection->addWidget(scoreLabel);
 
     // Initialize dishOrTrashLabel
     dishOrTrashLabel = new QLabel;
@@ -65,12 +73,6 @@ void FinalScreen::setupLayout() {
 
 }
 
-void FinalScreen::displayStars(int score) {
-    int numberOfStars = score / 20;
-    for (int i = 0; i < 5; ++i) {
-        stars[i]->setVisible(i < numberOfStars);
-    }
-}
 
 void FinalScreen::displayDishOrTrash(int score) {
     QString imagePath = (score > 60) ? ":/images/dish.png" : ":/images/trash.png";

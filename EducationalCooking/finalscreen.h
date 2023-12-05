@@ -16,7 +16,6 @@ public:
 
 private:
     void setupLayout();
-    void displayStars(int score);
     void displayDishOrTrash(int score);
     void displayIngredients();
     void addIngredient(const QString &name, const QString &imagePath);
