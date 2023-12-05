@@ -61,8 +61,8 @@ FryingPan::FryingPan(int locX, int locY)
     : Tool("FryingPan", true, locX, locY)
 {
     // Could not find the sprite for pan
-    baseImage = QImage(":/sprites/Sprites/Dorito.png");
-    baseImage = baseImage.scaled(baseImage.width() * 3.0, baseImage.height() * 3.0);
+    baseImage = QImage(":/sprites/Sprites/frying pan.png");
+    baseImage = baseImage.scaled(baseImage.width() * 2.5, baseImage.height() * 2.5);
     currentImage = baseImage;
     currentImage = baseImage;
 }
@@ -71,8 +71,8 @@ Pot::Pot(int locX, int locY)
     : Tool("Pot", true, locX, locY)
 {
     // Could not find the sprite for pan
-    baseImage = QImage(":/sprites/Sprites/Black Olive.png");
-    baseImage = baseImage.scaled(baseImage.width() * 4.0, baseImage.height() * 4.0);
+    baseImage = QImage(":/sprites/Sprites/Pot With Water.png");
+    baseImage = baseImage.scaled(baseImage.width() * 3.5, baseImage.height() * 3.5);
     currentImage = baseImage;
     currentImage = baseImage;
 }
