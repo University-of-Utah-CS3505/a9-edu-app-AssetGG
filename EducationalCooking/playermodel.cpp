@@ -55,7 +55,7 @@ void PlayerModel::setupRecipes(){
     avaliableSpaghetti.push_back(Ingredient("cheese", QImage(folder + "Cheese Slice.png"),
                                             QImage(folder + "Cheddar"), QImage(), true, false, 200, 300));
     avaliableSpaghetti.push_back(Ingredient("milk", QImage(folder + "Milk.png"), QImage(), QImage(), false, true, 150, 300));
-    avaliableSpaghetti.push_back(Ingredient("ketchup", QImage(folder + "Ketchup.png"), QImage(), QImage(), true, false, 100, 300));
+    avaliableSpaghetti.push_back(Ingredient("ketchup", QImage(folder + "Ketchup.png"), QImage(), QImage(), false, false, 100, 300));
     recipes.push_back(Recipe("Spaghetti", baseSpaghetti, bonusSpaghetti, avaliableSpaghetti, QImage(folder)));
 
     /*
@@ -131,7 +131,7 @@ void PlayerModel::setupRecipes(){
     avaliablePizza.push_back(Ingredient("honey", QImage(folder + "Honey.png"),
                                         QImage(), QImage(), true, false, 600, 300));
     avaliablePizza.push_back(Ingredient("ketchup", QImage(folder + "Ketchup.png"),
-                                        QImage(), QImage(), true, false, 150, 300));
+                                        QImage(), QImage(), false, false, 150, 300));
     recipes.push_back(Recipe("Pepperoni Pizza", basePizza, bonusPizza, avaliablePizza, QImage()));
 
     /*
@@ -276,7 +276,7 @@ void PlayerModel::setupRecipes(){
     avaliablePancake.push_back(Ingredient("meatballs", QImage(folder + "Meatball.png"),
                                           QImage(), QImage(), false, true, 300, 350));
     avaliablePancake.push_back(Ingredient("ketchup", QImage(folder + "Ketchup.png"),
-                                          QImage(), QImage(), true, false, 350, 350));
+                                          QImage(), QImage(), false, false, 350, 350));
     avaliablePancake.push_back(Ingredient("tuna", QImage(folder + "Tuna.png"),
                                           QImage(folder + "Tuna Slice.png"), QImage(), true, false, 400, 350));
     recipes.push_back(Recipe("Pancake", basePancake, bonusPancake, avaliablePancake, QImage()));
@@ -350,8 +350,8 @@ void PlayerModel::setupTools()
     // Only way to get a pointer a Tool with a lifetime longer than
     // The scope of this method is to allocate on the heap.
     tools.insert({"CuttingBoard", new CuttingBoard(230, 410)});
-    tools.insert({"FryingPan", new FryingPan(290, 90)});
-    tools.insert({"Pot",  new Pot(350, 90)});
+    tools.insert({"FryingPan", new FryingPan(282, 90)});
+    tools.insert({"Pot",  new Pot(405, 75)});
     for(auto &[toolName, tool] : tools) {
         setupCookingToolPhysics(*tool);
     }
@@ -396,7 +396,8 @@ void PlayerModel::setupIngredientPhysics(Ingredient &ingredient)
 void PlayerModel::setupCookingToolPhysics(Tool tool)
 {
     // create a physics object for the tool
-    auto boxShape = Physics::createBoxShape(tool.GetImage().width(), tool.GetImage().height());
+    QImage img = tool.GetImage();
+    auto boxShape = Physics::createBoxShape(img.width() * 0.8, img.height() * 0.8);
 
     b2Filter collisionFilter;
     // Walls are 0x0001, Ingredients are 0x0002, tools are 0x0004

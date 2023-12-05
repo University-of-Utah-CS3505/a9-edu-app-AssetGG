@@ -464,6 +464,7 @@
         <file>Sprites/Pot With Water.png</file>
         <file>Sprites/Cut Chicken.png</file>
         <file>Sprites/Chopped Cabbage.png</file>
+        <file>Sprites/frying pan.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>
