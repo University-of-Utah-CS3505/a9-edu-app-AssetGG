@@ -33,6 +33,7 @@ public:
 public slots:
     void handleRecipeClicked(const QString &recipeName);
     void calculateScore();
+    void addIngredientToFinalDish(Ingredient);
 
 private:
     vector<Recipe> recipes;

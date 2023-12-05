@@ -44,6 +44,7 @@ private:
     QLabel *recipeHelpLine4;
     bool showRecipeHelp;
     Recipe chosenRecipe;
+    Ingredient clickedIngredient;
 
     Ingredient *getSpriteByName(std::string name);
     void setupRecipeHelpLine1(Recipe);
@@ -59,5 +60,7 @@ signals:
     void itemDropped(QPoint mousePos);
     void updateDragPosition(QPoint mousePos);
     void calculateScoreRequested();
+    void removeItemFromIngredientsInWorld(Ingredient);
+    void addItemToFinalDishIngredients(Ingredient);
 };
 #endif // PLAYERVIEW_H

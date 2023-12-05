@@ -474,3 +474,8 @@ int PlayerModel::getFinalScore() const
 {
     return finalScore;
 }
+
+void PlayerModel::addIngredientToFinalDish(Ingredient ingredientToAdd)
+{
+    finalIngredients.push_back(ingredientToAdd);
+}

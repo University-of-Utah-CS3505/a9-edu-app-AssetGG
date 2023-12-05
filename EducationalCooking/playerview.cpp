@@ -16,7 +16,7 @@ PlayerView::PlayerView(QWidget *parent)
 {
     ui->setupUi(this);
 
-    showRecipeHelp = false;
+    showRecipeHelp    = false;
 
     connect(ui->scoreButton, &QPushButton::clicked, this, &PlayerView::onScoreButtonClicked);
 }
@@ -88,6 +88,7 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
         QImage img = ingredient.GetImage();
         if (mouseOverSprite(mousePos, ingredient.locX, ingredient.locY, img.width(), img.height()))
         {
+            clickedIngredient = ingredient;
             emit itemGrabbed(ingredientName, true, mousePos);
             return;
         }
@@ -107,6 +108,18 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
 
 void PlayerView::mouseMoveEvent(QMouseEvent *event)
 {
+    QRect placeFinishedIngredients(0, 0, 20, 20);
+
+    if (placeFinishedIngredients.contains(event->pos()))
+    {
+        QLabel* addedSomethingToDishLabel = new QLabel(this);
+        addedSomethingToDishLabel->setText("+" + QString(QString::fromStdString(clickedIngredient.GetName())));
+        addedSomethingToDishLabel->setGeometry(QRect(15, 0, 100, 20));
+        addedSomethingToDishLabel->setHidden(false);
+        ingredientSprites.erase(clickedIngredient.GetName());
+        emit addItemToFinalDishIngredients(clickedIngredient);
+    }
+
     emit updateDragPosition(event->pos());
 }
 
@@ -181,7 +194,7 @@ void PlayerView::setupRecipeHelpLine1(Recipe recipe)
 {
     recipeHelpLine1 = new QLabel(this);
 
-    recipeHelpLine1->setText(QString::fromStdString(recipe.getRecipeName()) + QString::fromStdString(" ingredients:\n"));
+    recipeHelpLine1->setText(QString::fromStdString(recipe.getRecipeName()) + QString::fromStdString(" Ingredients:\n"));
     recipeHelpLine1->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
     recipeHelpLine1->setGeometry(QRect(165, 250, 350, 50));
     recipeHelpLine1->setHidden(true);
@@ -197,7 +210,7 @@ void PlayerView::setupRecipeHelpLine2(Recipe recipe)
 
     recipeHelpLine2->setText(QString::fromStdString("--") + helpLine2Text + QString::fromStdString("\n"));
     recipeHelpLine2->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
-    recipeHelpLine2->setGeometry(QRect(165, 275, 350, 50));
+    recipeHelpLine2->setGeometry(QRect(165, 275, 550, 50));
     recipeHelpLine2->setHidden(true);
 }
 
@@ -220,7 +233,7 @@ void PlayerView::setupRecipeHelpLine4(Recipe recipe)
 
     recipeHelpLine4->setText(QString::fromStdString("--") + helpLine4Text + QString::fromStdString("\n"));
     recipeHelpLine4->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
-    recipeHelpLine4->setGeometry(QRect(125, 380, 350, 50));
+    recipeHelpLine4->setGeometry(QRect(125, 380, 550, 50));
     recipeHelpLine4->setHidden(true);
 }
 
