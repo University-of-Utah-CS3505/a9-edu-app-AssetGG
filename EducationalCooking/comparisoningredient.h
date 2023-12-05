@@ -12,6 +12,9 @@ public:
     bool legalIngredient(Ingredient);
 
     std::string GetName() const;
+
+    bool IsCooked() const;
+    bool IsCut() const;
 private:
     bool cut;
     bool cooked;

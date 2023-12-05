@@ -83,21 +83,21 @@ void Ingredient::Burned()
     burnt = true;
 }
 
-bool Ingredient::IsCooked()
+bool Ingredient::IsCooked() const
 {
     return cooked;
 }
-bool Ingredient::IsCut()
+bool Ingredient::IsCut() const
 {
     return cut;
 }
 
-bool Ingredient::IsCuttable()
+bool Ingredient::IsCuttable() const
 {
     return cuttable;
 }
 
-bool Ingredient::IsBurned()
+bool Ingredient::IsBurned() const
 {
     return burnt;
 }

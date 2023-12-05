@@ -435,7 +435,18 @@ void PlayerModel::calculateScore()
         for (const auto &usedIngredient : finalIngredients) {
             if (requiredIngredient.GetName() == usedIngredient.GetName()) {
                 found = true;
-                break;
+
+                if(usedIngredient.IsCooked() != requiredIngredient.IsCooked()){
+                    totalPoints -= 10;
+                }
+
+                if(usedIngredient.IsCut() != requiredIngredient.IsCut()){
+                    totalPoints -= 10;
+                }
+
+                if(usedIngredient.IsBurned()){
+                    totalPoints -= 20;
+                }
             }
         }
 
