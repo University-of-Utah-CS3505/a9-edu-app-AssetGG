@@ -20,16 +20,17 @@ QT_END_NAMESPACE
 class PlayerView : public QMainWindow
 {
     Q_OBJECT
-    std::map<std::string, Tool> *tools;
+    std::map<std::string, Tool*> *tools;
     std::map<std::string, Ingredient> ingredientSprites;
 
 public:
     PlayerView(QWidget *parent = nullptr);
     ~PlayerView();
-    void setupScene(Recipe &recipe, std::map<std::string, Tool> &tools);
+    void setupScene(Recipe &recipe, std::map<std::string, Tool*> &tools);
     void updateSpritePositions(const std::map<std::string, Physics::PhysicsObject> &physicsObjects);
     void onScoreButtonClicked();
 
+    Ingredient *getIngredientByName(std::string name);
 public slots:
     void paintEvent(QPaintEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
@@ -51,7 +52,6 @@ private:
     void setupRecipeHelpLine2(Recipe);
     void setupRecipeHelpLine3(Recipe);
     void setupRecipeHelpLine4(Recipe);
-    Ingredient *getIngredientByName(std::string name);
     Tool *getToolByName(std::string name);
     int calculateScore();
 

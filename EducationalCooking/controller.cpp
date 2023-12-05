@@ -64,7 +64,7 @@ Tool *Controller::getToolAtPoint(QPoint point)
                                                                         b2Vec2(point.x(),
                                                                                point.y()));
             if (pointInShape) {
-                return &tool;
+                return tool;
             }
         }
     }
@@ -79,8 +79,8 @@ void Controller::onItemDropped(QPoint mousePos)
         if (grabbedObjectIsIngredient) {
             Tool *toolUnderMouse = getToolAtPoint(mousePos);
             if (toolUnderMouse) {
-                // messy, but too late to go back on this bad design decision. Sorry guys.
-                Ingredient *ingredient = model.getIngredientFromName(grabbedObjectName);
+                // messy, but too late to go back on this bad design decision. Sorry :(
+                Ingredient *ingredient = view.getIngredientByName(grabbedObjectName);
                 toolUnderMouse->ProcessIngredient(*ingredient);
             }
         }
