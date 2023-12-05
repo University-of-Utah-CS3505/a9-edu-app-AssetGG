@@ -36,6 +36,12 @@ Ingredient::Ingredient(std::string name,
     burnt = false;
 }
 
+Ingredient::Ingredient()
+{
+    // Default constructor has no need to do anything. Only used so
+    // ingredients don't have to be set to something in the constructor
+}
+
 std::string Ingredient::GetName() const
 {
     return ingredientName;

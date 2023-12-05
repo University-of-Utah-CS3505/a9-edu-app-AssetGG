@@ -16,7 +16,7 @@ PlayerView::PlayerView(QWidget *parent)
 {
     ui->setupUi(this);
 
-    showRecipeHelp    = false;
+    showRecipeHelp = false;
 
     connect(ui->scoreButton, &QPushButton::clicked, this, &PlayerView::onScoreButtonClicked);
 }

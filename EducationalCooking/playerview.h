@@ -31,6 +31,7 @@ public:
     void onScoreButtonClicked();
 
     Ingredient *getIngredientByName(std::string name);
+
 public slots:
     void paintEvent(QPaintEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
