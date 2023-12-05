@@ -52,7 +52,7 @@ void FinalScreen::setupLayout() {
     scoreLabel->setAlignment(Qt::AlignHCenter);
 
     centerSection->addLayout(starsLayout);
-    centerSection->addSpacing(-300);
+    centerSection->addSpacing(-400);
     centerSection->addWidget(scoreLabel);
 
     // Initialize dishOrTrashLabel
