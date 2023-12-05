@@ -6,17 +6,24 @@
 #include <QParallelAnimationGroup>
 
 FinalScreen::FinalScreen(QWidget *parent) : QWidget(parent) {
+    score = 100;
+
     setupLayout();
 }
 
-void FinalScreen::setScore(int score, const QString& recipeName) {
+void FinalScreen::setScore(int scoreInput, vector<Ingredient> finalIngredients, const QString& recipeName) {
+    score = scoreInput;
+
+    updateLayout();
+
     currentRecipeName = recipeName;
-    displayDishOrTrash(score);
+    ingredients = finalIngredients;
+    displayDishOrTrash(scoreInput);
     displayIngredients();
 }
 
 void FinalScreen::setupLayout() {
-    QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    mainLayout = new QHBoxLayout(this);
 
     // Left Section
     leftSection = new QVBoxLayout;
@@ -36,6 +43,10 @@ void FinalScreen::setupLayout() {
     centerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     mainLayout->addWidget(centerWidget);
 
+    setLayout(mainLayout);
+}
+
+void FinalScreen::updateLayout() {
     // Stars
     QHBoxLayout *starsLayout = new QHBoxLayout;
     starsLayout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
@@ -45,12 +56,12 @@ void FinalScreen::setupLayout() {
         QImage starImage(":/sprites/Sprites/Dorito.png");
         star->setPixmap(QPixmap::fromImage(starImage).scaled(40, 40));
         stars.push_back(star);
-        stars[i]->setVisible(i < 100/20); // Todo: pass in score
+        stars[i]->setVisible(i < score/20);
         starsLayout->addWidget(star);
     }
 
     // Score
-    scoreLabel = new QLabel(QString::number(100) + "/100"); // Todo: pass in score
+    scoreLabel = new QLabel(QString::number(score) + "/100");
     scoreLabel->setStyleSheet("font-size: 24pt;");
     scoreLabel->setAlignment(Qt::AlignHCenter);
 
@@ -74,22 +85,13 @@ void FinalScreen::setupLayout() {
 
     mainLayout->addWidget(centerWidget);
 
-    // Right Section
-    rightSection = new QVBoxLayout;
-    rightWidget = new QWidget;
-    rightSection->setAlignment(Qt::AlignTop);
-    rightWidget->setLayout(rightSection);
-    rightWidget->setFixedSize(200, 600);
-    rightWidget->setStyleSheet("background-color: lightcoral;");
-    mainLayout->addWidget(rightWidget);
-
     setLayout(mainLayout);
 }
 
-void FinalScreen::displayDishOrTrash(int score) {
+void FinalScreen::displayDishOrTrash(int scoreInput) {
     QImage imageOfDish;
 
-    if (score > 60) {
+    if (scoreInput > 60) {
         if(currentRecipeName.toLower() == "spaghetti")
             imageOfDish = QImage(":/sprites/Sprites/Pasta Tomato.png");
         else if(currentRecipeName.toLower() == "salad")
@@ -110,9 +112,31 @@ void FinalScreen::displayDishOrTrash(int score) {
 }
 
 void FinalScreen::displayIngredients() {
-    addIngredient("Tomato", ":/ingredients/tomato.png");
-    addIngredient("Onion", ":/ingredients/onion.png");
-    addIngredient("Cheese", ":/ingredients/cheese.png");
+    QLayoutItem *child;
+    while ((child = leftSection->takeAt(0)) != nullptr) {
+        delete child->widget();
+        delete child;
+    }
+
+    for (const auto& ingredient : ingredients) {
+        QWidget* ingredientWidget = new QWidget;
+        QHBoxLayout* ingredientLayout = new QHBoxLayout(ingredientWidget);
+
+        QLabel* ingredientLabel = new QLabel;
+        ingredientLabel->setText(QString::fromStdString(ingredient.GetName()));
+        ingredientLabel->setAlignment(Qt::AlignCenter);
+        ingredientLabel->setStyleSheet("font-size: 12pt;");
+        ingredientLabel->setMinimumHeight(24);
+
+        QLabel* ingredientImageLabel = new QLabel;
+        ingredientImageLabel->setPixmap(QPixmap::fromImage(ingredient.GetImage()).scaled(24, 24));
+        ingredientImageLabel->setMinimumHeight(24);
+
+        ingredientLayout->addWidget(ingredientImageLabel);
+        ingredientLayout->addWidget(ingredientLabel);
+
+        leftSection->addWidget(ingredientWidget);
+    }
 }
 
 void FinalScreen::addIngredient(const QString &name, const QString &imagePath) {

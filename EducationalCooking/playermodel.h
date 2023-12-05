@@ -32,7 +32,8 @@ public:
 
 public slots:
     void handleRecipeClicked(const QString &recipeName);
-    void calculateScore();
+    int calculateScore();
+    vector<Ingredient> getFinalIngredients();
     void addIngredientToFinalDish(Ingredient);
 
 private:

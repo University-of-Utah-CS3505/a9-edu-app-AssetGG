@@ -2,6 +2,7 @@
 #include "physics.h"
 #include "playermodel.h"
 #include "playerview.h"
+#include "finalscreen.h"
 
 #include <QTimer>
 
@@ -15,6 +16,7 @@ Controller::Controller(PlayerModel &model, PlayerView &view, QObject *parent)
     connect(&model.physics, &Physics::onUpdate, &view, &PlayerView::updateSpritePositions);
     connect(&model.physics, &Physics::onUpdate, this, &Controller::updateGrabForces);
     connect(&view, &PlayerView::calculateScoreRequested, &model, &PlayerModel::calculateScore);
+    connect(&view, &PlayerView::getFinalIngredientsRequested, &model, &PlayerModel::getFinalIngredients);
 
     setupGrabConnections();
 }

@@ -417,7 +417,7 @@ void PlayerModel::setupCookingToolPhysics(Tool tool)
     obj->fixture->SetFilterData(collisionFilter);
 }
 
-void PlayerModel::calculateScore()
+int PlayerModel::calculateScore()
 {
     int totalPoints = 100; // Score starts at 100
 
@@ -468,11 +468,18 @@ void PlayerModel::calculateScore()
     totalPoints = std::max(totalPoints, 0); // Prevents negative points
 
     finalScore = totalPoints;
+
+    return finalScore;
 }
 
 int PlayerModel::getFinalScore() const
 {
     return finalScore;
+}
+
+vector<Ingredient> PlayerModel::getFinalIngredients()
+{
+    return finalIngredients;
 }
 
 void PlayerModel::addIngredientToFinalDish(Ingredient ingredientToAdd)
