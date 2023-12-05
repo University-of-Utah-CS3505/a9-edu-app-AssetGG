@@ -9,6 +9,7 @@ Controller::Controller(PlayerModel &model, PlayerView &view, QObject *parent)
     : view(view)
     , model(model)
     , grabbedPhysicsObject(nullptr)
+    , canGrab(true)
     , objInitialDrag(0.0)
 {
     connect(&model.physics, &Physics::onUpdate, &view, &PlayerView::updateSpritePositions);
@@ -40,13 +41,15 @@ void Controller::updateGrabForces()
 
 void Controller::onItemGrabbed(std::string itemName, bool isIngredient, QPoint mousePos)
 {
-    this->mousePos = mousePos;
-    grabbedPhysicsObject = model.physics.get(itemName);
-    grabbedObjectName = itemName;
-    grabbedObjectIsIngredient = isIngredient;
-    objInitialDrag = grabbedPhysicsObject->body->GetLinearDamping();
+    if (canGrab) {
+        this->mousePos = mousePos;
+        grabbedPhysicsObject = model.physics.get(itemName);
+        grabbedObjectName = itemName;
+        grabbedObjectIsIngredient = isIngredient;
+        objInitialDrag = grabbedPhysicsObject->body->GetLinearDamping();
 
-    grabbedPhysicsObject->body->SetLinearDamping(objInitialDrag * 2.0);
+        grabbedPhysicsObject->body->SetLinearDamping(objInitialDrag * 2.0);
+    }
 }
 
 void Controller::onMouseMoved(QPoint mousePos)
@@ -88,11 +91,15 @@ void Controller::onItemDropped(QPoint mousePos)
         // let the object "fly" for a bit before it slows down.
         b2Body *tempRef = grabbedPhysicsObject->body;
         tempRef->SetLinearDamping(objInitialDrag / 7.0);
-        float skidDrag = objInitialDrag;
 
         // free up this variable in case the user wants to grab something else in the next quarter second
         grabbedPhysicsObject = nullptr;
+        canGrab = false;
+
         // after a quarter second, increase the damping to make it skid to a stop.
-        QTimer::singleShot(250, this, [tempRef, skidDrag] { tempRef->SetLinearDamping(skidDrag); });
+        QTimer::singleShot(250, this, [this, tempRef] {
+            this->canGrab = true;
+            tempRef->SetLinearDamping(tempRef->GetLinearDamping() * 7.0);
+        });
     }
 }

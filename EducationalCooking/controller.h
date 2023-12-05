@@ -17,6 +17,7 @@ class Controller : public QObject
     PhysicsObject *grabbedPhysicsObject;
     std::string grabbedObjectName;
     bool grabbedObjectIsIngredient;
+    bool canGrab;
 
     float objInitialDrag;
     QPoint mousePos;

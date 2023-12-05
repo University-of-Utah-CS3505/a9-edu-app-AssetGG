@@ -129,7 +129,7 @@ void PlayerModel::setupRecipes(){
     avaliablePizza.push_back(Ingredient("carrots", QImage(folder + "Carrot.png"),
                                         QImage(folder + "Sliced Carrot.png"), QImage(), true, true, 550, 300));
     avaliablePizza.push_back(Ingredient("honey", QImage(folder + "Honey.png"),
-                                        QImage(), QImage(), true, false, 600, 300));
+                                        QImage(), QImage(), false, false, 600, 300));
     avaliablePizza.push_back(Ingredient("ketchup", QImage(folder + "Ketchup.png"),
                                         QImage(), QImage(), false, false, 150, 300));
     recipes.push_back(Recipe("Pepperoni Pizza", basePizza, bonusPizza, avaliablePizza, QImage()));
