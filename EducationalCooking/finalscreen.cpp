@@ -21,6 +21,7 @@ void FinalScreen::setupLayout() {
     leftSection->setAlignment(Qt::AlignTop);
     leftWidget->setLayout(leftSection);
     leftWidget->setFixedSize(200, 600);
+    leftWidget->setStyleSheet("background-color: lightblue;");
     mainLayout->addWidget(leftWidget);
 
     // Center Section
@@ -28,6 +29,7 @@ void FinalScreen::setupLayout() {
     centerWidget = new QWidget;
     centerWidget->setLayout(centerSection);
     centerWidget->setFixedSize(400, 600);
+    centerWidget->setStyleSheet("background-color: lightgreen;");
     mainLayout->addWidget(centerWidget);
 
     // Right Section
@@ -36,6 +38,7 @@ void FinalScreen::setupLayout() {
     rightSection->setAlignment(Qt::AlignTop);
     rightWidget->setLayout(rightSection);
     rightWidget->setFixedSize(200, 600);
+    rightWidget->setStyleSheet("background-color: lightcoral;");
     mainLayout->addWidget(rightWidget);
 
     setLayout(mainLayout);
