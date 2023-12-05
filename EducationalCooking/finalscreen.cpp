@@ -1,6 +1,9 @@
 #include "finalscreen.h"
 #include <QPixmap>
 #include <QHBoxLayout>
+#include <QPropertyAnimation>
+#include <QSequentialAnimationGroup>
+#include <QParallelAnimationGroup>
 
 FinalScreen::FinalScreen(QWidget *parent) : QWidget(parent) {
     setupLayout();
@@ -62,11 +65,11 @@ void FinalScreen::setupLayout() {
     gordonLabel->setPixmap(QPixmap::fromImage(QImage(":/sprites/Sprites/ramsay1.png")).scaled(300,300));
 
     centerSection->addLayout(starsLayout);
-    centerSection->addSpacing(20);
+    centerSection->addSpacing(0);
     centerSection->addWidget(scoreLabel);
-    centerSection->addSpacing(20);
+    centerSection->addSpacing(0);
     centerSection->addWidget(gordonLabel);
-    centerSection->addSpacing(20);
+    centerSection->addSpacing(-100);
     centerSection->addWidget(dishOrTrashLabel);
 
     mainLayout->addWidget(centerWidget);
@@ -81,7 +84,6 @@ void FinalScreen::setupLayout() {
     mainLayout->addWidget(rightWidget);
 
     setLayout(mainLayout);
-
 }
 
 void FinalScreen::displayDishOrTrash(int score) {
