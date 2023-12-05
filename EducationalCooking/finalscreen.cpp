@@ -6,8 +6,8 @@ FinalScreen::FinalScreen(QWidget *parent) : QWidget(parent) {
     setupLayout();
 }
 
-void FinalScreen::setScore(int score) {
-    displayStars(score);
+void FinalScreen::setScore(int score, const QString& recipeName) {
+    currentRecipeName = recipeName;
     displayDishOrTrash(score);
     displayIngredients();
 }
@@ -30,6 +30,37 @@ void FinalScreen::setupLayout() {
     centerWidget->setLayout(centerSection);
     centerWidget->setFixedSize(400, 600);
     centerWidget->setStyleSheet("background-color: lightgreen;");
+    centerWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    mainLayout->addWidget(centerWidget);
+
+    // Stars
+    QHBoxLayout *starsLayout = new QHBoxLayout;
+    starsLayout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
+
+    for (int i = 0; i < 5; ++i) {
+        QLabel *star = new QLabel;
+        QImage starImage(":/sprites/Sprites/Dorito.png");
+        star->setPixmap(QPixmap::fromImage(starImage).scaled(40, 40));
+        stars.push_back(star);
+        stars[i]->setVisible(i < 100/20); // Todo: pass in score
+        starsLayout->addWidget(star);
+    }
+
+    // Score
+    scoreLabel = new QLabel(QString::number(100) + "/100"); // Todo: pass in score
+    scoreLabel->setStyleSheet("font-size: 24pt;");
+    scoreLabel->setAlignment(Qt::AlignHCenter);
+
+    centerSection->addLayout(starsLayout);
+    centerSection->addSpacing(-400);
+    centerSection->addWidget(scoreLabel);
+
+    // Initialize dishOrTrashLabel
+    dishOrTrashLabel = new QLabel;
+    dishOrTrashLabel->setAlignment(Qt::AlignHCenter);
+    centerSection->addSpacing(-400);
+    centerSection->addWidget(dishOrTrashLabel);
+
     mainLayout->addWidget(centerWidget);
 
     // Right Section
@@ -45,16 +76,27 @@ void FinalScreen::setupLayout() {
 
 }
 
-void FinalScreen::displayStars(int score) {
-    int numberOfStars = score / 20;
-    for (int i = 0; i < 5; ++i) {
-        stars[i]->setVisible(i < numberOfStars);
-    }
-}
-
 void FinalScreen::displayDishOrTrash(int score) {
-    QString imagePath = (score > 60) ? ":/images/dish.png" : ":/images/trash.png";
-    dishOrTrashLabel->setPixmap(QPixmap(imagePath));
+    QImage imageOfDish;
+
+    if (score > 60) {
+        if(currentRecipeName.toLower() == "spaghetti")
+            imageOfDish = QImage(":/sprites/Sprites/Pasta Tomato.png");
+        else if(currentRecipeName.toLower() == "salad")
+            imageOfDish = QImage(":/sprites/Sprites/Salad Dish.png");
+        else if(currentRecipeName.toLower() == "pepperoni pizza")
+            imageOfDish = QImage(":/sprites/Sprites/Pepperoni Pizza.png");
+        else if(currentRecipeName.toLower() == "soup")
+            imageOfDish = QImage(":/sprites/Sprites/Chicken Soup.png");
+        else if(currentRecipeName.toLower() == "hamburger")
+            imageOfDish = QImage(":/sprites/Sprites/Cheeseburger.png");
+        else if(currentRecipeName.toLower() == "pancakes")
+            imageOfDish = QImage(":/sprites/Sprites/Pancakes.png");
+    } else {
+        imageOfDish = QImage(":/sprites/Sprites/Trash.png");
+    }
+
+    dishOrTrashLabel->setPixmap(QPixmap::fromImage(imageOfDish).scaled(200, 200));
 }
 
 void FinalScreen::displayIngredients() {
