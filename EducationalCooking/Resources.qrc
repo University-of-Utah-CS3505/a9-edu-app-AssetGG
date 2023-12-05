@@ -452,6 +452,18 @@
         <file>Sprites/CuttingBoard.png</file>
         <file>Sprites/Cabbage.png</file>
         <file>Sprites/Raw Patty.png</file>
+        <file>Sprites/Dry Noodles.png</file>
+        <file>Sprites/Salad Dressing.png</file>
+        <file>Sprites/Cut Radish.png</file>
+        <file>Sprites/Dough.png</file>
+        <file>Sprites/Cut Tomato.png</file>
+        <file>Sprites/Cut Green Chillis.png</file>
+        <file>Sprites/Bun.png</file>
+        <file>Sprites/Avocado.png</file>
+        <file>Sprites/Cut Bell Pepper.png</file>
+        <file>Sprites/Pot With Water.png</file>
+        <file>Sprites/Cut Chicken.png</file>
+        <file>Sprites/Chopped Cabbage.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>
