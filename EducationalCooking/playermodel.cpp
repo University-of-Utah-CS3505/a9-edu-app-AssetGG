@@ -318,6 +318,16 @@ std::map<std::string, Tool>& PlayerModel::getTools(){
     return tools;
 }
 
+Ingredient *PlayerModel::getIngredientFromName(std::string ingredientName)
+{
+    for (Ingredient &ingredient : selectedRecipe.getAvaliableIngredients()) {
+        if (ingredient.GetName() == ingredientName) {
+            return &ingredient;
+        }
+    }
+    return nullptr;
+}
+
 void PlayerModel::handleRecipeClicked(const QString &recipeName)
 {
     qDebug() << "Recipe clicked:" << recipeName;
@@ -344,7 +354,7 @@ void PlayerModel::setupIngredients()
         }
     }
     for (Ingredient &ingredient : selectedRecipe.getAvaliableIngredients()) {
-        setupIngredient(ingredient);
+        setupIngredientPhysics(ingredient);
     }
 }
 
@@ -355,7 +365,7 @@ void PlayerModel::setupTools()
     tools.insert({"FryingPan", FryingPan(290, 90)});
     tools.insert({"Pot", Pot(350, 90)});
     for(auto &[toolName, tool] : tools) {
-        setupCookingTool(tool);
+        setupCookingToolPhysics(tool);
     }
 }
 
@@ -372,7 +382,7 @@ void PlayerModel::setupWalls()
     physics.registerStaticObject("bottomWall", &bottomWallShape, 320.0, 640.0);
 }
 
-void PlayerModel::setupIngredient(Ingredient &ingredient)
+void PlayerModel::setupIngredientPhysics(Ingredient &ingredient)
 {
     QRect spriteBounds = ingredient.GetImage().rect();
     float radius = std::min(spriteBounds.width(), spriteBounds.height()) / 2.0;
@@ -395,7 +405,7 @@ void PlayerModel::setupIngredient(Ingredient &ingredient)
     obj.body->SetLinearDamping(5.0);
 }
 
-void PlayerModel::setupCookingTool(Tool tool)
+void PlayerModel::setupCookingToolPhysics(Tool tool)
 {
     // create a physics object for the tool
     auto boxShape = Physics::createBoxShape(tool.GetImage().width(), tool.GetImage().height());

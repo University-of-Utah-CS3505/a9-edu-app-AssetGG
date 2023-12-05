@@ -28,6 +28,7 @@ public:
 
     int getFinalScore() const;
     std::map<std::string, Tool>& getTools();
+    Ingredient *getIngredientFromName(std::string ingredientName);
 
 public slots:
     void handleRecipeClicked(const QString &recipeName);
@@ -44,8 +45,8 @@ private:
     std::map<std::string, Tool> tools;
 
     void setupWalls();
-    void setupIngredient(Ingredient &ingredient);
-    void setupCookingTool(Tool tool);
+    void setupIngredientPhysics(Ingredient &ingredient);
+    void setupCookingToolPhysics(Tool tool);
     void setupRecipes();
     void setupTools();
     void setupIngredients();

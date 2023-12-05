@@ -88,7 +88,7 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
         QImage img = ingredient.GetImage();
         if (mouseOverSprite(mousePos, ingredient.locX, ingredient.locY, img.width(), img.height()))
         {
-            emit itemGrabbed(ingredientName, mousePos);
+            emit itemGrabbed(ingredientName, true, mousePos);
             return;
         }
     }
@@ -98,7 +98,7 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
         QImage img = tool.GetImage();
         if (tool.IsMovable()) {
             if (mouseOverSprite(mousePos, tool.locX, tool.locY, img.width(), img.height())) {
-                emit itemGrabbed(toolName, mousePos);
+                emit itemGrabbed(toolName, false, mousePos);
                 return;
             }
         }

@@ -55,7 +55,7 @@ private:
     int calculateScore();
 
 signals:
-    void itemGrabbed(std::string itemName, QPoint mousePos);
+    void itemGrabbed(std::string itemName, bool isIngredient, QPoint mousePos);
     void itemDropped(QPoint mousePos);
     void updateDragPosition(QPoint mousePos);
     void calculateScoreRequested();

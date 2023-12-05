@@ -38,25 +38,53 @@ void Controller::updateGrabForces()
     }
 }
 
-void Controller::onItemGrabbed(std::string ingredientName, QPoint mousePos)
+void Controller::onItemGrabbed(std::string itemName, bool isIngredient, QPoint mousePos)
 {
     this->mousePos = mousePos;
-    grabbedPhysicsObject = model.physics.get(ingredientName);
+    grabbedPhysicsObject = model.physics.get(itemName);
+    grabbedObjectName = itemName;
+    grabbedObjectIsIngredient = isIngredient;
     objInitialDrag = grabbedPhysicsObject->body->GetLinearDamping();
 
     grabbedPhysicsObject->body->SetLinearDamping(objInitialDrag * 2.0);
 }
-
 
 void Controller::onMouseMoved(QPoint mousePos)
 {
     this->mousePos = mousePos;
 }
 
+Tool *Controller::getToolAtPoint(QPoint point)
+{
+    for (auto &[toolName, tool] : model.getTools()) {
+        PhysicsObject *physObj = model.physics.get(toolName);
+        if (physObj) {
+            b2Transform transform = physObj->body->GetTransform();
+            bool pointInShape = physObj->fixture->GetShape()->TestPoint(transform,
+                                                                        b2Vec2(point.x(),
+                                                                               point.y()));
+            if (pointInShape) {
+                return &tool;
+            }
+        }
+    }
+
+    return nullptr;
+}
+
 void Controller::onItemDropped(QPoint mousePos)
 {
     this->mousePos = mousePos;
     if (grabbedPhysicsObject) {
+        if (grabbedObjectIsIngredient) {
+            Tool *toolUnderMouse = getToolAtPoint(mousePos);
+            if (toolUnderMouse) {
+                // messy, but too late to go back on this bad design decision. Sorry guys.
+                Ingredient *ingredient = model.getIngredientFromName(grabbedObjectName);
+                toolUnderMouse->ProcessIngredient(*ingredient);
+            }
+        }
+
         // let the object "fly" for a bit before it slows down.
         b2Body *tempRef = grabbedPhysicsObject->body;
         tempRef->SetLinearDamping(objInitialDrag / 7.0);
