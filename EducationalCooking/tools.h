@@ -41,11 +41,13 @@ class FryingPan : public Tool
 {
 public:
     FryingPan(int locX, int locY);
+    void ProcessIngredient(Ingredient &ingredient);
 };
 
 class Pot : public Tool
 {
 public:
     Pot(int locX, int locY);
+    void ProcessIngredient(Ingredient &ingredient);
 };
 #endif // TOOLS_H

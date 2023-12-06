@@ -57,6 +57,29 @@ void CuttingBoard::ProcessIngredient(Ingredient &ingredient)
     }
 }
 
+void FryingPan::ProcessIngredient(Ingredient &ingredient)
+{
+    if(ingredient.IsCuttable() == true)
+    {
+        if(ingredient.GetName() == "chicken" || ingredient.GetName() == "dough"
+            || ingredient.GetName() == "patty" || ingredient.GetName() == "bun")
+        {
+            ingredient.Cooked();
+        }
+    }
+}
+
+void Pot::ProcessIngredient(Ingredient &ingredient)
+{
+    if(ingredient.IsCuttable() == true)
+    {
+        if(ingredient.GetName() == "noodles" || ingredient.GetName() == "meatballs")
+        {
+            ingredient.Cooked();
+        }
+    }
+}
+
 FryingPan::FryingPan(int locX, int locY)
     : Tool("FryingPan", true, locX, locY)
 {
