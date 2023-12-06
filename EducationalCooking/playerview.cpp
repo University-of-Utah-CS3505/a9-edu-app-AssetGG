@@ -15,8 +15,11 @@ PlayerView::PlayerView(QWidget *parent)
     ui->setupUi(this);
 
     showRecipeHelp = false;
+    finalDishBowl = QImage(":/sprites/Sprites/bowl.png");
+    addedSomethingToDishLabel = new QLabel(this);
 
     connect(ui->scoreButton, &QPushButton::clicked, this, &PlayerView::onScoreButtonClicked);
+    connect(&hideLabelTimer, &QTimer::timeout, this, &PlayerView::hideIngredientAdded);
 }
 
 PlayerView::~PlayerView()
@@ -31,6 +34,7 @@ void PlayerView::paintEvent(QPaintEvent *event)
     imagePainter.drawImage(QRect(0, 0, 640, 640), QImage(":/sprites/Sprites/Kitchen.png"));
     imagePainter.drawImage(QRect(240, 550, chosenRecipe.getSmallHelpSprite().width() * 2,
                            chosenRecipe.getSmallHelpSprite().height() * 2), chosenRecipe.getSmallHelpSprite());
+    imagePainter.drawImage(QRect(50, 450, finalDishBowl.width() * 2.5, finalDishBowl.height() * 2.5), finalDishBowl);
 
     for (auto &[toolName, tool] : *tools)
     {
@@ -106,14 +110,14 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
 
 void PlayerView::mouseMoveEvent(QMouseEvent *event)
 {
-    QRect placeFinishedIngredients(0, 0, 20, 20);
+    QRect placeFinishedIngredients(40, 450, finalDishBowl.width() * 2, finalDishBowl.height() * 2);
 
     if (placeFinishedIngredients.contains(event->pos()))
     {
-        QLabel* addedSomethingToDishLabel = new QLabel(this);
         addedSomethingToDishLabel->setText("+" + QString(QString::fromStdString(clickedIngredient.GetName())));
-        addedSomethingToDishLabel->setGeometry(QRect(15, 0, 100, 20));
+        addedSomethingToDishLabel->setGeometry(QRect(125, 475, 100, 20));
         addedSomethingToDishLabel->setHidden(false);
+        hideLabelTimer.start(500);
         ingredientSprites.erase(clickedIngredient.GetName());
         emit addItemToFinalDishIngredients(clickedIngredient);
     }
@@ -245,4 +249,9 @@ void PlayerView::onScoreButtonClicked()
     finalScreen->show();
 
     this->close();
+}
+
+void PlayerView::hideIngredientAdded()
+{
+    addedSomethingToDishLabel->setHidden(true);
 }

@@ -6,6 +6,7 @@
 #include <QPainter>
 #include <QPoint>
 #include <QLabel>
+#include <QTimer>
 #include "ingredient.h"
 #include "physics.h"
 #include "recipe.h"
@@ -38,12 +39,18 @@ public slots:
     void mousePressEvent(QMouseEvent *event);
     void mouseReleaseEvent(QMouseEvent *event);
 
+private slots:
+    void hideIngredientAdded();
+
 private:
     Ui::PlayerView *ui;
     QLabel *recipeHelpLine1;
     QLabel *recipeHelpLine2;
     QLabel *recipeHelpLine3;
     QLabel *recipeHelpLine4;
+    QLabel *addedSomethingToDishLabel;
+    QImage finalDishBowl;
+    QTimer hideLabelTimer;
     bool showRecipeHelp;
     Recipe chosenRecipe;
     Ingredient clickedIngredient;
