@@ -470,7 +470,6 @@
         <file>Sprites/Cut Chicken.png</file>
         <file>Sprites/Chopped Cabbage.png</file>
         <file>Sprites/frying pan.png</file>
-        <file>../../../../Downloads/bowl.png</file>
         <file>Sprites/bowl.png</file>
     </qresource>
     <qresource prefix="/"/>
