@@ -47,7 +47,7 @@ std::string Ingredient::GetName() const
     return ingredientName;
 }
 
-QImage Ingredient::GetImage()
+QImage Ingredient::GetImage() const
 {
     return currentImage;
 }
