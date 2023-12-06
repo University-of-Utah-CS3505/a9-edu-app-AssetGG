@@ -4,6 +4,11 @@
 #include <QPropertyAnimation>
 #include <QSequentialAnimationGroup>
 #include <QParallelAnimationGroup>
+#include <QProcess>
+
+#ifdef Q_OS_WIN
+#include <Windows.h>
+#endif
 
 FinalScreen::FinalScreen(QWidget *parent) : QWidget(parent) {
     score = 100;
@@ -20,6 +25,13 @@ void FinalScreen::setScore(int scoreInput, vector<Ingredient> finalIngredients, 
     ingredients = finalIngredients;
     displayDishOrTrash(scoreInput);
     displayIngredients();
+
+#ifdef Q_OS_WIN
+    // Play the audio file on Windows
+    PlaySound(L":/sprites/Sprites/Piss in soup.m4a", NULL, SND_ASYNC | SND_FILENAME);
+#elif defined(Q_OS_MAC)
+    QProcess::startDetached("afplay", QStringList() << "/sprites/Sprites/Piss-in-soup.wav");
+#endif
 }
 
 void FinalScreen::setupLayout() {

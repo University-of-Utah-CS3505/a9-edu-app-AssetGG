@@ -23,6 +23,7 @@ private:
     void displayDishOrTrash(int score);
     void displayIngredients();
     void addIngredient(const QString &name, const QString &imagePath);
+    void playAudio();
     vector<Ingredient> ingredients;
     QString currentRecipeName;
 
