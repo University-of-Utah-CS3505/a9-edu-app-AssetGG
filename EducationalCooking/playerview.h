@@ -11,6 +11,9 @@
 #include "physics.h"
 #include "recipe.h"
 #include "tools.h"
+#include <map>
+
+using std::vector;
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -67,7 +70,8 @@ signals:
     void itemGrabbed(std::string itemName, bool isIngredient, QPoint mousePos);
     void itemDropped(QPoint mousePos);
     void updateDragPosition(QPoint mousePos);
-    void calculateScoreRequested();
+    int calculateScoreRequested();
+    vector<Ingredient> getFinalIngredientsRequested();
     void removeItemFromIngredientsInWorld(Ingredient);
     void addItemToFinalDishIngredients(Ingredient);
 };

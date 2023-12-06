@@ -241,11 +241,17 @@ void PlayerView::setupRecipeHelpLine4(Recipe recipe)
 
 void PlayerView::onScoreButtonClicked()
 {
-    emit calculateScoreRequested();
+    int score = emit calculateScoreRequested();
+    vector<Ingredient> ingredients = emit getFinalIngredientsRequested();
+
+    // For testing REMOVE before submission
+    for (Ingredient &ingredient : chosenRecipe.getAvaliableIngredients()) {
+        ingredients.push_back(ingredient);
+    }
 
     // Creation of final screen
     FinalScreen* finalScreen = new FinalScreen;
-    finalScreen->setScore(100, QString::fromStdString(chosenRecipe.getRecipeName())); // Todo: Pass in score from model
+    finalScreen->setScore(100, ingredients, QString::fromStdString(chosenRecipe.getRecipeName())); // For testing its 100 MAKE SURE to swap 100 with score before turn in
     finalScreen->show();
 
     this->close();

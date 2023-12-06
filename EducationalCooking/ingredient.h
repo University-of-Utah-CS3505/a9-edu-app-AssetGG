@@ -12,7 +12,7 @@ public:
     Ingredient();
     int locX, locY;
     std::string GetName() const;
-    QImage GetImage();
+    QImage GetImage() const;
     QRect GetRect();
 
     bool IsCooked() const;
