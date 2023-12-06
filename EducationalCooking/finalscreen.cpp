@@ -28,7 +28,7 @@ void FinalScreen::setScore(int scoreInput, vector<Ingredient> finalIngredients, 
 
 #ifdef Q_OS_WIN
     // Play the audio file on Windows
-    PlaySound(L":/sprites/Sprites/Piss in soup.m4a", NULL, SND_ASYNC | SND_FILENAME);
+    //PlaySound(L":/sprites/Sprites/Piss in soup.m4a", NULL, SND_ASYNC | SND_FILENAME);
 #elif defined(Q_OS_MAC)
     QProcess::startDetached("afplay", QStringList() << "/sprites/Sprites/Piss-in-soup.wav");
 #endif

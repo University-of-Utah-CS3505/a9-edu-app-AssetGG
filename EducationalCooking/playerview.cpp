@@ -110,7 +110,7 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
 
 void PlayerView::mouseMoveEvent(QMouseEvent *event)
 {
-    QRect placeFinishedIngredients(40, 450, finalDishBowl.width() * 2, finalDishBowl.height() * 2);
+    QRect placeFinishedIngredients(40, 450, finalDishBowl.width() * 2.25, finalDishBowl.height() * 2.25);
 
     if (placeFinishedIngredients.contains(event->pos()))
     {
