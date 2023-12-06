@@ -45,17 +45,17 @@ void PlayerModel::setupRecipes(){
     bonusSpaghetti.push_back(ComparisonIngredient("cheese", false, false));
 
     avaliableSpaghetti.push_back(Ingredient("noodles", QImage(folder + "Plain Pasta.png"),
-                                            QImage(), QImage(), false, true, 400, 300));
+                                            QImage(), QImage(), false, true, 550, 300));
     avaliableSpaghetti.push_back(Ingredient("tomato sauce", QImage(folder + "Tomato Sauce.png"),
-                                            QImage(), QImage(), false, false, 350, 300));
+                                            QImage(), QImage(), false, false, 550, 350));
     avaliableSpaghetti.push_back(Ingredient("meatballs", QImage(folder + "Meatball.png"),
-                                            QImage(), QImage(), false, true, 300, 300));
+                                            QImage(), QImage(), false, true, 575, 350));
     avaliableSpaghetti.push_back(Ingredient("chicken", QImage(folder + "Raw Chicken.png"),
-                                            QImage(folder + "Cut Chicken.png"), QImage(folder + "Cooked Chicken.png"), true, true, 250, 300));
+                                            QImage(folder + "Cut Chicken.png"), QImage(folder + "Cooked Chicken.png"), true, true, 575, 300));
     avaliableSpaghetti.push_back(Ingredient("cheese", QImage(folder + "Cheese Slice.png"),
-                                            QImage(folder + "Cheddar"), QImage(), true, false, 200, 300));
-    avaliableSpaghetti.push_back(Ingredient("milk", QImage(folder + "Milk.png"), QImage(), QImage(), false, true, 150, 300));
-    avaliableSpaghetti.push_back(Ingredient("ketchup", QImage(folder + "Ketchup.png"), QImage(), QImage(), false, false, 100, 300));
+                                            QImage(folder + "Cheddar"), QImage(), true, false, 600, 350));
+    avaliableSpaghetti.push_back(Ingredient("milk", QImage(folder + "Milk.png"), QImage(), QImage(), false, true, 600, 300));
+    avaliableSpaghetti.push_back(Ingredient("ketchup", QImage(folder + "Ketchup.png"), QImage(), QImage(), false, false, 575, 400));
     recipes.push_back(Recipe("Spaghetti", baseSpaghetti, bonusSpaghetti, avaliableSpaghetti, QImage(folder)));
 
     /*
@@ -77,19 +77,19 @@ void PlayerModel::setupRecipes(){
 
 
     avaliableSalad.push_back(Ingredient("lettuce", QImage(folder + "Lettuce.png"),
-                                        QImage(folder + "Chopped Lettuce.png"), QImage(), true, false, 200, 300));
+                                        QImage(folder + "Chopped Lettuce.png"), QImage(), true, false, 550, 300));
     avaliableSalad.push_back(Ingredient("salad dressing", QImage(folder + "Salad Dressing.png"),
-                                        QImage(), QImage(), false, false, 250, 300));
+                                        QImage(), QImage(), false, false, 575, 300));
     avaliableSalad.push_back(Ingredient("tomato", QImage(folder + "Tomato.png"),
-                                        QImage(folder + "Cut Tomato.png"), QImage(), true, true, 300, 300));
+                                        QImage(folder + "Cut Tomato.png"), QImage(), true, true, 550, 350));
     avaliableSalad.push_back(Ingredient("cucumber", QImage(folder + "Cucumber.png"),
-                                        QImage(folder + "Cucumber Slices.png"), QImage(), true, true, 350, 300));
+                                        QImage(folder + "Cucumber Slices.png"), QImage(), true, true, 575, 350));
     avaliableSalad.push_back(Ingredient("cheese", QImage(folder + "Cheese Slice.png"),
-                                        QImage(folder + "Cheddar"), QImage(), true, false, 400, 300));
-    avaliableSalad.push_back(Ingredient("sugar", QImage(folder + "Sugar.png"),
-                                        QImage(), QImage(), false, false, 450, 300));
+                                        QImage(folder + "Cheddar"), QImage(), true, false, 600, 300));
+    avaliableSalad.push_back(Ingredient("sugar", QImage(folder + "sugar.png"),
+                                        QImage(), QImage(), false, false, 600, 350));
     avaliableSalad.push_back(Ingredient("ketchup", QImage(folder + "Ketchup.png"),
-                                        QImage(), QImage(), false, false, 500, 300));
+                                        QImage(), QImage(), false, false, 575, 400));
     recipes.push_back(Recipe("Salad", baseSalad, bonusSalad, avaliableSalad, QImage()));
 
     /*
@@ -112,26 +112,26 @@ void PlayerModel::setupRecipes(){
     bonusPizza.push_back(ComparisonIngredient("onion", true, true));
 
     avaliablePizza.push_back(Ingredient("dough", QImage(folder + "Dough.png"),
-                                        QImage(), QImage(), false, true, 250, 300));
+                                        QImage(), QImage(), false, true, 550, 300));
     avaliablePizza.push_back(Ingredient("tomato sauce", QImage(folder + "Tomato Sauce.png"),
-                                        QImage(), QImage(), false, false, 300, 300));
+                                        QImage(), QImage(), false, false, 575, 350));
     avaliablePizza.push_back(Ingredient("cheese", QImage(folder + "Cheese Slice.png"),
-                                        QImage(folder + "Cheddar"), QImage(), true, false, 350, 300));
+                                        QImage(folder + "Cheddar"), QImage(), true, false, 575, 300));
     avaliablePizza.push_back(Ingredient("sausage", QImage(folder + "Raw Sausage.png"),
                                         QImage(folder + "Half Pepperoni.png"),
-                                        QImage(folder + "Cooked Sausage"), true, true, 400, 300));
+                                        QImage(folder + "Cooked Sausage"), true, true, 550, 350));
     avaliablePizza.push_back(Ingredient("bell peppers", QImage(folder + "bell_pepper.png"),
-                                        QImage(folder + "Cut Bell Pepper.png"), QImage(), true, false, 450, 300));
+                                        QImage(folder + "Cut Bell Pepper.png"), QImage(), true, false, 600, 250));
     avaliablePizza.push_back(Ingredient("chiles", QImage(folder + "Green Chili Pepper.png"),
-                                        QImage(folder + "Cut Green Chillis"), QImage(), true, true, 500, 300));
+                                        QImage(folder + "Cut Green Chillis"), QImage(), true, true, 600, 350));
     avaliablePizza.push_back(Ingredient("onion", QImage(folder + "Brown Onion.png"),
-                                        QImage(folder + "Half brown onion"), QImage(), true, false, 200, 300));
+                                        QImage(folder + "Half brown onion"), QImage(), true, false, 550, 250));
     avaliablePizza.push_back(Ingredient("carrots", QImage(folder + "Carrot.png"),
-                                        QImage(folder + "Sliced Carrot.png"), QImage(), true, true, 550, 300));
+                                        QImage(folder + "Sliced Carrot.png"), QImage(), true, true, 575, 250));
     avaliablePizza.push_back(Ingredient("honey", QImage(folder + "Honey.png"),
                                         QImage(), QImage(), false, false, 600, 300));
     avaliablePizza.push_back(Ingredient("ketchup", QImage(folder + "Ketchup.png"),
-                                        QImage(), QImage(), false, false, 150, 300));
+                                        QImage(), QImage(), false, false, 575, 400));
     recipes.push_back(Recipe("Pepperoni Pizza", basePizza, bonusPizza, avaliablePizza, QImage()));
 
     /*
@@ -155,25 +155,25 @@ void PlayerModel::setupRecipes(){
     bonusSoup.push_back(ComparisonIngredient("onion", true, true));
 
     avaliableSoup.push_back(Ingredient("green chili", QImage(folder + "Green Chili Pepper.png"),
-                                       QImage(folder + "Cut Green Chillis.png"), QImage(), true, true, 100, 300));
+                                       QImage(folder + "Cut Green Chillis.png"), QImage(), true, true, 550, 300));
     avaliableSoup.push_back(Ingredient("tomato sauce", QImage(folder + "Tomato Sauce.png"),
-                                       QImage(), QImage(), false, false, 150, 300));
+                                       QImage(), QImage(), false, false, 575, 350));
     avaliableSoup.push_back(Ingredient("beet", QImage(folder + "Red Beet.png"),
-                                       QImage(), QImage(), false, false, 200, 300));
+                                       QImage(), QImage(), false, false, 600, 400));
     avaliableSoup.push_back(Ingredient("chiles", QImage(folder + "Red Chili Pepper.png"),
-                                       QImage(), QImage(), false, true, 250, 300));
+                                       QImage(), QImage(), false, true, 550, 350));
     avaliableSoup.push_back(Ingredient("peppers", QImage(folder + "bell_pepper.png"),
-                                       QImage(folder + "Cut Bell Pepper.png"), QImage(), true, false, 300, 300));
+                                       QImage(folder + "Cut Bell Pepper.png"), QImage(), true, false, 575, 400));
     avaliableSoup.push_back(Ingredient("mushrooms", QImage(folder + "Mushroom.png"),
-                                       QImage(folder + "Half Mushroom.png"), QImage(), true, true, 350, 300));
+                                       QImage(folder + "Half Mushroom.png"), QImage(), true, true, 600, 300));
     avaliableSoup.push_back(Ingredient("onion", QImage(folder + "Brown Onion.png"),
-                                       QImage(folder + "Half brown onion"), QImage(), true, false, 400, 300));
+                                       QImage(folder + "Half brown onion"), QImage(), true, false, 550, 400));
     avaliableSoup.push_back(Ingredient("carrots", QImage(folder + "Carrot.png"),
-                                       QImage(folder + "Sliced Carrot.png"), QImage(), true, true, 450, 300));
+                                       QImage(folder + "Sliced Carrot.png"), QImage(), true, true, 575, 300));
     avaliableSoup.push_back(Ingredient("tuna", QImage(folder + "Tuna.png"),
-                                       QImage(folder + "Tuna Slice.png"), QImage(), true, false, 500, 300));
+                                       QImage(folder + "Tuna Slice.png"), QImage(), true, false, 600, 350));
     avaliableSoup.push_back(Ingredient("cabbage", QImage(folder + "Cabbage.png"),
-                                       QImage(folder + "Chopped Cabbage.png"), QImage(), true, false, 550, 300));
+                                       QImage(folder + "Chopped Cabbage.png"), QImage(), true, false, 575, 250));
     recipes.push_back(Recipe("Soup", baseSoup, bonusSoup, avaliableSoup, QImage()));
 
     /*
@@ -198,35 +198,35 @@ void PlayerModel::setupRecipes(){
 
 
     avaliableHamburger.push_back(Ingredient("bun", QImage(folder + "Bun.png"),
-                                            QImage(), QImage(), false, true, 100, 300));
+                                            QImage(), QImage(), false, true, 550, 250));
     avaliableHamburger.push_back(Ingredient("patty", QImage(folder + "Raw Patty.png"),
-                                            QImage(), QImage(folder + "Cooked Patty.png"), false, true, 150, 300));
+                                            QImage(), QImage(folder + "Cooked Patty.png"), false, true, 550, 200));
     avaliableHamburger.push_back(Ingredient("cheese", QImage(folder + "Cheese Slice.png"),
-                                            QImage(folder + "Cheddar"), QImage(), true, false, 200, 300));
+                                            QImage(folder + "Cheddar"), QImage(), true, false, 550, 300));
     avaliableHamburger.push_back(Ingredient("lettuce", QImage(folder + "Lettuce.png"),
-                                            QImage(), QImage(), false, false, 250, 300));
+                                            QImage(), QImage(), false, false, 550, 350));
     avaliableHamburger.push_back(Ingredient("tomato", QImage(folder + "Tomato.png"),
-                                            QImage(), QImage(), false, false, 300, 300));
+                                            QImage(), QImage(), false, false, 550, 400));
     avaliableHamburger.push_back(Ingredient("onion", QImage(folder + "Brown Onion.png"),
-                                            QImage(folder + "Half brown onion"), QImage(), true, false, 350, 300));
+                                            QImage(folder + "Half brown onion"), QImage(), true, false, 575, 200));
     avaliableHamburger.push_back(Ingredient("ketchup", QImage(folder + "Ketchup.png"),
-                                            QImage(), QImage(), false, false, 400, 300));
+                                            QImage(), QImage(), false, false, 575, 300));
     avaliableHamburger.push_back(Ingredient("avocado", QImage(folder + "Avocado.png"),
-                                            QImage(folder + "Half Avocado.png"), QImage(), true, false, 450, 300));
+                                            QImage(folder + "Half Avocado.png"), QImage(), true, false, 575, 400));
     avaliableHamburger.push_back(Ingredient("cucumber", QImage(folder + "Cucumber.png"),
-                                            QImage(folder + "Cucumber Slices.png"), QImage(), true, true, 500, 300));
-    avaliableHamburger.push_back(Ingredient("blueberry", QImage(folder + "BlueBerry.png"),
-                                            QImage(), QImage(), false, false, 550, 300));
+                                            QImage(folder + "Cucumber Slices.png"), QImage(), true, true, 575, 350));
+    avaliableHamburger.push_back(Ingredient("blueberry", QImage(folder + "Blueberry.png"),
+                                            QImage(), QImage(), false, false, 575, 250));
     avaliableHamburger.push_back(Ingredient("chocolate", QImage(folder + "Milk Chocolate Bar.png"),
-                                            QImage(), QImage(), true, false, 600, 300));
+                                            QImage(), QImage(), true, false, 600, 200));
     avaliableHamburger.push_back(Ingredient("cabbage", QImage(folder + "Cabbage.png"),
-                                            QImage(folder + "Chopped Cabbage.png"), QImage(), true, false, 100, 350));
+                                            QImage(folder + "Chopped Cabbage.png"), QImage(), true, false, 600, 250));
     avaliableHamburger.push_back(Ingredient("meatballs", QImage(folder + "Meatball.png"),
-                                            QImage(), QImage(), false, true, 150, 350));
+                                            QImage(), QImage(), false, true, 600, 300));
     avaliableHamburger.push_back(Ingredient("honey", QImage(folder + "Honey.png"),
-                                            QImage(), QImage(), true, false, 200, 350));
+                                            QImage(), QImage(), true, false, 600, 350));
     avaliableHamburger.push_back(Ingredient("tuna", QImage(folder + "Tuna.png"),
-                                            QImage(folder + "Tuna Slice.png"), QImage(), true, false, 250, 350));
+                                            QImage(folder + "Tuna Slice.png"), QImage(), true, false, 600, 400));
     recipes.push_back(Recipe("Hamburger", baseHamburger, bonusHamburger, avaliableHamburger, QImage("Hamburger Food.png")));
 
     /*
@@ -250,35 +250,35 @@ void PlayerModel::setupRecipes(){
     bonusPancake.push_back(ComparisonIngredient("strawberry", false, false));
 
     avaliablePancake.push_back(Ingredient("milk", QImage(folder + "Milk.png"),
-                                          QImage(), QImage(), false, true, 100, 300));
+                                          QImage(), QImage(), false, true, 550, 200));
     avaliablePancake.push_back(Ingredient("eggs", QImage(folder + "Egg.png"),
-                                          QImage(), QImage(folder + "Baked Egg.png"), false, false, 150, 300));
+                                          QImage(), QImage(folder + "Baked Egg.png"), false, false, 550, 250));
     avaliablePancake.push_back(Ingredient("flour", QImage(folder + "Flour.png"),
-                                          QImage(), QImage(), false, false, 200, 300));
-    avaliablePancake.push_back(Ingredient("sugar", QImage(folder + "Sugar.png"),
-                                          QImage(), QImage(), false, false, 250, 300));
+                                          QImage(), QImage(), false, false, 550, 300));
+    avaliablePancake.push_back(Ingredient("sugar", QImage(folder + "sugar.png"),
+                                          QImage(), QImage(), false, false, 550, 400));
     avaliablePancake.push_back(Ingredient("butter", QImage(folder + "Butter.png"),
-                                          QImage(), QImage(), false, false, 300, 300));
+                                          QImage(), QImage(), false, false, 550, 350));
     avaliablePancake.push_back(Ingredient("chocolate", QImage(folder + "Milk Chocolate Bar.png"),
-                                          QImage(), QImage(), true, false, 350, 300));
+                                          QImage(), QImage(), true, false, 575, 200));
     avaliablePancake.push_back(Ingredient("syrup", QImage(folder + "Syrup.png"),
-                                          QImage(), QImage(), true, true, 400, 300));
+                                          QImage(), QImage(), true, true, 575, 250));
     avaliablePancake.push_back(Ingredient("strawberry", QImage(folder + "Strawberry.png"),
-                                          QImage(), QImage(), false, false, 450, 300));
+                                          QImage(), QImage(), false, false, 575, 300));
     avaliablePancake.push_back(Ingredient("carrots", QImage(folder + "Carrot.png"),
-                                          QImage(folder + "Sliced Carrot.png"), QImage(), true, true, 500, 300));
+                                          QImage(folder + "Sliced Carrot.png"), QImage(), true, true, 575, 350));
     avaliablePancake.push_back(Ingredient("onion", QImage(folder + "Brown Onion.png"),
-                                          QImage(folder + "Half brown onion"), QImage(), true, false, 150, 350));
+                                          QImage(folder + "Half brown onion"), QImage(), true, false, 575, 400));
     avaliablePancake.push_back(Ingredient("cabbage", QImage(folder + "Cabbage.png"),
-                                          QImage(folder + "Chopped Cabbage.png"), QImage(), true, false, 200, 350));
+                                          QImage(folder + "Chopped Cabbage.png"), QImage(), true, false, 600, 200));
     avaliablePancake.push_back(Ingredient("cucumber", QImage(folder + "Cucumber.png"),
-                                          QImage(folder + "Cucumber Slices.png"), QImage(), true, true, 250, 350));
+                                          QImage(folder + "Cucumber Slices.png"), QImage(), true, true, 600, 250));
     avaliablePancake.push_back(Ingredient("meatballs", QImage(folder + "Meatball.png"),
-                                          QImage(), QImage(), false, true, 300, 350));
+                                          QImage(), QImage(), false, true, 600, 300));
     avaliablePancake.push_back(Ingredient("ketchup", QImage(folder + "Ketchup.png"),
-                                          QImage(), QImage(), false, false, 350, 350));
+                                          QImage(), QImage(), false, false, 600, 350));
     avaliablePancake.push_back(Ingredient("tuna", QImage(folder + "Tuna.png"),
-                                          QImage(folder + "Tuna Slice.png"), QImage(), true, false, 400, 350));
+                                          QImage(folder + "Tuna Slice.png"), QImage(), true, false, 600, 400));
     recipes.push_back(Recipe("Pancake", basePancake, bonusPancake, avaliablePancake, QImage()));
 }
 

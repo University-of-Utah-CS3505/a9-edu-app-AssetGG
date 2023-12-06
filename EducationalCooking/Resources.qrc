@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/sprites">
-	<file>Sprites/Piss-in-soup.wav</file>
-	<file>Sprites/Fresh tomatoes.m4a</file>
+        <file>Sprites/Piss-in-soup.wav</file>
+        <file>Sprites/Fresh tomatoes.m4a</file>
         <file>Sprites/ramsay1.png</file>
-	<file>Sprites/ramsay2.png</file>
-	<file>Sprites/Trash.png</file>
-	<file>Sprites/Tomato.png</file>
+        <file>Sprites/ramsay2.png</file>
+        <file>Sprites/Trash.png</file>
+        <file>Sprites/Tomato.png</file>
         <file>Sprites/Kitchen.png</file>
         <file>Sprites/Alternate Red Velvet Cake.png</file>
         <file>Sprites/Apple Pie Slice.png</file>
@@ -471,6 +471,11 @@
         <file>Sprites/Chopped Cabbage.png</file>
         <file>Sprites/frying pan.png</file>
         <file>Sprites/bowl.png</file>
+        <file>Sprites/bell_pepper.png</file>
+        <file>Sprites/Lettuce.png</file>
+        <file>Sprites/Chopped Lettuce.png</file>
+        <file>Sprites/sugar.png</file>
+        <file>Sprites/Syrup.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>
