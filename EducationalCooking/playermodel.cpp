@@ -1,12 +1,11 @@
 #include "playermodel.h"
-#include "ingredient.h"
+#include "comparisoningredient.h"
 #include "recipe.h"
 #include "tools.h"
 #include <vector>
-#include "comparisoningredient.h"
 
-using std::vector;
 using std::map;
+using std::vector;
 
 PlayerModel::PlayerModel(Physics &physics, QObject *parent)
     : QObject{parent}
@@ -18,6 +17,173 @@ PlayerModel::PlayerModel(Physics &physics, QObject *parent)
     finalScore = 0;
     setupRecipes();
 }
+
+// this method is when the learn recipe button is clicked in startupscreen
+void PlayerModel::setupScene()
+{
+    setupWalls();
+    setupTools();
+    setupIngredients();
+    physics.start();
+}
+
+void PlayerModel::setCurrentRecipe(const QString &recipe)
+{
+    currentRecipe = recipe;
+    emit selectedRecipeChanged(
+        currentRecipe); // May or may not be useful, as user cannot change recipe mid game
+}
+
+const QString &PlayerModel::getCurrentRecipe() const
+{
+    return currentRecipe;
+}
+
+Recipe &PlayerModel::getSelectedRecipe()
+{
+    return selectedRecipe;
+}
+
+int PlayerModel::getFinalScore() const
+{
+    return finalScore;
+}
+
+std::map<std::string, Tool *> &PlayerModel::getTools()
+{
+    return tools;
+}
+
+void PlayerModel::handleRecipeClicked(const QString &recipeName)
+{
+    qDebug() << "Recipe clicked:" << recipeName;
+}
+
+int PlayerModel::calculateScore()
+{
+    int totalPoints = 100; // Score starts at 100
+
+    Recipe recipe;
+    for (const auto &rec : recipes) {
+        if (QString::fromStdString(rec.getRecipeName()) == currentRecipe) {
+            recipe = rec;
+            break;
+        }
+    }
+
+    // Checks for correct ingredient usage
+    for (const auto &requiredIngredient : recipe.getBaseIngredients()) {
+        bool found = false;
+
+        for (const auto &usedIngredient : finalIngredients) {
+            if (requiredIngredient.GetName() == usedIngredient.GetName()) {
+                found = true;
+
+                if (usedIngredient.IsCooked() != requiredIngredient.IsCooked()) {
+                    totalPoints -= 10;
+                }
+
+                if (usedIngredient.IsCut() != requiredIngredient.IsCut()) {
+                    totalPoints -= 10;
+                }
+
+                if (usedIngredient.IsBurned()) {
+                    totalPoints -= 20;
+                }
+            }
+        }
+
+        if (!found) {
+            totalPoints -= 10; // Deducts points for missing ingredients
+        }
+    }
+
+    // Checks for usage of bonus ingredients
+    for (const auto &bonusIngredient : recipe.getBonusIngredients()) {
+        for (const auto &usedIngredient : finalIngredients) {
+            if (bonusIngredient.GetName() == usedIngredient.GetName()) {
+                totalPoints += 10;
+            }
+        }
+    }
+
+    totalPoints = std::max(totalPoints, 0); // Prevents negative points
+
+    finalScore = totalPoints;
+
+    return finalScore;
+}
+
+vector<Ingredient> PlayerModel::getFinalIngredients()
+{
+    return finalIngredients;
+}
+
+void PlayerModel::addIngredientToFinalDish(Ingredient ingredientToAdd)
+{
+    finalIngredients.push_back(ingredientToAdd);
+}
+
+void PlayerModel::setupWalls()
+{
+    auto rightWallShape = Physics::createBoxShape(10.0, 640.0);
+    auto leftWallShape = Physics::createBoxShape(10.0, 640.0);
+    auto topWallShape = Physics::createBoxShape(640.0, 10.0);
+    auto bottomWallShape = Physics::createBoxShape(640.0, 10.0);
+
+    physics.registerStaticObject("rightWall", &rightWallShape, 640.0, 320.0);
+    physics.registerStaticObject("leftWall", &leftWallShape, 0.0, 320.0);
+    physics.registerStaticObject("topWall", &topWallShape, 320.0, -15.0);
+    physics.registerStaticObject("bottomWall", &bottomWallShape, 320.0, 640.0);
+}
+
+void PlayerModel::setupIngredientPhysics(Ingredient &ingredient)
+{
+    QRect spriteBounds = ingredient.GetImage().rect();
+    float radius = std::min(spriteBounds.width(), spriteBounds.height()) / 2.0;
+    auto circle = Physics::createCircleShape(radius);
+    auto obj = physics.registerDynamicObject(ingredient.GetName(),
+                                             &circle,
+                                             ingredient.locX,
+                                             ingredient.locY);
+
+    b2Filter collisionFilter;
+    // Walls are 0x0001 (by default), Ingredients are 0x0002, tools are 0x0004
+    collisionFilter.categoryBits = 0x0002;
+    // black magic meaning it can collide with walls or ingredients, but not tools.
+    collisionFilter.maskBits = 0x0001 | 0x0002;
+
+    obj.fixture->SetFriction(0.2);
+    obj.fixture->SetRestitution(0.1);
+    obj.fixture->SetFilterData(collisionFilter);
+
+    obj.body->SetLinearDamping(5.0);
+}
+
+void PlayerModel::setupCookingToolPhysics(Tool tool)
+{
+    // create a physics object for the tool
+    QImage img = tool.GetImage();
+    auto boxShape = Physics::createBoxShape(img.width() * 0.8, img.height() * 0.8);
+
+    b2Filter collisionFilter;
+    // Walls are 0x0001, Ingredients are 0x0002, tools are 0x0004
+    collisionFilter.categoryBits = 0x0004;
+    // black magic meaning it can collide with walls or tools, but not ingredients.
+    collisionFilter.maskBits = 0x0001 | 0x0004;
+
+    Physics::PhysicsObject *obj = nullptr;
+    if (tool.IsMovable()) {
+        obj = &physics.registerDynamicObject(tool.GetName(), &boxShape, tool.locX, tool.locY);
+
+    } else {
+        obj = &physics.registerStaticObject(tool.GetName(), &boxShape, tool.locX, tool.locY);
+    }
+
+    obj->body->SetLinearDamping(15.0);
+    obj->fixture->SetFilterData(collisionFilter);
+}
+#include "ingredient.h"
 
 // incomplete
 // doesn't have proper png
@@ -282,67 +448,6 @@ void PlayerModel::setupRecipes(){
     recipes.push_back(Recipe("Pancake", basePancake, bonusPancake, avaliablePancake, QImage()));
 }
 
-void PlayerModel::setCurrentRecipe(const QString& recipe)
-{
-    currentRecipe = recipe;
-    emit selectedRecipeChanged(currentRecipe); // May or may not be useful, as user cannot change recipe mid game
-}
-
-const QString& PlayerModel::getCurrentRecipe() const
-{
-    return currentRecipe;
-}
-
-Recipe& PlayerModel::getSelectedRecipe()
-{
-    return selectedRecipe;
-}
-
-std::map<std::string, Tool*>& PlayerModel::getTools(){
-    return tools;
-}
-
-Ingredient *PlayerModel::getIngredientFromName(std::string ingredientName)
-{
-    for (Ingredient &ingredient : selectedRecipe.getAvaliableIngredients()) {
-        if (ingredient.GetName() == ingredientName) {
-            return &ingredient;
-        }
-    }
-    return nullptr;
-}
-
-void PlayerModel::handleRecipeClicked(const QString &recipeName)
-{
-    qDebug() << "Recipe clicked:" << recipeName;
-}
-
-// Note for David: setup tools is called by this method
-// this method is when the learn recipe button is clicked in startupscreen
-void PlayerModel::setupScene()
-{
-    setupWalls();
-    setupTools();
-    setupIngredients();
-    physics.start();
-}
-
-void PlayerModel::setupIngredients()
-{
-    for(Recipe &r : recipes)
-    {
-        if(currentRecipe.toStdString() == r.getRecipeName())
-        {
-            selectedRecipe = r;
-            break;
-        }
-    }
-    for (Ingredient &ingredient : selectedRecipe.getAvaliableIngredients()) {
-        setupIngredientPhysics(ingredient);
-    }
-}
-
-// Note for David: this method is being called for tools
 void PlayerModel::setupTools()
 {
     // polymorphism in cpp is braindead, so we're forced to
@@ -351,138 +456,21 @@ void PlayerModel::setupTools()
     // The scope of this method is to allocate on the heap.
     tools.insert({"CuttingBoard", new CuttingBoard(230, 410)});
     tools.insert({"FryingPan", new FryingPan(282, 90)});
-    tools.insert({"Pot",  new Pot(405, 75)});
-    for(auto &[toolName, tool] : tools) {
+    tools.insert({"Pot", new Pot(405, 75)});
+    for (auto &[toolName, tool] : tools) {
         setupCookingToolPhysics(*tool);
     }
 }
 
-void PlayerModel::setupWalls()
+void PlayerModel::setupIngredients()
 {
-    auto rightWallShape = Physics::createBoxShape(10.0, 640.0);
-    auto leftWallShape = Physics::createBoxShape(10.0, 640.0);
-    auto topWallShape = Physics::createBoxShape(640.0, 10.0);
-    auto bottomWallShape = Physics::createBoxShape(640.0, 10.0);
-
-    physics.registerStaticObject("rightWall", &rightWallShape, 640.0, 320.0);
-    physics.registerStaticObject("leftWall", &leftWallShape, 0.0, 320.0);
-    physics.registerStaticObject("topWall", &topWallShape, 320.0, -15.0);
-    physics.registerStaticObject("bottomWall", &bottomWallShape, 320.0, 640.0);
-}
-
-void PlayerModel::setupIngredientPhysics(Ingredient &ingredient)
-{
-    QRect spriteBounds = ingredient.GetImage().rect();
-    float radius = std::min(spriteBounds.width(), spriteBounds.height()) / 2.0;
-    auto circle = Physics::createCircleShape(radius);
-    auto obj = physics.registerDynamicObject(ingredient.GetName(),
-                                             &circle,
-                                             ingredient.locX,
-                                             ingredient.locY);
-
-    b2Filter collisionFilter;
-    // Walls are 0x0001 (by default), Ingredients are 0x0002, tools are 0x0004
-    collisionFilter.categoryBits = 0x0002;
-    // black magic meaning it can collide with walls or ingredients, but not tools.
-    collisionFilter.maskBits = 0x0001 | 0x0002;
-
-    obj.fixture->SetFriction(0.2);
-    obj.fixture->SetRestitution(0.1);
-    obj.fixture->SetFilterData(collisionFilter);
-
-    obj.body->SetLinearDamping(5.0);
-}
-
-void PlayerModel::setupCookingToolPhysics(Tool tool)
-{
-    // create a physics object for the tool
-    QImage img = tool.GetImage();
-    auto boxShape = Physics::createBoxShape(img.width() * 0.8, img.height() * 0.8);
-
-    b2Filter collisionFilter;
-    // Walls are 0x0001, Ingredients are 0x0002, tools are 0x0004
-    collisionFilter.categoryBits = 0x0004;
-    // black magic meaning it can collide with walls or tools, but not ingredients.
-    collisionFilter.maskBits = 0x0001 | 0x0004;
-
-    Physics::PhysicsObject *obj = nullptr;
-    if (tool.IsMovable()) {
-        obj = &physics.registerDynamicObject(tool.GetName(), &boxShape, tool.locX, tool.locY);
-
-    } else {
-        obj = &physics.registerStaticObject(tool.GetName(), &boxShape, tool.locX, tool.locY);
-    }
-
-    obj->body->SetLinearDamping(15.0);
-    obj->fixture->SetFilterData(collisionFilter);
-}
-
-int PlayerModel::calculateScore()
-{
-    int totalPoints = 100; // Score starts at 100
-
-    Recipe recipe;
-    for (const auto &rec : recipes) {
-        if (QString::fromStdString(rec.getRecipeName()) == currentRecipe) {
-            recipe = rec;
+    for (Recipe &r : recipes) {
+        if (currentRecipe.toStdString() == r.getRecipeName()) {
+            selectedRecipe = r;
             break;
         }
     }
-
-    // Checks for correct ingredient usage
-    for (const auto &requiredIngredient : recipe.getBaseIngredients()) {
-        bool found = false;
-
-        for (const auto &usedIngredient : finalIngredients) {
-            if (requiredIngredient.GetName() == usedIngredient.GetName()) {
-                found = true;
-
-                if(usedIngredient.IsCooked() != requiredIngredient.IsCooked()){
-                    totalPoints -= 10;
-                }
-
-                if(usedIngredient.IsCut() != requiredIngredient.IsCut()){
-                    totalPoints -= 10;
-                }
-
-                if(usedIngredient.IsBurned()){
-                    totalPoints -= 20;
-                }
-            }
-        }
-
-        if (!found) {
-            totalPoints -= 10; // Deducts points for missing ingredients
-        }
+    for (Ingredient &ingredient : selectedRecipe.getAvaliableIngredients()) {
+        setupIngredientPhysics(ingredient);
     }
-
-    // Checks for usage of bonus ingredients
-    for (const auto &bonusIngredient : recipe.getBonusIngredients()) {
-        for (const auto &usedIngredient : finalIngredients) {
-            if (bonusIngredient.GetName() == usedIngredient.GetName()) {
-                totalPoints += 10;
-            }
-        }
-    }
-
-    totalPoints = std::max(totalPoints, 0); // Prevents negative points
-
-    finalScore = totalPoints;
-
-    return finalScore;
-}
-
-int PlayerModel::getFinalScore() const
-{
-    return finalScore;
-}
-
-vector<Ingredient> PlayerModel::getFinalIngredients()
-{
-    return finalIngredients;
-}
-
-void PlayerModel::addIngredientToFinalDish(Ingredient ingredientToAdd)
-{
-    finalIngredients.push_back(ingredientToAdd);
 }

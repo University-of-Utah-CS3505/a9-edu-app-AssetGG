@@ -23,6 +23,7 @@ public:
         /// (i.e. shape, friction, restitution, etc).
         /// See Box2D docs for more info.
         b2Fixture *fixture;
+        /// Constructs a PhysicsObject with given b2Body and b2Fixture components
         PhysicsObject(b2Body *body, b2Fixture *fixture);
     };
 

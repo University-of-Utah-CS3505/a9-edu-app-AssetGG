@@ -20,15 +20,24 @@ public:
 
     explicit PlayerModel(Physics &physics, QObject *parent = nullptr);
 
-    // sets up our scene, using a recipe to spawn ingredients on a table
+    /// sets up our scene, using a recipe to spawn ingredients on a table
+    /// and tools in their respective position, then starts the physics simulation.
     void setupScene();
+
+    ///
     void setCurrentRecipe(const QString& recipe); // Used at startup
+
+    ///
     const QString& getCurrentRecipe() const;
+
+    ///
     Recipe& getSelectedRecipe();
 
+    ///
     int getFinalScore() const;
+
+    /// Returns a reference to the map of tool names to tool instances.
     std::map<std::string, Tool*>& getTools();
-    Ingredient *getIngredientFromName(std::string ingredientName);
 
 public slots:
     void handleRecipeClicked(const QString &recipeName);
