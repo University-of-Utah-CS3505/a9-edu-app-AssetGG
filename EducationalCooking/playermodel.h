@@ -43,6 +43,9 @@ public slots:
     void handleRecipeClicked(const QString &recipeName);
     int calculateScore();
     vector<Ingredient> getFinalIngredients();
+
+    /// Adds the given ingredient to the vector of finalIngredient.
+    /// All ingredients in this vector will be counted towards their final score.
     void addIngredientToFinalDish(Ingredient);
 
 private:
