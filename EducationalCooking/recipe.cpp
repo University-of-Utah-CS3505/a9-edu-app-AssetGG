@@ -1,6 +1,4 @@
 #include "recipe.h"
-#include <string>
-#include <vector>
 #include "comparisoningredient.h"
 
 using std::vector;

@@ -1,3 +1,12 @@
+/*
+ * Name: David Cosby
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: Serves as a glue between view and model interactions.
+ *      Primarily handles questions of how user input on the view should
+ *      update data stored in the model.
+ */
+
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 

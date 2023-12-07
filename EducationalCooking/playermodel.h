@@ -1,3 +1,12 @@
+/*
+ * Name: everyone
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: Handles data and operations for most game logic. Includes,
+ *      but is not limited to, setting up physics, data for recipes and
+ *      scoring final dishes.
+ */
+
 #ifndef PLAYERMODEL_H
 #define PLAYERMODEL_H
 
@@ -58,18 +67,27 @@ private:
     Recipe selectedRecipe;
     std::map<std::string, Tool*> tools;
 
+    /// Spawns static collision objects for the walls
     void setupWalls();
+
+    /// Spawns dynamic collision objects for the ingredients
     void setupIngredientPhysics(Ingredient &ingredient);
+
+    /// Spawns collision objects for the tools.
     void setupCookingToolPhysics(Tool tool);
+
     void setupRecipes();
+
+    /// Creates instances of each tool we need for our kitchen
+    /// and adds them to an easy-to-query map.
     void setupTools();
+
+    /// Calls setupIngredientPhysics() for each ingredient in the recipe.
     void setupIngredients();
 
 signals:
     void recipeClicked(const QString &recipeName);
-    void updateIngredientOnScreen(QImage*, int, int);
     void selectedRecipeChanged(const QString &newRecipe);
-
 };
 
 #endif // PLAYERMODEL_H

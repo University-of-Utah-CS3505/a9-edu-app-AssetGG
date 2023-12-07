@@ -1,6 +1,5 @@
 #include "ingredient.h"
 #include <QMouseEvent>
-#include <string>
 
 Ingredient::Ingredient(std::string name,
                        QImage baseImage,

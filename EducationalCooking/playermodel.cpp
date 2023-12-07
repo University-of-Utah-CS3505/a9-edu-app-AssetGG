@@ -2,7 +2,6 @@
 #include "comparisoningredient.h"
 #include "recipe.h"
 #include "tools.h"
-#include <vector>
 
 using std::map;
 using std::vector;

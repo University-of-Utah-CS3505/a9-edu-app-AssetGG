@@ -10,7 +10,6 @@
 
 #include <QObject>
 #include <QImage>
-#include <vector>
 #include "ingredient.h"
 #include "comparisoningredient.h"
 

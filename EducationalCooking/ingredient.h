@@ -1,3 +1,11 @@
+/*
+ * Name: Kazimar Guenther, David Cosby,
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: Ingredient class to represent the state and appearance of
+ *      Ingredients in the game.
+ */
+
 #ifndef INGREDIENT_H
 #define INGREDIENT_H
 

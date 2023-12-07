@@ -1,6 +1,5 @@
 #include "comparisoningredient.h"
 #include "ingredient.h"
-#include <string>
 
 ComparisonIngredient::ComparisonIngredient(std::string foodName, bool isCut, bool isCooked)
 {
