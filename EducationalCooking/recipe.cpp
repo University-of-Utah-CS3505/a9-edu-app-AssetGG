@@ -1,25 +1,28 @@
 #include "recipe.h"
 #include "comparisoningredient.h"
 
-using std::vector;
 using std::string;
+using std::vector;
 
-Recipe::Recipe(string name, vector<ComparisonIngredient> baseList, vector<ComparisonIngredient> bonusList, vector<Ingredient> avaliableList, QImage image)
+Recipe::Recipe(string name,
+               vector<ComparisonIngredient> baseList,
+               vector<ComparisonIngredient> bonusList,
+               vector<Ingredient> avaliableList,
+               QImage image)
+    : baseIngredients(baseList)
+    , bonusIngredients(bonusList)
+    , avaliableIngredients(avaliableList)
+    , recipeName(name)
+    , image(image)
 {
-    recipeName = name;
-    baseIngredients.swap(baseList);
-    bonusIngredients.swap(bonusList);
-    avaliableIngredients.swap(avaliableList);
-    this->image = image;
     helpSpriteSmall = QImage(":/sprites/Sprites/recipeHelp.png");
     helpSpriteLarge = QImage(":/sprites/Sprites/fullSizeRecipeHelp.png");
 }
 
 Recipe::Recipe()
-    : xLoc(0), yLoc(0)
-{
-
-}
+    : xLoc(0)
+    , yLoc(0)
+{}
 
 vector<ComparisonIngredient> Recipe::getBaseIngredients() const
 {
