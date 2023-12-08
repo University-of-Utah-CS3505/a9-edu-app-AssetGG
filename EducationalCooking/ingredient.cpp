@@ -101,3 +101,10 @@ bool Ingredient::IsCuttable() const
 {
     return cuttable;
 }
+
+bool Ingredient::operator ==(Ingredient lhs)
+{
+    if (this->GetName() == lhs.GetName())
+        return true;
+    return false;
+}

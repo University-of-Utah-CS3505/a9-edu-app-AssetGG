@@ -22,6 +22,7 @@ public:
     std::string GetName() const;
     QImage GetImage() const;
     QRect GetRect();
+    bool operator==(Ingredient);
 
     bool IsCooked() const;
     bool IsCut() const;

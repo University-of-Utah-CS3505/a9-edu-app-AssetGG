@@ -116,7 +116,8 @@ vector<Ingredient> PlayerModel::getFinalIngredients()
 
 void PlayerModel::addIngredientToFinalDish(Ingredient ingredientToAdd)
 {
-    finalIngredients.push_back(ingredientToAdd);
+    if (std::find(finalIngredients.begin(), finalIngredients.end(), ingredientToAdd) == finalIngredients.end())
+        finalIngredients.push_back(ingredientToAdd);
 }
 
 void PlayerModel::setupWalls()

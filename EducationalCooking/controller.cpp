@@ -17,6 +17,7 @@ Controller::Controller(PlayerModel &model, PlayerView &view, QObject *parent)
     connect(&model.physics, &Physics::onUpdate, this, &Controller::updateGrabForces);
     connect(&view, &PlayerView::calculateScoreRequested, &model, &PlayerModel::calculateScore);
     connect(&view, &PlayerView::getFinalIngredientsRequested, &model, &PlayerModel::getFinalIngredients);
+    connect(&view, &PlayerView::addItemToFinalDishIngredients, &model, &PlayerModel::addIngredientToFinalDish);
 
     setupGrabConnections();
 }

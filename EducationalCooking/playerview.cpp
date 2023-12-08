@@ -6,6 +6,7 @@
 #include "ui_playerview.h"
 #include "finalscreen.h"
 #include <QGraphicsBlurEffect>
+#include <iostream>
 
 PlayerView::PlayerView(QWidget *parent)
     : QMainWindow(parent)
