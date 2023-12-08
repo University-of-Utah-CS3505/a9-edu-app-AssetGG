@@ -73,22 +73,25 @@ int PlayerModel::calculateScore()
     for (const auto &requiredIngredient : recipe.getBaseIngredients()) {
         bool found = false;
 
+        int baseIngredientNumber = 100 / recipe.getBaseIngredients().size();
+        int baseIngredientImproper = baseIngredientNumber / 2;
+
         for (const auto &usedIngredient : finalIngredients) {
             if (requiredIngredient.GetName() == usedIngredient.GetName()) {
                 found = true;
 
                 if (usedIngredient.IsCooked() != requiredIngredient.IsCooked()) {
-                    totalPoints -= 10;
+                    totalPoints -= baseIngredientImproper;
                 }
 
                 if (usedIngredient.IsCut() != requiredIngredient.IsCut()) {
-                    totalPoints -= 10;
+                    totalPoints -= baseIngredientImproper;
                 }
             }
         }
 
         if (!found) {
-            totalPoints -= 10; // Deducts points for missing ingredients
+            totalPoints -= baseIngredientNumber; // Deducts points for missing ingredients
         }
     }
 
