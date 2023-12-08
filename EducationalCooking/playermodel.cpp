@@ -269,7 +269,7 @@ void PlayerModel::setupRecipes(){
     bonusPizza.push_back(ComparisonIngredient("onion", true, true));
 
     avaliablePizza.push_back(Ingredient("dough", QImage(folder + "Dough.png"),
-                                        QImage(), QImage(folder + "Dough.png"), false, true, 550, 300));
+                                        QImage(), QImage(folder + "Pita Bread.png"), false, true, 550, 300));
     avaliablePizza.push_back(Ingredient("tomato sauce", QImage(folder + "Tomato Sauce.png"),
                                         QImage(), QImage(), false, false, 575, 350));
     avaliablePizza.push_back(Ingredient("cheese", QImage(folder + "Cheese Slice.png"),
