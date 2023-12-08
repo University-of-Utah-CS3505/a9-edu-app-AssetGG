@@ -27,7 +27,7 @@ PlayerView::~PlayerView()
     delete ui;
 }
 
-void PlayerView::paintEvent(QPaintEvent *event)
+void PlayerView::paintEvent(QPaintEvent *)
 {
     QPainter imagePainter(this);
     // draw the things that need to show up on top last. Background goes first.
@@ -153,7 +153,7 @@ void PlayerView::setupScene(Recipe &recipe, std::map<std::string, Tool*> &tools)
     chosenRecipe = recipe;
     setupRecipeHelpLine1(recipe);
     setupRecipeHelpLine2(recipe);
-    setupRecipeHelpLine3(recipe);
+    setupRecipeHelpLine3();
     setupRecipeHelpLine4(recipe);
 
     for (Ingredient &ingredient : recipe.getAvaliableIngredients())
@@ -216,7 +216,7 @@ void PlayerView::setupRecipeHelpLine2(Recipe recipe)
     recipeHelpLine2->setHidden(true);
 }
 
-void PlayerView::setupRecipeHelpLine3(Recipe recipe)
+void PlayerView::setupRecipeHelpLine3()
 {
     recipeHelpLine3 = new QLabel(this);
     recipeHelpLine3->setText(QString::fromStdString("Would any of these ingredients be good?\n"));
