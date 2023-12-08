@@ -14,42 +14,42 @@ class RecipeCardWidget : public QWidget
     Q_OBJECT
 
 public:
-    // Constructor
+    /// Constructor
     explicit RecipeCardWidget(QWidget *parent = nullptr);
 
-    // Destructor
+    /// Destructor
     ~RecipeCardWidget();
 
-    // Set the name of the recipe
+    /// Set the name of the recipe
     void setRecipeName(const QString &name);
 
-    // Set the image for the recipe card
+    /// Set the image for the recipe card
     void setRecipeImage(const QString &imagePath);
 
-    // Get the name of the recipe
+    /// Get the name of the recipe
     QString getRecipeName();
 
-    // Check if the recipe card is selected
+    /// Check if the recipe card is selected
     bool isSelected() const;
 
 signals:
-    // Signal emitted when the recipe card is clicked
+    /// Signal emitted when the recipe card is clicked
     void clicked();
 
-    // Signal emitted when a specific recipe is clicked
+    /// Signal emitted when a specific recipe is clicked
     void recipeClicked(const QString &recipeName);
 
 protected:
-    // Handle mouse press events on the recipe card
+    /// Handle mouse press events on the recipe card
     void mousePressEvent(QMouseEvent *event) override;
 
 private:
     Ui::RecipeCardWidget *ui;
 
-    // Flag indicating whether the recipe card is selected
+    /// Flag indicating whether the recipe card is selected
     bool selected;
 
-    // Method called when the recipe card is clicked
+    /// Method called when the recipe card is clicked
     void onCardClicked();
 };
 
