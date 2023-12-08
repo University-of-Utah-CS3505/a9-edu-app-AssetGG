@@ -35,10 +35,5 @@ bool ComparisonIngredient::legalIngredient(Ingredient ingredient)
         return false;
     }
 
-    if (ingredient.IsBurned())
-    {
-        return false;
-    }
-
     return true;
 }

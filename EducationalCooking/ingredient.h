@@ -25,13 +25,11 @@ public:
 
     bool IsCooked() const;
     bool IsCut() const;
-    bool IsBurned() const;
 
     bool IsCuttable() const;
 
     bool Cut();
     bool Cooked();
-    void Burned();
 
 private:
     std::string ingredientName;
@@ -46,8 +44,6 @@ private:
 
     bool cut;
     bool cooked;
-    bool dirty;
-    bool burnt;
 };
 
 #endif // INGREDIENT_H

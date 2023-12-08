@@ -1,6 +1,7 @@
 #include "ingredient.h"
 #include <QMouseEvent>
 
+// Constructor of the ingredient object.
 Ingredient::Ingredient(std::string name,
                        QImage baseImage,
                        QImage cutImage,
@@ -32,31 +33,36 @@ Ingredient::Ingredient(std::string name,
 
     cut = false;
     cooked = false;
-    burnt = false;
 }
 
+// Default constructor
 Ingredient::Ingredient()
 {
     // Default constructor has no need to do anything. Only used so
     // ingredients don't have to be set to something in the constructor
 }
 
+// Getter for the name of the ingredient.
 std::string Ingredient::GetName() const
 {
     return ingredientName;
 }
 
+// Getter for the current image of the ingredient.
 QImage Ingredient::GetImage() const
 {
     return currentImage;
 }
 
+// Creates a QRect for the current state of the ingredient.
 QRect Ingredient::GetRect()
 {
     QRect rectangle = QRect(locX, locY, currentImage.width(), currentImage.height());
     return rectangle;
 }
 
+// Checks if the ingredient is cuttable. If it is update the currentImage and sets cut to true.
+// Returns cuttable.
 bool Ingredient::Cut()
 {
     if (cuttable && !cooked) {
@@ -68,6 +74,8 @@ bool Ingredient::Cut()
     }
 }
 
+// Checks if the ingredient is cookable. If it is update the currentImage and sets cooked to true.
+// Returns cookable.
 bool Ingredient::Cooked()
 {
     if (cookable) {
@@ -77,15 +85,13 @@ bool Ingredient::Cooked()
     return cookable;
 }
 
-void Ingredient::Burned()
-{
-    burnt = true;
-}
-
+// Getter for cooked.
 bool Ingredient::IsCooked() const
 {
     return cooked;
 }
+
+// Getter for cut.
 bool Ingredient::IsCut() const
 {
     return cut;
@@ -94,9 +100,4 @@ bool Ingredient::IsCut() const
 bool Ingredient::IsCuttable() const
 {
     return cuttable;
-}
-
-bool Ingredient::IsBurned() const
-{
-    return burnt;
 }

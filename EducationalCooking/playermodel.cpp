@@ -85,10 +85,6 @@ int PlayerModel::calculateScore()
                 if (usedIngredient.IsCut() != requiredIngredient.IsCut()) {
                     totalPoints -= 10;
                 }
-
-                if (usedIngredient.IsBurned()) {
-                    totalPoints -= 20;
-                }
             }
         }
 
