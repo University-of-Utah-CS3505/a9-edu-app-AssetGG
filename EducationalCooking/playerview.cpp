@@ -7,6 +7,7 @@
 #include "finalscreen.h"
 #include <QGraphicsBlurEffect>
 #include <iostream>
+#include <QToolTip>
 
 PlayerView::PlayerView(QWidget *parent)
     : QMainWindow(parent)
@@ -91,6 +92,8 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
         QImage img = ingredient.GetImage();
         if (mouseOverSprite(mousePos, ingredient.locX, ingredient.locY, img.width(), img.height()))
         {
+            QToolTip::showText(QPoint(ingredient.locX + 395, ingredient.locY + 75), QString::fromStdString(ingredient.GetName()));
+
             clickedIngredient = ingredient;
             emit itemGrabbed(ingredientName, true, mousePos);
             return;
