@@ -103,8 +103,10 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
     for (auto &[toolName, tool] : *tools)
     {
         QImage img = tool->GetImage();
-        if (tool->IsMovable()) {
-            if (mouseOverSprite(mousePos, tool->locX, tool->locY, img.width(), img.height())) {
+        if (tool->IsMovable())
+        {
+            if (mouseOverSprite(mousePos, tool->locX, tool->locY, img.width(), img.height()))
+            {
                 emit itemGrabbed(toolName, false, mousePos);
                 return;
             }
