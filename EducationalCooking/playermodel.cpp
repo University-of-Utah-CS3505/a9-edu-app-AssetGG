@@ -12,6 +12,7 @@
 #include "comparisoningredient.h"
 #include "recipe.h"
 #include "tools.h"
+#include "ingredient.h"
 
 using std::map;
 using std::vector;
@@ -205,7 +206,6 @@ void PlayerModel::setupCookingToolPhysics(Tool tool)
     obj->body->SetLinearDamping(15.0);
     obj->fixture->SetFilterData(collisionFilter);
 }
-#include "ingredient.h"
 
 
 void PlayerModel::setupRecipes()

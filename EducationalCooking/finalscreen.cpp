@@ -10,13 +10,15 @@
 #include <Windows.h>
 #endif
 
-FinalScreen::FinalScreen(QWidget *parent) : QWidget(parent) {
+FinalScreen::FinalScreen(QWidget *parent) : QWidget(parent)
+{
     score = 100;
 
     setupLayout();
 }
 
-void FinalScreen::setScore(int scoreInput, vector<Ingredient> finalIngredients, const QString& recipeName) {
+void FinalScreen::setScore(int scoreInput, vector<Ingredient> finalIngredients, const QString& recipeName)
+{
     score = scoreInput;
 
     updateLayout();
@@ -34,7 +36,8 @@ void FinalScreen::setScore(int scoreInput, vector<Ingredient> finalIngredients, 
 #endif
 }
 
-void FinalScreen::setupLayout() {
+void FinalScreen::setupLayout()
+{
     mainLayout = new QHBoxLayout(this);
 
     // Left Section
@@ -58,7 +61,8 @@ void FinalScreen::setupLayout() {
     setLayout(mainLayout);
 }
 
-void FinalScreen::updateLayout() {
+void FinalScreen::updateLayout()
+{
     // Stars
     QHBoxLayout *starsLayout = new QHBoxLayout;
     starsLayout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
@@ -101,7 +105,8 @@ void FinalScreen::updateLayout() {
     setLayout(mainLayout);
 }
 
-void FinalScreen::displayDishOrTrash(int scoreInput) {
+void FinalScreen::displayDishOrTrash(int scoreInput)
+{
     QImage imageOfDish;
 
     if (scoreInput > 60)
@@ -139,7 +144,8 @@ void FinalScreen::displayDishOrTrash(int scoreInput) {
     dishOrTrashLabel->setPixmap(QPixmap::fromImage(imageOfDish).scaled(200, 200));
 }
 
-void FinalScreen::displayIngredients() {
+void FinalScreen::displayIngredients()
+{
     QLayoutItem *child;
     while ((child = leftSection->takeAt(0)) != nullptr)
     {
@@ -169,7 +175,8 @@ void FinalScreen::displayIngredients() {
     }
 }
 
-void FinalScreen::addIngredient(const QString &name, const QString &imagePath) {
+void FinalScreen::addIngredient(const QString &name, const QString &imagePath)
+{
     QLabel *ingredientLabel = new QLabel;
     ingredientLabel->setText(name);
     ingredientLabel->setPixmap(QPixmap(imagePath));

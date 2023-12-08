@@ -3,7 +3,6 @@
 #include "playermodel.h"
 #include "playerview.h"
 #include "finalscreen.h"
-
 #include <QTimer>
 
 Controller::Controller(PlayerModel &model, PlayerView &view, QObject *parent)
@@ -24,7 +23,8 @@ Controller::Controller(PlayerModel &model, PlayerView &view, QObject *parent)
 
 void Controller::onItemGrabbed(std::string itemName, bool isIngredient, QPoint mousePos)
 {
-    if (canGrab) {
+    if (canGrab)
+    {
         this->mousePos = mousePos;
         grabbedPhysicsObject = model.physics.get(itemName);
         grabbedObjectName = itemName;
@@ -43,11 +43,13 @@ void Controller::onMouseMoved(QPoint mousePos)
 void Controller::onItemDropped(QPoint mousePos)
 {
     this->mousePos = mousePos;
-    if (grabbedPhysicsObject) {
-        if (grabbedObjectIsIngredient) {
+    if (grabbedPhysicsObject)
+    {
+        if (grabbedObjectIsIngredient)
+        {
             Tool *toolUnderMouse = getToolAtPoint(mousePos);
-            if (toolUnderMouse) {
-                // messy, but too late to go back on this bad design decision. Sorry :(
+            if (toolUnderMouse)
+            {
                 Ingredient *ingredient = view.getIngredientByName(grabbedObjectName);
                 toolUnderMouse->ProcessIngredient(*ingredient);
             }
@@ -62,7 +64,8 @@ void Controller::onItemDropped(QPoint mousePos)
         canGrab = false;
 
         // after a quarter second, increase the damping to make it skid to a stop.
-        QTimer::singleShot(250, this, [this, tempRef] {
+        QTimer::singleShot(250, this, [this, tempRef]
+        {
             this->canGrab = true;
             tempRef->SetLinearDamping(tempRef->GetLinearDamping() * 7.0);
         });
@@ -78,7 +81,8 @@ void Controller::setupGrabConnections()
 
 void Controller::updateGrabForces()
 {
-    if (grabbedPhysicsObject) {
+    if (grabbedPhysicsObject)
+    {
         b2Body *body = grabbedPhysicsObject->body;
 
         b2Vec2 delta = b2Vec2(mousePos.x() - body->GetPosition().x,
@@ -91,14 +95,17 @@ void Controller::updateGrabForces()
 
 Tool *Controller::getToolAtPoint(QPoint point)
 {
-    for (auto &[toolName, tool] : model.getTools()) {
+    for (auto &[toolName, tool] : model.getTools())
+    {
         PhysicsObject *physObj = model.physics.get(toolName);
-        if (physObj) {
+        if (physObj)
+        {
             b2Transform transform = physObj->body->GetTransform();
             bool pointInShape = physObj->fixture->GetShape()->TestPoint(transform,
                                                                         b2Vec2(point.x(),
                                                                                point.y()));
-            if (pointInShape) {
+            if (pointInShape)
+            {
                 return tool;
             }
         }

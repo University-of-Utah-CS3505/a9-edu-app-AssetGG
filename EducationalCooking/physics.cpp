@@ -1,3 +1,7 @@
+// Author(s): David Cosby
+// Reviewer: Yukon Zipperer
+// File: physics.cpp
+
 #include "physics.h"
 #include <QTimer>
 #include "Box2D/box2d.h"
@@ -16,7 +20,9 @@ Physics::Physics(float updateHz, QObject *parent)
 Physics::PhysicsObject::PhysicsObject(b2Body *body, b2Fixture *fixture)
     : body(body)
     , fixture(fixture)
-{}
+{
+
+}
 
 PhysicsObject &Physics::registerStaticObject(std::string name, b2Shape *shape, float x, float y)
 {
@@ -31,6 +37,7 @@ PhysicsObject &Physics::registerStaticObject(std::string name, b2Shape *shape, f
 
     PhysicsObject object(body, fixture);
     objects.insert({name, object});
+
     return objects.at(name);
 }
 
@@ -52,12 +59,14 @@ PhysicsObject &Physics::registerDynamicObject(std::string name, b2Shape *shape, 
 
     PhysicsObject object(body, fixture);
     objects.insert({name, object});
+
     return objects.at(name);
 }
 
 PhysicsObject *Physics::get(std::string name)
 {
     auto search = objects.find(name);
+
     if (search == objects.end())
         return nullptr;
     else
@@ -78,12 +87,14 @@ b2CircleShape Physics::createCircleShape(float radius)
     b2CircleShape shape;
     shape.m_p.Set(0.0, 0.0);
     shape.m_radius = radius;
+
     return shape;
 }
 
 void Physics::update()
 {
     world.Step(timeStep, 6, 2);
+
     emit onUpdate(objects);
 }
 

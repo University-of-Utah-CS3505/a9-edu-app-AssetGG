@@ -96,11 +96,13 @@ void StartupScreen::updateRecipeCardImage(RecipeCardWidget *card, const QString 
     card->setRecipeImage(imagePath);
 }
 
-void StartupScreen::handleRecipeCardClicked(const QString &recipeName) {
+void StartupScreen::handleRecipeCardClicked(const QString &recipeName)
+{
     playerModel.setCurrentRecipe(recipeName);
 }
 
-void StartupScreen::onRecipeCardClicked(int recipeIndex) {
+void StartupScreen::onRecipeCardClicked(int recipeIndex)
+{
     for (int i = 0; i < recipeCards.size(); ++i)
     {
         if (i == recipeIndex)

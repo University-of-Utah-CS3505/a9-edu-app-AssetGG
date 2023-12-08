@@ -38,7 +38,8 @@ CuttingBoard::CuttingBoard(int locX, int locY)
 
 void CuttingBoard::ProcessIngredient(Ingredient &ingredient)
 {
-    if (ingredient.IsCuttable()) {
+    if (ingredient.IsCuttable())
+    {
         // chicken and sausage needs to be cooked before cut
         if (ingredient.GetName() == "chicken" || ingredient.GetName() == "sausage")
         {
@@ -69,7 +70,8 @@ void FryingPan::ProcessIngredient(Ingredient &ingredient)
 
 void Pot::ProcessIngredient(Ingredient &ingredient)
 {
-    if (ingredient.isCookable() == true) {
+    if (ingredient.isCookable() == true)
+    {
         if (ingredient.GetName() == "noodles" || ingredient.GetName() == "meatballs")
         {
             ingredient.Cooked();
