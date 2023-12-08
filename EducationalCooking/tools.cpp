@@ -1,12 +1,12 @@
 #include "tools.h"
 #include <QMouseEvent>
 
-Tool::Tool(std::string name, bool movable, int locX, int locY)
-    : name(name)
-    , movable(movable)
-    , locX(locX)
-    , locY(locY)
-{}
+Tool::Tool(std::string name, bool movable, int locX, int locY):
+    name(name),
+    movable(movable),
+    locX(locX),
+    locY(locY)
+{ }
 
 bool Tool::IsMovable()
 {
@@ -40,11 +40,15 @@ void CuttingBoard::ProcessIngredient(Ingredient &ingredient)
 {
     if (ingredient.IsCuttable()) {
         // chicken and sausage needs to be cooked before cut
-        if (ingredient.GetName() == "chicken" || ingredient.GetName() == "sausage") {
-            if (ingredient.IsCooked()) {
+        if (ingredient.GetName() == "chicken" || ingredient.GetName() == "sausage")
+        {
+            if (ingredient.IsCooked())
+            {
                 ingredient.Cut();
             }
-        } else {
+        }
+        else
+        {
             ingredient.Cut();
         }
     }
@@ -52,10 +56,12 @@ void CuttingBoard::ProcessIngredient(Ingredient &ingredient)
 
 void FryingPan::ProcessIngredient(Ingredient &ingredient)
 {
-    if (ingredient.isCookable() == true) {
+    if (ingredient.isCookable() == true)
+    {
         if (ingredient.GetName() == "chicken" || ingredient.GetName() == "dough"
             || ingredient.GetName() == "patty" || ingredient.GetName() == "bun"
-            || ingredient.GetName() == "sausage" || ingredient.GetName() == "eggs") {
+            || ingredient.GetName() == "sausage" || ingredient.GetName() == "eggs")
+        {
             ingredient.Cooked();
         }
     }
@@ -64,7 +70,8 @@ void FryingPan::ProcessIngredient(Ingredient &ingredient)
 void Pot::ProcessIngredient(Ingredient &ingredient)
 {
     if (ingredient.isCookable() == true) {
-        if (ingredient.GetName() == "noodles" || ingredient.GetName() == "meatballs") {
+        if (ingredient.GetName() == "noodles" || ingredient.GetName() == "meatballs")
+        {
             ingredient.Cooked();
         }
     }

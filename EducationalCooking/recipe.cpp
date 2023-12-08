@@ -7,11 +7,11 @@ using std::vector;
 Recipe::Recipe(string name,
                vector<ComparisonIngredient> baseList,
                vector<ComparisonIngredient> bonusList,
-               vector<Ingredient> avaliableList)
-    : baseIngredients(baseList)
-    , bonusIngredients(bonusList)
-    , avaliableIngredients(avaliableList)
-    , recipeName(name)
+               vector<Ingredient> avaliableList):
+    baseIngredients(baseList),
+    bonusIngredients(bonusList),
+    avaliableIngredients(avaliableList),
+    recipeName(name)
 {
     helpSpriteSmall = QImage(":/sprites/Sprites/recipeHelp.png");
     helpSpriteLarge = QImage(":/sprites/Sprites/fullSizeRecipeHelp.png");

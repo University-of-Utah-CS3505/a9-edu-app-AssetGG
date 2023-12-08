@@ -63,7 +63,8 @@ void FinalScreen::updateLayout() {
     QHBoxLayout *starsLayout = new QHBoxLayout;
     starsLayout->setAlignment(Qt::AlignTop | Qt::AlignHCenter);
 
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < 5; ++i)
+    {
         QLabel *star = new QLabel;
         QImage starImage(":/sprites/Sprites/Dorito.png");
         star->setPixmap(QPixmap::fromImage(starImage).scaled(40, 40));
@@ -103,20 +104,35 @@ void FinalScreen::updateLayout() {
 void FinalScreen::displayDishOrTrash(int scoreInput) {
     QImage imageOfDish;
 
-    if (scoreInput > 60) {
+    if (scoreInput > 60)
+    {
         if(currentRecipeName.toLower() == "spaghetti")
+        {
             imageOfDish = QImage(":/sprites/Sprites/Pasta Tomato.png");
+        }
         else if(currentRecipeName.toLower() == "salad")
+        {
             imageOfDish = QImage(":/sprites/Sprites/Salad Dish.png");
+        }
         else if(currentRecipeName.toLower() == "pepperoni pizza")
+        {
             imageOfDish = QImage(":/sprites/Sprites/Pepperoni Pizza.png");
+        }
         else if(currentRecipeName.toLower() == "soup")
+        {
             imageOfDish = QImage(":/sprites/Sprites/Chicken Soup.png");
+        }
         else if(currentRecipeName.toLower() == "hamburger")
+        {
             imageOfDish = QImage(":/sprites/Sprites/Cheeseburger.png");
+        }
         else if(currentRecipeName.toLower() == "pancakes")
+        {
             imageOfDish = QImage(":/sprites/Sprites/Pancakes.png");
-    } else {
+        }
+    }
+    else
+    {
         imageOfDish = QImage(":/sprites/Sprites/Trash.png");
     }
 
@@ -125,12 +141,14 @@ void FinalScreen::displayDishOrTrash(int scoreInput) {
 
 void FinalScreen::displayIngredients() {
     QLayoutItem *child;
-    while ((child = leftSection->takeAt(0)) != nullptr) {
+    while ((child = leftSection->takeAt(0)) != nullptr)
+    {
         delete child->widget();
         delete child;
     }
 
-    for (const auto& ingredient : ingredients) {
+    for (const auto& ingredient : ingredients)
+    {
         QWidget* ingredientWidget = new QWidget;
         QHBoxLayout* ingredientLayout = new QHBoxLayout(ingredientWidget);
 

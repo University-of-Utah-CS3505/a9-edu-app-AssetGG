@@ -1,5 +1,5 @@
 /*
- * Name: Kazimar Guenther, David Cosby,
+ * Name: Kazimar Guenther, David Cosby, Caroline Cheng
  * Class: CS 3505
  * Assignment Name: A9: Edu App
  * Description: Ingredient class to represent the state and appearance of
