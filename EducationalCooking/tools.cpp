@@ -41,16 +41,23 @@ CuttingBoard::CuttingBoard(int locX, int locY)
 void CuttingBoard::ProcessIngredient(Ingredient &ingredient)
 {
     if (ingredient.IsCuttable()) {
-        ingredient.Cut();
+        // chicken and sausage needs to be cooked before cut
+        if((ingredient.GetName() == "chicken" || ingredient.GetName() == "sausage") && ingredient.IsCooked() == true){
+            ingredient.Cut();
+        }
+        else if(ingredient.GetName() != "chicken" && ingredient.GetName() != "sausage"){
+            ingredient.Cut();
+        }
     }
 }
 
 void FryingPan::ProcessIngredient(Ingredient &ingredient)
 {
-    if(ingredient.IsCuttable() == true)
+    if(ingredient.isCookable() == true)
     {
         if(ingredient.GetName() == "chicken" || ingredient.GetName() == "dough"
-            || ingredient.GetName() == "patty" || ingredient.GetName() == "bun")
+            || ingredient.GetName() == "patty" || ingredient.GetName() == "bun"
+            || ingredient.GetName() == "sausage" || ingredient.GetName() == "eggs")
         {
             ingredient.Cooked();
         }
@@ -59,7 +66,7 @@ void FryingPan::ProcessIngredient(Ingredient &ingredient)
 
 void Pot::ProcessIngredient(Ingredient &ingredient)
 {
-    if(ingredient.IsCuttable() == true)
+    if(ingredient.isCookable() == true)
     {
         if(ingredient.GetName() == "noodles" || ingredient.GetName() == "meatballs")
         {

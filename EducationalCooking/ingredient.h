@@ -24,12 +24,19 @@ public:
     QRect GetRect();
     bool operator==(Ingredient);
 
+    /// Getter for cooked property
     bool IsCooked() const;
+    /// Getter for cut property
     bool IsCut() const;
 
+    /// Getter for cuttable property
     bool IsCuttable() const;
+    /// Getter for cookable property
+    bool isCookable() const;
 
+    /// Cuts the ingredient
     bool Cut();
+    /// Cooks the ingredient
     bool Cooked();
 
 private:

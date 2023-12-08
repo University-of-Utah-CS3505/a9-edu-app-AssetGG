@@ -16,8 +16,8 @@
 class Recipe
 {
 public:
-    /// Constructor that takes in our base, bonus, and avaliable ingredients as well as our finished recipe image.
-    Recipe(std::string, std::vector<ComparisonIngredient>, std::vector<ComparisonIngredient>, std::vector<Ingredient>, QImage);
+    /// Constructor that takes in our base, bonus, and avaliable ingredients
+    Recipe(std::string, std::vector<ComparisonIngredient>, std::vector<ComparisonIngredient>, std::vector<Ingredient>);
     /// Description: Default constructor.
     Recipe();
 
@@ -41,15 +41,12 @@ public:
 private:
     /// ingredients for the bare bones food
     std::vector<ComparisonIngredient> baseIngredients;
-
     /// ingredients that will give bonus points
     std::vector<ComparisonIngredient> bonusIngredients;
-
     /// all avaliable ingredients (including base/bonus/red herring ones)
     std::vector<Ingredient> avaliableIngredients;
-    std::string recipeName;
 
-    QImage image;
+    std::string recipeName;
     QImage helpSpriteSmall;
     QImage helpSpriteLarge;
 

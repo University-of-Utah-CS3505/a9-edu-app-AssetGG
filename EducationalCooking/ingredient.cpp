@@ -65,7 +65,7 @@ QRect Ingredient::GetRect()
 // Returns cuttable.
 bool Ingredient::Cut()
 {
-    if (cuttable && !cooked) {
+    if ((cuttable && !cooked) || (ingredientName == "chicken" || ingredientName == "sausage")) {
         cut = true;
         currentImage = cutImage;
         return true;
@@ -100,6 +100,11 @@ bool Ingredient::IsCut() const
 bool Ingredient::IsCuttable() const
 {
     return cuttable;
+}
+
+bool Ingredient::isCookable() const
+{
+    return cookable;
 }
 
 bool Ingredient::operator ==(Ingredient lhs)

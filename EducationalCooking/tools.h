@@ -59,7 +59,7 @@ class FryingPan : public Tool
 public:
     /// Creates a FryingPan tool at (locX, locY)
     FryingPan(int locX, int locY);
-    ///
+    /// Cooks certain ingredients
     void ProcessIngredient(Ingredient &ingredient);
 };
 
@@ -68,7 +68,7 @@ class Pot : public Tool
 public:
     /// Creates a Pot tool at (locX, locY)
     Pot(int locX, int locY);
-    ///
+    /// Cooks certain ingredients
     void ProcessIngredient(Ingredient &ingredient);
 };
 #endif // TOOLS_H
