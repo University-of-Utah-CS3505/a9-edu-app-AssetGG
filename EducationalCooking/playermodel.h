@@ -1,10 +1,11 @@
 /*
- * Name: everyone
+ * Name: Everyone
+ * Reviewer: Nathaniel Taylor
  * Class: CS 3505
  * Assignment Name: A9: Edu App
- * Description: Handles data and operations for most game logic. Includes,
- *      but is not limited to, setting up physics, data for recipes and
- *      scoring final dishes.
+ * Description: Sets up the data and operations for most game logic. Including,
+ * but not limited to, setting up physics, data for recipes and
+ * scoring final dishes.
  */
 
 #ifndef PLAYERMODEL_H

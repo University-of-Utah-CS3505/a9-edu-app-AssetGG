@@ -1,3 +1,13 @@
+/*
+ * Name: Everyone
+ * Reviewer: Nathaniel Taylor
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: Handles data and operations for most game logic. Including,
+ * but not limited to, setting up physics, data for recipes and
+ * scoring final dishes.
+ */
+
 #include "playermodel.h"
 #include "comparisoningredient.h"
 #include "recipe.h"
@@ -62,43 +72,54 @@ int PlayerModel::calculateScore()
     int totalPoints = 100; // Score starts at 100
 
     Recipe recipe;
-    for (const auto &rec : recipes) {
-        if (QString::fromStdString(rec.getRecipeName()) == currentRecipe) {
+    for (const auto &rec : recipes)
+    {
+        if (QString::fromStdString(rec.getRecipeName()) == currentRecipe)
+        {
             recipe = rec;
             break;
         }
     }
 
     // Checks for correct ingredient usage
-    for (const auto &requiredIngredient : recipe.getBaseIngredients()) {
+    for (const auto &requiredIngredient : recipe.getBaseIngredients())
+    {
         bool found = false;
 
         int baseIngredientNumber = 100 / recipe.getBaseIngredients().size();
         int baseIngredientImproper = baseIngredientNumber / 2;
 
-        for (const auto &usedIngredient : finalIngredients) {
-            if (requiredIngredient.GetName() == usedIngredient.GetName()) {
+        for (const auto &usedIngredient : finalIngredients)
+        {
+            if (requiredIngredient.GetName() == usedIngredient.GetName())
+            {
                 found = true;
 
-                if (usedIngredient.IsCooked() != requiredIngredient.IsCooked()) {
+                if (usedIngredient.IsCooked() != requiredIngredient.IsCooked())
+                {
                     totalPoints -= baseIngredientImproper;
                 }
 
-                if (usedIngredient.IsCut() != requiredIngredient.IsCut()) {
+                if (usedIngredient.IsCut() != requiredIngredient.IsCut())
+                {
                     totalPoints -= baseIngredientImproper;
                 }
             }
         }
 
-        if (!found) {
+        if (!found)
+        {
             totalPoints -= baseIngredientNumber; // Deducts points for missing ingredients
         }
     }
 
     // Checks for usage of bonus ingredients
-    for (const auto &bonusIngredient : recipe.getBonusIngredients()) {
-        for (const auto &usedIngredient : finalIngredients) {
-            if (bonusIngredient.GetName() == usedIngredient.GetName()) {
+    for (const auto &bonusIngredient : recipe.getBonusIngredients())
+    {
+        for (const auto &usedIngredient : finalIngredients)
+        {
+            if (bonusIngredient.GetName() == usedIngredient.GetName())
+            {
                 totalPoints += 10;
             }
         }
@@ -171,10 +192,13 @@ void PlayerModel::setupCookingToolPhysics(Tool tool)
     collisionFilter.maskBits = 0x0001 | 0x0004;
 
     Physics::PhysicsObject *obj = nullptr;
-    if (tool.IsMovable()) {
+    if (tool.IsMovable())
+    {
         obj = &physics.registerDynamicObject(tool.GetName(), &boxShape, tool.locX, tool.locY);
 
-    } else {
+    }
+    else
+    {
         obj = &physics.registerStaticObject(tool.GetName(), &boxShape, tool.locX, tool.locY);
     }
 
@@ -184,7 +208,8 @@ void PlayerModel::setupCookingToolPhysics(Tool tool)
 #include "ingredient.h"
 
 
-void PlayerModel::setupRecipes(){
+void PlayerModel::setupRecipes()
+{
     QString folder = ":/sprites/Sprites/";
 
     /*
@@ -451,20 +476,24 @@ void PlayerModel::setupTools()
     tools.insert({"CuttingBoard", new CuttingBoard(230, 410)});
     tools.insert({"FryingPan", new FryingPan(282, 90)});
     tools.insert({"Pot", new Pot(405, 75)});
-    for (auto &[toolName, tool] : tools) {
+    for (auto &[toolName, tool] : tools)
+    {
         setupCookingToolPhysics(*tool);
     }
 }
 
 void PlayerModel::setupIngredients()
 {
-    for (Recipe &r : recipes) {
-        if (currentRecipe.toStdString() == r.getRecipeName()) {
+    for (Recipe &r : recipes)
+    {
+        if (currentRecipe.toStdString() == r.getRecipeName())
+        {
             selectedRecipe = r;
             break;
         }
     }
-    for (Ingredient &ingredient : selectedRecipe.getAvaliableIngredients()) {
+    for (Ingredient &ingredient : selectedRecipe.getAvaliableIngredients())
+    {
         setupIngredientPhysics(ingredient);
     }
 }

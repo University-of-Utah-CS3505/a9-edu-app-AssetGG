@@ -3,8 +3,8 @@
  * Class: CS 3505
  * Assignment Name: A9: Edu App
  * Description: Handles data and operations for UI components of the game.
- *      Includes, but is not limited to, user input events, scene drawing,
- *      and the recipe help button.
+ * Includes, but is not limited to, user input events, scene drawing,
+ * and the recipe help button.
  */
 
 #ifndef PLAYERVIEW_H
@@ -24,7 +24,8 @@
 using std::vector;
 
 QT_BEGIN_NAMESPACE
-namespace Ui {
+namespace Ui
+{
 class PlayerView;
 }
 QT_END_NAMESPACE
