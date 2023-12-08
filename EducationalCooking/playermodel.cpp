@@ -29,8 +29,7 @@ void PlayerModel::setupScene()
 void PlayerModel::setCurrentRecipe(const QString &recipe)
 {
     currentRecipe = recipe;
-    emit selectedRecipeChanged(
-        currentRecipe); // May or may not be useful, as user cannot change recipe mid game
+    emit selectedRecipeChanged(currentRecipe); // May or may not be useful, as user cannot change recipe mid game
 }
 
 const QString &PlayerModel::getCurrentRecipe() const
@@ -181,13 +180,9 @@ void PlayerModel::setupCookingToolPhysics(Tool tool)
 }
 #include "ingredient.h"
 
-// incomplete
-// doesn't have proper png
-// booleans incomplete
+
 void PlayerModel::setupRecipes(){
     QString folder = ":/sprites/Sprites/";
-
-    // std::string name, QImage baseImage, QImage cutImage, QImage cookedImage, bool cuttable, bool cookable, int x, int y)
 
     /*
      * Spaghetti

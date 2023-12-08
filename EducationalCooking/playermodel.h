@@ -29,17 +29,17 @@ public:
 
     explicit PlayerModel(Physics &physics, QObject *parent = nullptr);
 
-    /// sets up our scene, using a recipe to spawn ingredients on a table
+    /// Sets up our scene, using a recipe to spawn ingredients on a table
     /// and tools in their respective position, then starts the physics simulation.
     void setupScene();
 
     ///
     void setCurrentRecipe(const QString& recipe); // Used at startup
 
-    ///
+    /// Getter method for current recipe name
     const QString& getCurrentRecipe() const;
 
-    ///
+    /// Getter method for recipe object
     Recipe& getSelectedRecipe();
 
     ///
@@ -76,6 +76,7 @@ private:
     /// Spawns collision objects for the tools.
     void setupCookingToolPhysics(Tool tool);
 
+    /// Creates all recipes and fills the recipe vector
     void setupRecipes();
 
     /// Creates instances of each tool we need for our kitchen
