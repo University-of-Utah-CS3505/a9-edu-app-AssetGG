@@ -3,6 +3,7 @@
  * Class: CS 3505
  * Assignment Name: A9: Edu App
  * Description: This class outlines the functionality of a recipe object.
+ * Reviewed By: David Cosby
  */
 
 #ifndef RECIPE_H
