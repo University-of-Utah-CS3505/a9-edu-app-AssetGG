@@ -477,6 +477,8 @@
         <file>Sprites/sugar.png</file>
         <file>Sprites/Syrup.png</file>
         <file>Sprites/Cooked Patty.png</file>
+        <file>Sprites/Plain Pasta Cooked.png</file>
+        <file>Sprites/Meatball Cooked.png</file>
     </qresource>
     <qresource prefix="/"/>
 </RCC>

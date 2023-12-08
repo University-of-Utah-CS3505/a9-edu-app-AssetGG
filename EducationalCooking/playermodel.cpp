@@ -202,11 +202,11 @@ void PlayerModel::setupRecipes(){
     bonusSpaghetti.push_back(ComparisonIngredient("cheese", false, false));
 
     avaliableSpaghetti.push_back(Ingredient("noodles", QImage(folder + "Plain Pasta.png"),
-                                            QImage(), QImage(folder + "Plain Pasta.png"), false, true, 550, 300));
+                                            QImage(), QImage(folder + "Plain Pasta Cooked.png"), false, true, 550, 300));
     avaliableSpaghetti.push_back(Ingredient("tomato sauce", QImage(folder + "Tomato Sauce.png"),
                                             QImage(), QImage(), false, false, 550, 350));
     avaliableSpaghetti.push_back(Ingredient("meatballs", QImage(folder + "Meatball.png"),
-                                            QImage(), QImage(folder + "Meatball.png"), false, true, 575, 350));
+                                            QImage(), QImage(folder + "Meatball Cooked.png"), false, true, 575, 350));
     avaliableSpaghetti.push_back(Ingredient("chicken", QImage(folder + "Raw Chicken.png"),
                                             QImage(folder + "Cut Chicken.png"), QImage(folder + "Cooked Chicken.png"), true, true, 575, 300));
     avaliableSpaghetti.push_back(Ingredient("cheese", QImage(folder + "Cheese Slice.png"),
