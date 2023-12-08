@@ -1,5 +1,5 @@
 /*
- * Name: Asset Yerzhigit, David Cosby,
+ * Name: Asset Yerzhigit, Caroline Cheng, David Cosby
  * Class: CS 3505
  * Assignment Name: A9: Edu App
  * Description: Contains a base Tool class and other tools extending
