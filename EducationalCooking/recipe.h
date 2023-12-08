@@ -16,33 +16,44 @@
 class Recipe
 {
 public:
+    /// Constructor that takes in our base, bonus, and avaliable ingredients as well as our finished recipe image.
     Recipe(std::string, std::vector<ComparisonIngredient>, std::vector<ComparisonIngredient>, std::vector<Ingredient>, QImage);
+    /// Description: Default constructor.
     Recipe();
+
+    /// Getter method for vector of base ingredients
     std::vector<ComparisonIngredient> getBaseIngredients() const;
+    /// Getter method for vector of bonus ingredients
     std::vector<ComparisonIngredient> getBonusIngredients() const;
+    /// Getter method for avaliable ingredients
     std::vector<Ingredient> getAvaliableIngredients() const;
+    /// Getter method for recipe name
     std::string getRecipeName() const;
-    QImage helpSpriteSmall;
-    QImage helpSpriteLarge;
+    /// Getter method for help sprite when clicked
     QImage getLargeHelpSprite() const;
+    /// Getter method for help sprite
     QImage getSmallHelpSprite() const;
+    /// Getter method for recipe help's x location
     int getXLocation() const;
+    /// Getter method for recipe help's y location
     int getYLocation() const;
 
 private:
-    // ingredients for the bare bones food
+    /// ingredients for the bare bones food
     std::vector<ComparisonIngredient> baseIngredients;
 
-    // ingredients that will give bonus points
+    /// ingredients that will give bonus points
     std::vector<ComparisonIngredient> bonusIngredients;
 
-    // all avaliable ingredients (including base/bonus/red herring ones)
+    /// all avaliable ingredients (including base/bonus/red herring ones)
     std::vector<Ingredient> avaliableIngredients;
     std::string recipeName;
 
     QImage image;
+    QImage helpSpriteSmall;
+    QImage helpSpriteLarge;
 
-    // The xLocation and yLocation of the recipeHelp sprite
+    /// The xLocation and yLocation of the recipeHelp sprite
     int xLoc, yLoc;
 };
 
