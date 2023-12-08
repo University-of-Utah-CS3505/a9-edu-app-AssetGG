@@ -5,8 +5,9 @@
 #include <QImage>
 #include <QMouseEvent>
 
-namespace Ui {
-class RecipeCardWidget;
+namespace Ui
+{
+    class RecipeCardWidget;
 }
 
 class RecipeCardWidget : public QWidget

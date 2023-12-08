@@ -6,8 +6,9 @@
 #include "playerview.h"
 #include "recipecardwidget.h"
 
-namespace Ui {
-class StartupScreen;
+namespace Ui
+{
+    class StartupScreen;
 }
 
 class StartupScreen : public QWidget {

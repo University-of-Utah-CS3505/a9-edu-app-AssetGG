@@ -9,7 +9,8 @@
 
 using std::vector;
 
-class FinalScreen : public QWidget {
+class FinalScreen : public QWidget
+{
     Q_OBJECT
 
 public:

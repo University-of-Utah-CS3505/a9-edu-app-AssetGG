@@ -20,7 +20,9 @@ Physics::Physics(float updateHz, QObject *parent)
 Physics::PhysicsObject::PhysicsObject(b2Body *body, b2Fixture *fixture)
     : body(body)
     , fixture(fixture)
-{}
+{
+
+}
 
 PhysicsObject &Physics::registerStaticObject(std::string name, b2Shape *shape, float x, float y)
 {
