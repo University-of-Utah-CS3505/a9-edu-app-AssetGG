@@ -1,3 +1,13 @@
+/*
+ * Name: Everyone
+ * Reviewed By: Nathaniel Taylor
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: Handles the data and operations for UI components of the game.
+ * Including, but not limited to, user input events, scene drawing,
+ * and the recipe help button.
+ */
+
 #include "playerview.h"
 #include <QPainter>
 #include "ingredient.h"
@@ -40,17 +50,17 @@ void PlayerView::paintEvent(QPaintEvent *event)
 
     for (auto &[toolName, tool] : *tools)
     {
-        QImage img = tool->GetImage();
+        QImage image = tool->GetImage();
 
-        imagePainter.drawImage(QRect(tool->locX, tool->locY, img.width(), img.height()), img);
+        imagePainter.drawImage(QRect(tool->locX, tool->locY, image.width(), image.height()), image);
     }
 
     // Finally, ingredients.
     for (auto &[ingredientName, ingredient] : ingredientSprites)
     {
-        QImage img = ingredient.GetImage();
+        QImage image = ingredient.GetImage();
 
-        imagePainter.drawImage(QRect(ingredient.locX, ingredient.locY, img.width(), img.height()), img);
+        imagePainter.drawImage(QRect(ingredient.locX, ingredient.locY, image.width(), image.height()), image);
     }
 
     if(showRecipeHelp)
@@ -58,15 +68,15 @@ void PlayerView::paintEvent(QPaintEvent *event)
                                      chosenRecipe.getLargeHelpSprite().height() * 6), chosenRecipe.getLargeHelpSprite());
 }
 
-bool mouseOverSprite(QPoint mousePos, int x, int y, int w, int h)
+bool mouseOverSprite(QPoint mousePos, int xLocation, int yLocation, int width, int height)
 {
-    QRect spriteBounds(x, y, w, h);
+    QRect spriteBounds(xLocation, yLocation, width, height);
     return spriteBounds.contains(mousePos);
 }
 
 void PlayerView::mousePressEvent(QMouseEvent *event)
 {
-    QPoint mousePos = event->pos();
+    QPoint mousePosition = event->pos();
 
     if(showRecipeHelp)
     {
@@ -77,7 +87,7 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
         recipeHelpLine4->setHidden(true);
     }
 
-    if(mouseOverSprite(mousePos, 240, 550, chosenRecipe.getSmallHelpSprite().width() * 2, chosenRecipe.getSmallHelpSprite().height() * 2))
+    if(mouseOverSprite(mousePosition, 240, 550, chosenRecipe.getSmallHelpSprite().width() * 2, chosenRecipe.getSmallHelpSprite().height() * 2))
     {
         showRecipeHelp = true;
         recipeHelpLine1->setHidden(false);
@@ -89,25 +99,25 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
     // check if we're clicking on any ingredient.
     for (auto &[ingredientName, ingredient] : ingredientSprites)
     {
-        QImage img = ingredient.GetImage();
-        if (mouseOverSprite(mousePos, ingredient.locX, ingredient.locY, img.width(), img.height()))
+        QImage image = ingredient.GetImage();
+        if (mouseOverSprite(mousePosition, ingredient.locX, ingredient.locY, image.width(), image.height()))
         {
             QToolTip::showText(QPoint(ingredient.locX + 395, ingredient.locY + 75), QString::fromStdString(ingredient.GetName()));
 
             clickedIngredient = ingredient;
-            emit itemGrabbed(ingredientName, true, mousePos);
+            emit itemGrabbed(ingredientName, true, mousePosition);
             return;
         }
     }
 
     for (auto &[toolName, tool] : *tools)
     {
-        QImage img = tool->GetImage();
+        QImage image = tool->GetImage();
         if (tool->IsMovable())
         {
-            if (mouseOverSprite(mousePos, tool->locX, tool->locY, img.width(), img.height()))
+            if (mouseOverSprite(mousePos, tool->locX, tool->locY, image.width(), image.height()))
             {
-                emit itemGrabbed(toolName, false, mousePos);
+                emit itemGrabbed(toolName, false, mousePosition);
                 return;
             }
         }

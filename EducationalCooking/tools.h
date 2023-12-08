@@ -3,9 +3,9 @@
  * Class: CS 3505
  * Assignment Name: A9: Edu App
  * Description: Contains a base Tool class and other tools extending
- *      from that (CuttingBoard, Pot, Pan) to define cooking tools in our game.
- *      Provides basic tool data and logic for how each tool should process
- *      ingredients.
+ * from that (CuttingBoard, Pot, Pan) to define cooking tools in our game.
+ * Provides basic tool data and logic for how each tool should process
+ * ingredients.
  * Reviewed By: David Cosby
  */
 

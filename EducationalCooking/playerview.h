@@ -1,9 +1,10 @@
 /*
- * Name: everyone
+ * Name: Everyone
+ * Reviewed By: Nathaniel Taylor
  * Class: CS 3505
  * Assignment Name: A9: Edu App
- * Description: Handles data and operations for UI components of the game.
- * Includes, but is not limited to, user input events, scene drawing,
+ * Description: Sets up the data and operations for UI components of the game.
+ * Including, but not limited to, user input events, scene drawing,
  * and the recipe help button.
  */
 
@@ -39,8 +40,14 @@ class PlayerView : public QMainWindow
 public:
     PlayerView(QWidget *parent = nullptr);
     ~PlayerView();
+
+    /// Sets up the recipe help feature and adds all of the ingredient sprites needed for the chosen recipe to the view
     void setupScene(Recipe &recipe, std::map<std::string, Tool *> &tools);
+
+    /// Updates a sprites position based on whether it is an ingredient or cooking tool
     void updateSpritePositions(const std::map<std::string, Physics::PhysicsObject> &physicsObjects);
+
+    /// Fire's signals to determine the user's final score and their final dish and sets up the user's end game screen
     void onScoreButtonClicked();
 
     /// Returns a pointer to the view Ingredient if it exists, or
@@ -108,10 +115,11 @@ signals:
     /// Fire's each time the user's mouse position updates while dragging.
     void updateDragPosition(QPoint mousePos);
 
-    ///
+    /// Retrieves the user's final score from the model
     int calculateScoreRequested();
 
-    ///
+    /// Retrieves the vector of ingredients the user has
+    /// put into their final dish from the model
     vector<Ingredient> getFinalIngredientsRequested();
 
     ///Tells the model to add an ingredient to the final dish

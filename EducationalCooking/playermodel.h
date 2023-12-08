@@ -1,6 +1,6 @@
 /*
  * Name: Everyone
- * Reviewer: Nathaniel Taylor
+ * Reviewed By: Nathaniel Taylor
  * Class: CS 3505
  * Assignment Name: A9: Edu App
  * Description: Sets up the data and operations for most game logic. Including,
@@ -34,7 +34,7 @@ public:
     /// and tools in their respective position, then starts the physics simulation.
     void setupScene();
 
-    ///
+    /// Used to tell the model what recipe the user chose
     void setCurrentRecipe(const QString& recipe); // Used at startup
 
     /// Getter method for current recipe name
@@ -43,15 +43,21 @@ public:
     /// Getter method for recipe object
     Recipe& getSelectedRecipe();
 
-    ///
+    /// Retrieves the user's final score
     int getFinalScore() const;
 
     /// Returns a reference to the map of tool names to tool instances.
     std::map<std::string, Tool*>& getTools();
 
 public slots:
+
+    ///
     void handleRecipeClicked(const QString &recipeName);
+
+    /// Calculates the user's final score by looking at what ingredients they have in their final dish
     int calculateScore();
+
+    /// A getter method that retrieves a vector containing all of the ingredients the user has in their final dish
     vector<Ingredient> getFinalIngredients();
 
     /// Adds the given ingredient to the vector of finalIngredient.
@@ -88,6 +94,8 @@ private:
     void setupIngredients();
 
 signals:
+
+    ///
     void recipeClicked(const QString &recipeName);
     void selectedRecipeChanged(const QString &newRecipe);
 };

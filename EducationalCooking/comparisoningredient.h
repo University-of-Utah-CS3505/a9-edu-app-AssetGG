@@ -3,7 +3,7 @@
  * Class: CS 3505
  * Assignment Name: A9: Edu App
  * Description: This class is used for comparing
- *      final ingredient with current ingredient
+ * final ingredient with current ingredient
  * Reviewed By: Asset Yerzhigit
  */
 
