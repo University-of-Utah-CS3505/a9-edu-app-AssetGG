@@ -1,6 +1,6 @@
 /*
  * Name: David Cosby
- * Reviewed By:
+ * Reviewed By: Kazimar Guenther
  * Class: CS 3505
  * Assignment Name: A9: Edu App
  * Description: Serves as a glue between view and model interactions.
