@@ -62,7 +62,7 @@ private:
     QImage helpSpriteLarge;
 
     /// The xLocation and yLocation of the recipeHelp sprite
-    int xLoc, yLoc;
+    int xLocation, yLocation;
 };
 
 #endif // RECIPE_H

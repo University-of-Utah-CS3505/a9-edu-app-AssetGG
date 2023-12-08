@@ -4,8 +4,8 @@
 Tool::Tool(std::string name, bool movable, int locX, int locY):
     name(name),
     movable(movable),
-    locX(locX),
-    locY(locY)
+    xLocation(locX),
+    yLocation(locY)
 { }
 
 bool Tool::IsMovable()

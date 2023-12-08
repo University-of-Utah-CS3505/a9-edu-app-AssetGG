@@ -51,9 +51,6 @@ public:
 
 public slots:
 
-    ///
-    void handleRecipeClicked(const QString &recipeName);
-
     /// Calculates the user's final score by looking at what ingredients they have in their final dish
     int calculateScore();
 
@@ -92,12 +89,6 @@ private:
 
     /// Calls setupIngredientPhysics() for each ingredient in the recipe.
     void setupIngredients();
-
-signals:
-
-    ///
-    void recipeClicked(const QString &recipeName);
-    void selectedRecipeChanged(const QString &newRecipe);
 };
 
 #endif // PLAYERMODEL_H

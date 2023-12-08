@@ -39,7 +39,7 @@ PlayerView::~PlayerView()
     delete ui;
 }
 
-void PlayerView::paintEvent(QPaintEvent *event)
+void PlayerView::paintEvent(QPaintEvent *) //QPaintEvent parameter never used so no name is needed
 {
     QPainter imagePainter(this);
     // draw the things that need to show up on top last. Background goes first.
@@ -52,7 +52,7 @@ void PlayerView::paintEvent(QPaintEvent *event)
     {
         QImage image = tool->GetImage();
 
-        imagePainter.drawImage(QRect(tool->locX, tool->locY, image.width(), image.height()), image);
+        imagePainter.drawImage(QRect(tool->xLocation, tool->yLocation, image.width(), image.height()), image);
     }
 
     // Finally, ingredients.
@@ -60,7 +60,7 @@ void PlayerView::paintEvent(QPaintEvent *event)
     {
         QImage image = ingredient.GetImage();
 
-        imagePainter.drawImage(QRect(ingredient.locX, ingredient.locY, image.width(), image.height()), image);
+        imagePainter.drawImage(QRect(ingredient.xLocation, ingredient.yLocation, image.width(), image.height()), image);
     }
 
     if(showRecipeHelp)
@@ -68,9 +68,9 @@ void PlayerView::paintEvent(QPaintEvent *event)
                                      chosenRecipe.getLargeHelpSprite().height() * 6), chosenRecipe.getLargeHelpSprite());
 }
 
-bool mouseOverSprite(QPoint mousePos, int xLocation, int yLocation, int width, int height)
+bool mouseOverSprite(QPoint mousePos, int xLoc, int yLoc, int width, int height)
 {
-    QRect spriteBounds(xLocation, yLocation, width, height);
+    QRect spriteBounds(xLoc, yLoc, width, height);
     return spriteBounds.contains(mousePos);
 }
 
@@ -100,9 +100,9 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
     for (auto &[ingredientName, ingredient] : ingredientSprites)
     {
         QImage image = ingredient.GetImage();
-        if (mouseOverSprite(mousePosition, ingredient.locX, ingredient.locY, image.width(), image.height()))
+        if (mouseOverSprite(mousePosition, ingredient.xLocation, ingredient.yLocation, image.width(), image.height()))
         {
-            QToolTip::showText(QPoint(ingredient.locX + 395, ingredient.locY + 75), QString::fromStdString(ingredient.GetName()));
+            QToolTip::showText(QPoint(ingredient.xLocation + 395, ingredient.yLocation + 75), QString::fromStdString(ingredient.GetName()));
 
             clickedIngredient = ingredient;
             emit itemGrabbed(ingredientName, true, mousePosition);
@@ -115,7 +115,7 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
         QImage image = tool->GetImage();
         if (tool->IsMovable())
         {
-            if (mouseOverSprite(mousePos, tool->locX, tool->locY, image.width(), image.height()))
+            if (mouseOverSprite(mousePosition, tool->xLocation, tool->yLocation, image.width(), image.height()))
             {
                 emit itemGrabbed(toolName, false, mousePosition);
                 return;
@@ -190,8 +190,8 @@ void PlayerView::updateSpritePositions(const std::map<std::string, Physics::Phys
         if (ingredient)
         {
             auto size = ingredient->GetImage().rect();
-            ingredient->locX = obj.body->GetPosition().x - size.width() / 2.0;
-            ingredient->locY = obj.body->GetPosition().y - size.height() / 2.0;
+            ingredient->xLocation = obj.body->GetPosition().x - size.width() / 2.0;
+            ingredient->yLocation = obj.body->GetPosition().y - size.height() / 2.0;
             continue;
         }
         // ok maybe it's a tool?
@@ -199,8 +199,8 @@ void PlayerView::updateSpritePositions(const std::map<std::string, Physics::Phys
         if (tool)
         {
             auto size = tool->GetImage().rect();
-            tool->locX = obj.body->GetPosition().x - size.width() / 2.0;
-            tool->locY = obj.body->GetPosition().y - size.height() / 2.0;
+            tool->xLocation = obj.body->GetPosition().x - size.width() / 2.0;
+            tool->yLocation = obj.body->GetPosition().y - size.height() / 2.0;
             continue;
         }
     }

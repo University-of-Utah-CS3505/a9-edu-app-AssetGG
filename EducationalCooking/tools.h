@@ -27,8 +27,8 @@ protected:
     QImage inUseImage;
 
 public:
-    int locX;
-    int locY;
+    int xLocation;
+    int yLocation;
 
     Tool(std::string name, bool movable, int locX, int locY);
 

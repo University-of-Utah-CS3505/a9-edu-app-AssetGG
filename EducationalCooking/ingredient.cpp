@@ -1,7 +1,15 @@
+/*
+ * Name: Kazimar Guenther, David Cosby, Caroline Cheng
+ * Reviewed By: Nathaniel Taylor
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: Holds the information necessary to represent the state and appearance of
+ * Ingredients in the game.
+ */
+
 #include "ingredient.h"
 #include <QMouseEvent>
 
-// Constructor of the ingredient object.
 Ingredient::Ingredient(std::string name,
                        QImage baseImage,
                        QImage cutImage,
@@ -20,49 +28,43 @@ Ingredient::Ingredient(std::string name,
 {
     ingredientName = name;
 
-    locX = x;
-    locY = y;
+    xLocation = x;
+    yLocation = y;
 
-    int w = currentImage.width() * scaleFactor;
-    int h = currentImage.height() * scaleFactor;
+    int width = currentImage.width() * scaleFactor;
+    int height = currentImage.height() * scaleFactor;
 
-    this->currentImage = currentImage.scaled(w, h);
-    this->baseImage = baseImage.scaled(w, h);
-    this->cutImage = cutImage.scaled(w, h);
-    this->cookedImage = cookedImage.scaled(w, h);
+    this->currentImage = currentImage.scaled(width, height);
+    this->baseImage = baseImage.scaled(width, height);
+    this->cutImage = cutImage.scaled(width, height);
+    this->cookedImage = cookedImage.scaled(width, height);
 
     cut = false;
     cooked = false;
 }
 
-// Default constructor
 Ingredient::Ingredient()
 {
     // Default constructor has no need to do anything. Only used so
     // ingredients don't have to be set to something in the constructor
 }
 
-// Getter for the name of the ingredient.
 std::string Ingredient::GetName() const
 {
     return ingredientName;
 }
 
-// Getter for the current image of the ingredient.
 QImage Ingredient::GetImage() const
 {
     return currentImage;
 }
 
-// Creates a QRect for the current state of the ingredient.
 QRect Ingredient::GetRect()
 {
-    QRect rectangle = QRect(locX, locY, currentImage.width(), currentImage.height());
+    QRect rectangle = QRect(xLocation, yLocation, currentImage.width(), currentImage.height());
     return rectangle;
 }
 
-// Checks if the ingredient is cuttable. If it is update the currentImage and sets cut to true.
-// Returns cuttable.
 bool Ingredient::Cut()
 {
     if ((cuttable && !cooked) || (ingredientName == "chicken" || ingredientName == "sausage"))
@@ -77,8 +79,6 @@ bool Ingredient::Cut()
     }
 }
 
-// Checks if the ingredient is cookable. If it is update the currentImage and sets cooked to true.
-// Returns cookable.
 bool Ingredient::Cooked()
 {
     if (cookable)
@@ -89,13 +89,11 @@ bool Ingredient::Cooked()
     return cookable;
 }
 
-// Getter for cooked.
 bool Ingredient::IsCooked() const
 {
     return cooked;
 }
 
-// Getter for cut.
 bool Ingredient::IsCut() const
 {
     return cut;

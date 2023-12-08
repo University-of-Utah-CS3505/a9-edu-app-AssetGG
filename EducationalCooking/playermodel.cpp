@@ -40,7 +40,6 @@ void PlayerModel::setupScene()
 void PlayerModel::setCurrentRecipe(const QString &recipe)
 {
     currentRecipe = recipe;
-    emit selectedRecipeChanged(currentRecipe); // May or may not be useful, as user cannot change recipe mid game
 }
 
 const QString &PlayerModel::getCurrentRecipe() const
@@ -61,11 +60,6 @@ int PlayerModel::getFinalScore() const
 std::map<std::string, Tool *> &PlayerModel::getTools()
 {
     return tools;
-}
-
-void PlayerModel::handleRecipeClicked(const QString &recipeName)
-{
-    qDebug() << "Recipe clicked:" << recipeName;
 }
 
 int PlayerModel::calculateScore()
@@ -97,34 +91,22 @@ int PlayerModel::calculateScore()
                 found = true;
 
                 if (usedIngredient.IsCooked() != requiredIngredient.IsCooked())
-                {
                     totalPoints -= baseIngredientImproper;
-                }
 
                 if (usedIngredient.IsCut() != requiredIngredient.IsCut())
-                {
                     totalPoints -= baseIngredientImproper;
-                }
             }
         }
 
         if (!found)
-        {
             totalPoints -= baseIngredientNumber; // Deducts points for missing ingredients
-        }
     }
 
     // Checks for usage of bonus ingredients
     for (const auto &bonusIngredient : recipe.getBonusIngredients())
-    {
         for (const auto &usedIngredient : finalIngredients)
-        {
             if (bonusIngredient.GetName() == usedIngredient.GetName())
-            {
                 totalPoints += 10;
-            }
-        }
-    }
 
     totalPoints = std::max(totalPoints, 0); // Prevents negative points
 
@@ -164,13 +146,13 @@ void PlayerModel::setupIngredientPhysics(Ingredient &ingredient)
     auto circle = Physics::createCircleShape(radius);
     auto obj = physics.registerDynamicObject(ingredient.GetName(),
                                              &circle,
-                                             ingredient.locX,
-                                             ingredient.locY);
+                                             ingredient.xLocation,
+                                             ingredient.yLocation);
 
     b2Filter collisionFilter;
     // Walls are 0x0001 (by default), Ingredients are 0x0002, tools are 0x0004
     collisionFilter.categoryBits = 0x0002;
-    // black magic meaning it can collide with walls or ingredients, but not tools.
+    // Box2D magic meaning it can collide with walls or ingredients, but not tools.
     collisionFilter.maskBits = 0x0001 | 0x0002;
 
     obj.fixture->SetFriction(0.2);
@@ -194,14 +176,10 @@ void PlayerModel::setupCookingToolPhysics(Tool tool)
 
     Physics::PhysicsObject *obj = nullptr;
     if (tool.IsMovable())
-    {
-        obj = &physics.registerDynamicObject(tool.GetName(), &boxShape, tool.locX, tool.locY);
+        obj = &physics.registerDynamicObject(tool.GetName(), &boxShape, tool.xLocation, tool.yLocation);
 
-    }
     else
-    {
-        obj = &physics.registerStaticObject(tool.GetName(), &boxShape, tool.locX, tool.locY);
-    }
+        obj = &physics.registerStaticObject(tool.GetName(), &boxShape, tool.xLocation, tool.yLocation);
 
     obj->body->SetLinearDamping(15.0);
     obj->fixture->SetFilterData(collisionFilter);

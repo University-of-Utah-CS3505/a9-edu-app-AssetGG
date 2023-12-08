@@ -104,6 +104,7 @@ private:
     Tool *getToolByName(std::string name);
 
 signals:
+
     /// Fire's whenever the user presses their mouse while hovering over
     /// an item
     void itemGrabbed(std::string itemName, bool isIngredient, QPoint mousePos);

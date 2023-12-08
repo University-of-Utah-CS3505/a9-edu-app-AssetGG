@@ -1,9 +1,9 @@
 /*
  * Name: Kazimar Guenther, David Cosby, Caroline Cheng
- * Reviewed By:
+ * Reviewed By: Nathaniel Taylor
  * Class: CS 3505
  * Assignment Name: A9: Edu App
- * Description: Ingredient class to represent the state and appearance of
+ * Description: Sets up the data necessary to represent the state and appearance of
  * Ingredients in the game.
  */
 
@@ -19,10 +19,18 @@ class Ingredient
 public:
     Ingredient(std::string, QImage, QImage, QImage, bool, bool, int, int, float scaleFactor = 1.5);
     Ingredient();
-    int locX, locY;
+    int xLocation, yLocation;
+
+    /// Retrieves the name of the ingredient
     std::string GetName() const;
+
+    /// Retrieves the currently displayed image of the ingredient
     QImage GetImage() const;
+
+    /// Retrieves the bounding rectangle for the currently displayed image of the ingredient
     QRect GetRect();
+
+    /// Uses the names of two ingredients to determine whether two ingredients are equal
     bool operator==(Ingredient);
 
     /// Getter for cooked property
