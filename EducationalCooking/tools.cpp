@@ -11,7 +11,6 @@
 
 #include "tools.h"
 #include <QMouseEvent>
-#include <iostream>
 
 Tool::Tool(std::string name, bool movable, int locX, int locY):
     name(name),
@@ -56,8 +55,10 @@ void CuttingBoard::processIngredient(Ingredient &ingredient)
     {
         // chicken and sausage needs to be cooked before cut
         if (ingredient.getName() == "chicken" || ingredient.getName() == "sausage")
+        {
             if (ingredient.isCooked())
                 ingredient.cutIngredient();
+        }
         else
             ingredient.cutIngredient();
     }

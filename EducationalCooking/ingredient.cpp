@@ -71,9 +71,8 @@ bool Ingredient::cutIngredient()
     {
         cut = true;
         currentImage = cutImage;
-        return true;
     }
-    return false;
+    return cuttable;
 }
 
 bool Ingredient::cookIngredient()
