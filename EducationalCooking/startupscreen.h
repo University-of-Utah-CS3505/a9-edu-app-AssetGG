@@ -1,3 +1,11 @@
+/*
+ * Name: Yukon Zipperer, Caroline Cheng
+ * Reviewed By: Caroline Cheng
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: This class allows the user to pick a recipe to make.
+ */
+
 #ifndef STARTUPSCREEN_H
 #define STARTUPSCREEN_H
 

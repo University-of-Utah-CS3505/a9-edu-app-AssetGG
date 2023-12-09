@@ -1,3 +1,11 @@
+/*
+ * Name: Yukon Zipperer
+ * Reviewed By: Caroline Cheng
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: This class displays the final score, ingredients, and food.
+ */
+
 #ifndef FINALSCREEN_H
 #define FINALSCREEN_H
 

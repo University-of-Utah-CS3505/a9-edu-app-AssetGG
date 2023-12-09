@@ -1,3 +1,11 @@
+/*
+ * Name: Yukon Zipperer
+ * Reviewed By: Caroline Cheng
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: This class implements the methods in our finalscreen.h file.
+ */
+
 #include "finalscreen.h"
 #include <QPixmap>
 #include <QHBoxLayout>
@@ -28,12 +36,12 @@ void FinalScreen::setScore(int scoreInput, vector<Ingredient> finalIngredients, 
     displayDishOrTrash(scoreInput);
     displayIngredients();
 
-#ifdef Q_OS_WIN
+    #ifdef Q_OS_WIN
     // Play the audio file on Windows
     //PlaySound(L":/sprites/Sprites/Piss in soup.m4a", NULL, SND_ASYNC | SND_FILENAME);
-#elif defined(Q_OS_MAC)
-    QProcess::startDetached("afplay", QStringList() << "/sprites/Sprites/Piss-in-soup.wav");
-#endif
+    #elif defined(Q_OS_MAC)
+        QProcess::startDetached("afplay", QStringList() << "/sprites/Sprites/Piss-in-soup.wav");
+    #endif
 }
 
 void FinalScreen::setupLayout()

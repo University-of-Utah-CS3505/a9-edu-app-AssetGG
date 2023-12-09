@@ -1,3 +1,10 @@
+/*
+ * Name: Everyone
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: This class starts our program and creates the main objects of our game.
+ */
+
 #include <QApplication>
 #include "controller.h"
 #include "physics.h"

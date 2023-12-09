@@ -1,3 +1,11 @@
+/*
+ * Name: Yukon Zipperer, Caroline Cheng
+ * Reviewed By: Nathaniel Taylor
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: This implements the methods in startupscreen.h and allows us to process inputs from our ui.
+ */
+
 #include "startupscreen.h"
 #include "playerview.h"
 #include <QStyle>
