@@ -1,11 +1,10 @@
 /*
  * Name: David Cosby
- * Reviewed By:
+ * Reviewed By: Yukon Zipperer
  * Class: CS 3505
  * Assignment Name: A9: Edu App
- * Description: This class serves as a wrapper over Box2D to meet our needs
- * for Physics. Handles the scheduling of Physics updates and provides
- * basic tools for creating physics objects.
+ * Description: This class holds all of the data necessary for this class
+ * to serve as a wrapper class for Box2D so physics interactions can happen and be handled.
  */
 
 #ifndef PHYSICS_H
