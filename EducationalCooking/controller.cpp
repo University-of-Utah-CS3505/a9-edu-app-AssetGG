@@ -1,3 +1,13 @@
+/*
+ * Name: David Cosby
+ * Reviewed By: Kazimar Guenther
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: Serves as a glue between view and model interactions.
+ * Primarily handles questions of how user input on the view should
+ * update data stored in the model.
+ */
+
 #include "controller.h"
 #include "physics.h"
 #include "playermodel.h"
@@ -51,7 +61,7 @@ void Controller::onItemDropped(QPoint mousePos)
             if (toolUnderMouse)
             {
                 Ingredient *ingredient = view.getIngredientByName(grabbedObjectName);
-                toolUnderMouse->ProcessIngredient(*ingredient);
+                toolUnderMouse->processIngredient(*ingredient);
             }
         }
 
@@ -105,9 +115,7 @@ Tool *Controller::getToolAtPoint(QPoint point)
                                                                         b2Vec2(point.x(),
                                                                                point.y()));
             if (pointInShape)
-            {
                 return tool;
-            }
         }
     }
 

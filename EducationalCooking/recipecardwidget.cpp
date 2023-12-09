@@ -1,3 +1,11 @@
+/*
+ * Name: Everyone
+ * Reviewed By: Nathaniel Taylor
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: Handles the data for the recipe cards that appear on the startScreen
+ */
+
 #include "recipecardwidget.h"
 #include "ui_recipecardwidget.h"
 

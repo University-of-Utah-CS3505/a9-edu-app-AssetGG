@@ -2,7 +2,7 @@
  * Name: Everyone
  * Class: CS 3505
  * Assignment Name: A9: Edu App
- * Description: This class outlines the functionality of a recipe object.
+ * Description: This class sets up the functionality of a recipe object.
  * Reviewed By: David Cosby
  */
 

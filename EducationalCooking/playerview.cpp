@@ -50,7 +50,7 @@ void PlayerView::paintEvent(QPaintEvent *) //QPaintEvent parameter never used so
 
     for (auto &[toolName, tool] : *tools)
     {
-        QImage image = tool->GetImage();
+        QImage image = tool->getImage();
 
         imagePainter.drawImage(QRect(tool->xLocation, tool->yLocation, image.width(), image.height()), image);
     }
@@ -58,7 +58,7 @@ void PlayerView::paintEvent(QPaintEvent *) //QPaintEvent parameter never used so
     // Finally, ingredients.
     for (auto &[ingredientName, ingredient] : ingredientSprites)
     {
-        QImage image = ingredient.GetImage();
+        QImage image = ingredient.getImage();
 
         imagePainter.drawImage(QRect(ingredient.xLocation, ingredient.yLocation, image.width(), image.height()), image);
     }
@@ -99,10 +99,10 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
     // check if we're clicking on any ingredient.
     for (auto &[ingredientName, ingredient] : ingredientSprites)
     {
-        QImage image = ingredient.GetImage();
+        QImage image = ingredient.getImage();
         if (mouseOverSprite(mousePosition, ingredient.xLocation, ingredient.yLocation, image.width(), image.height()))
         {
-            QToolTip::showText(QPoint(ingredient.xLocation + 395, ingredient.yLocation + 75), QString::fromStdString(ingredient.GetName()));
+            QToolTip::showText(QPoint(ingredient.xLocation + 10, ingredient.yLocation), QString::fromStdString(ingredient.getName()));
 
             clickedIngredient = ingredient;
             emit itemGrabbed(ingredientName, true, mousePosition);
@@ -112,8 +112,8 @@ void PlayerView::mousePressEvent(QMouseEvent *event)
 
     for (auto &[toolName, tool] : *tools)
     {
-        QImage image = tool->GetImage();
-        if (tool->IsMovable())
+        QImage image = tool->getImage();
+        if (tool->isMovable())
         {
             if (mouseOverSprite(mousePosition, tool->xLocation, tool->yLocation, image.width(), image.height()))
             {
@@ -130,14 +130,13 @@ void PlayerView::mouseMoveEvent(QMouseEvent *event)
 
     if (placeFinishedIngredients.contains(event->pos()))
     {
-        addedSomethingToDishLabel->setText("+" + QString(QString::fromStdString(clickedIngredient.GetName())));
+        addedSomethingToDishLabel->setText("+" + QString(QString::fromStdString(clickedIngredient.getName())));
         addedSomethingToDishLabel->setGeometry(QRect(125, 475, 100, 20));
         addedSomethingToDishLabel->setHidden(false);
         hideLabelTimer.start(500);
-        ingredientSprites.erase(clickedIngredient.GetName());
+        ingredientSprites.erase(clickedIngredient.getName());
         emit addItemToFinalDishIngredients(clickedIngredient);
     }
-
     emit updateDragPosition(event->pos());
 }
 
@@ -169,13 +168,11 @@ void PlayerView::setupScene(Recipe &recipe, std::map<std::string, Tool*> &tools)
     chosenRecipe = recipe;
     setupRecipeHelpLine1(recipe);
     setupRecipeHelpLine2(recipe);
-    setupRecipeHelpLine3(recipe);
+    setupRecipeHelpLine3();
     setupRecipeHelpLine4(recipe);
 
     for (Ingredient &ingredient : recipe.getAvaliableIngredients())
-    {
-        ingredientSprites.insert({ingredient.GetName(), ingredient});
-    }
+        ingredientSprites.insert({ingredient.getName(), ingredient});
 
     this->tools = &tools;
 }
@@ -189,16 +186,17 @@ void PlayerView::updateSpritePositions(const std::map<std::string, Physics::Phys
         auto ingredient = getIngredientByName(name);
         if (ingredient)
         {
-            auto size = ingredient->GetImage().rect();
+            auto size = ingredient->getImage().rect();
             ingredient->xLocation = obj.body->GetPosition().x - size.width() / 2.0;
             ingredient->yLocation = obj.body->GetPosition().y - size.height() / 2.0;
             continue;
         }
+
         // ok maybe it's a tool?
         auto tool = getToolByName(name);
         if (tool)
         {
-            auto size = tool->GetImage().rect();
+            auto size = tool->getImage().rect();
             tool->xLocation = obj.body->GetPosition().x - size.width() / 2.0;
             tool->yLocation = obj.body->GetPosition().y - size.height() / 2.0;
             continue;
@@ -224,7 +222,7 @@ void PlayerView::setupRecipeHelpLine2(Recipe recipe)
     recipeHelpLine2 = new QLabel(this);
 
     for(ComparisonIngredient ingredient : recipe.getBaseIngredients())
-        helpLine2Text += QString::fromStdString(ingredient.GetName()) + QString::fromStdString("--");
+        helpLine2Text += QString::fromStdString(ingredient.getName()) + QString::fromStdString("--");
 
     recipeHelpLine2->setText(QString::fromStdString("--") + helpLine2Text + QString::fromStdString("\n"));
     recipeHelpLine2->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
@@ -232,7 +230,7 @@ void PlayerView::setupRecipeHelpLine2(Recipe recipe)
     recipeHelpLine2->setHidden(true);
 }
 
-void PlayerView::setupRecipeHelpLine3(Recipe recipe)
+void PlayerView::setupRecipeHelpLine3()
 {
     recipeHelpLine3 = new QLabel(this);
     recipeHelpLine3->setText(QString::fromStdString("Would any of these ingredients be good?\n"));
@@ -247,7 +245,7 @@ void PlayerView::setupRecipeHelpLine4(Recipe recipe)
     recipeHelpLine4 = new QLabel(this);
 
     for(ComparisonIngredient ingredient : recipe.getBonusIngredients())
-        helpLine4Text += ingredient.GetName() + "--";
+        helpLine4Text += ingredient.getName() + "--";
 
     recipeHelpLine4->setText(QString::fromStdString("--") + helpLine4Text + QString::fromStdString("\n"));
     recipeHelpLine4->setAlignment(Qt::AlignBottom | Qt::AlignLeft);

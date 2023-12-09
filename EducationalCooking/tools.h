@@ -35,17 +35,17 @@ public:
     Tool(std::string, bool, int, int);
 
     /// Returns true if the tool is intended to move or not.
-    bool IsMovable();
+    bool isMovable();
 
     /// Returns the tool's sprite
-    QImage GetImage();
+    QImage getImage();
 
     /// Returns the tool's name.
-    std::string GetName();
+    std::string getName();
 
     /// Whatever should happen to an ingredient when it is
     /// dropped on this tool.
-    virtual void ProcessIngredient(Ingredient&);
+    virtual void processIngredient(Ingredient&);
 };
 
 class CuttingBoard : public Tool
@@ -56,7 +56,7 @@ public:
     CuttingBoard(int locX, int locY);
 
     /// Cuts the ingredient if it is cuttable.
-    void ProcessIngredient(Ingredient&);
+    void processIngredient(Ingredient&);
 };
 
 class FryingPan : public Tool
@@ -67,7 +67,7 @@ public:
     FryingPan(int locX, int locY);
 
     /// Cooks certain ingredients
-    void ProcessIngredient(Ingredient&);
+    void processIngredient(Ingredient&);
 };
 
 class Pot : public Tool
@@ -78,6 +78,6 @@ public:
     Pot(int locX, int locY);
 
     /// Cooks certain ingredients
-    void ProcessIngredient(Ingredient&);
+    void processIngredient(Ingredient&);
 };
 #endif // TOOLS_H

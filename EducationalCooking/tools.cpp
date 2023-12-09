@@ -1,3 +1,14 @@
+/*
+ * Name: Asset Yerzhigit, Caroline Cheng, David Cosby
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: Contains a base Tool class and other tools extending
+ * from that (CuttingBoard, Pot, Pan) to define cooking tools in our game.
+ * Provides basic tool data and logic for how each tool should process
+ * ingredients.
+ * Reviewed By: David Cosby
+ */
+
 #include "tools.h"
 #include <QMouseEvent>
 
@@ -6,26 +17,28 @@ Tool::Tool(std::string name, bool movable, int locX, int locY):
     movable(movable),
     xLocation(locX),
     yLocation(locY)
-{ }
+{
 
-bool Tool::IsMovable()
+}
+
+bool Tool::isMovable()
 {
     return movable;
 }
 
-QImage Tool::GetImage()
+QImage Tool::getImage()
 {
     return baseImage;
 }
 
-std::string Tool::GetName()
+std::string Tool::getName()
 {
     return name;
 }
 
-void Tool::ProcessIngredient(Ingredient &ingredient)
+void Tool::processIngredient(Ingredient &)
 {
-    qDebug() << "ProcessIngredient() has not been implemented for " << name;
+    // Implementation handled by children
 }
 
 CuttingBoard::CuttingBoard(int locX, int locY)
@@ -36,47 +49,35 @@ CuttingBoard::CuttingBoard(int locX, int locY)
     currentImage = baseImage;
 }
 
-void CuttingBoard::ProcessIngredient(Ingredient &ingredient)
+void CuttingBoard::processIngredient(Ingredient &ingredient)
 {
-    if (ingredient.IsCuttable())
+    if (ingredient.isCuttable())
     {
         // chicken and sausage needs to be cooked before cut
-        if (ingredient.GetName() == "chicken" || ingredient.GetName() == "sausage")
-        {
-            if (ingredient.IsCooked())
-            {
-                ingredient.Cut();
-            }
-        }
+        if (ingredient.getName() == "chicken" || ingredient.getName() == "sausage")
+            if (ingredient.isCooked())
+                ingredient.cutIngredient();
         else
-        {
-            ingredient.Cut();
-        }
+            ingredient.cutIngredient();
     }
 }
 
-void FryingPan::ProcessIngredient(Ingredient &ingredient)
+void FryingPan::processIngredient(Ingredient &ingredient)
 {
     if (ingredient.isCookable() == true)
     {
-        if (ingredient.GetName() == "chicken" || ingredient.GetName() == "dough"
-            || ingredient.GetName() == "patty" || ingredient.GetName() == "bun"
-            || ingredient.GetName() == "sausage" || ingredient.GetName() == "eggs")
-        {
-            ingredient.Cooked();
-        }
+        if (ingredient.getName() == "chicken" || ingredient.getName() == "dough"
+            || ingredient.getName() == "patty" || ingredient.getName() == "bun"
+            || ingredient.getName() == "sausage" || ingredient.getName() == "eggs")
+            ingredient.cookIngredient();
     }
 }
 
-void Pot::ProcessIngredient(Ingredient &ingredient)
+void Pot::processIngredient(Ingredient &ingredient)
 {
     if (ingredient.isCookable() == true)
-    {
-        if (ingredient.GetName() == "noodles" || ingredient.GetName() == "meatballs")
-        {
-            ingredient.Cooked();
-        }
-    }
+        if (ingredient.getName() == "noodles" || ingredient.getName() == "meatballs")
+            ingredient.cookIngredient();
 }
 
 FryingPan::FryingPan(int locX, int locY)

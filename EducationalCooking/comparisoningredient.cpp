@@ -1,3 +1,12 @@
+/*
+ * Name: Kazimar Guenther, Yukon Zipperer
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: This class handles the data used for comparing
+ * final ingredient with current ingredient
+ * Reviewed By: Asset Yerzhigit
+ */
+
 #include "comparisoningredient.h"
 #include "ingredient.h"
 
@@ -15,27 +24,25 @@ ComparisonIngredient::ComparisonIngredient()
     name = "default";
 }
 
-std::string ComparisonIngredient::GetName() const
+std::string ComparisonIngredient::getName() const
 {
     return name;
 }
 
-bool ComparisonIngredient::IsCooked() const
+bool ComparisonIngredient::isCooked() const
 {
     return cooked;
 }
 
-bool ComparisonIngredient::IsCut() const
+bool ComparisonIngredient::isCut() const
 {
     return cut;
 }
 
 bool ComparisonIngredient::legalIngredient(Ingredient ingredient)
 {
-    if(ingredient.IsCut() != cut || ingredient.IsCooked() != cooked)
-    {
+    if(ingredient.isCut() != cut || ingredient.isCooked() != cooked)
         return false;
-    }
 
     return true;
 }

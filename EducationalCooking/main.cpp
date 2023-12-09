@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
 
     PlayerView playerView;
     Physics physics;
-    PlayerModel model(physics); // Instance of PlayerModel
+    PlayerModel model(physics);
 
     Controller c(model, playerView);
 

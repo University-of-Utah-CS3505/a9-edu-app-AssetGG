@@ -11,6 +11,15 @@
 #define INGREDIENT_H
 
 #include <QObject>
+/*
+ * Name: Kazimar Guenther, David Cosby, Caroline Cheng
+ * Reviewed By: Nathaniel Taylor
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: Sets up the information necessary to represent the state and appearance of
+ * Ingredients in the game.
+ */
+
 #include <QImage>
 #include <QPaintEvent>
 
@@ -26,34 +35,34 @@ public:
     int xLocation, yLocation;
 
     /// Retrieves the name of the ingredient
-    std::string GetName() const;
+    std::string getName() const;
 
     /// Retrieves the currently displayed image of the ingredient
-    QImage GetImage() const;
+    QImage getImage() const;
 
     /// Retrieves the bounding rectangle for the currently displayed image of the ingredient
-    QRect GetRect();
+    QRect getRect();
 
     /// Uses the names of two ingredients to determine whether two ingredients are equal
     bool operator==(Ingredient);
 
     /// Getter for cooked property
-    bool IsCooked() const;
+    bool isCooked() const;
 
     /// Getter for cut property
-    bool IsCut() const;
+    bool isCut() const;
 
     /// Getter for cuttable property
-    bool IsCuttable() const;
+    bool isCuttable() const;
 
     /// Getter for cookable property
     bool isCookable() const;
 
     /// Cuts the ingredient
-    bool Cut();
+    bool cutIngredient();
 
     /// Cooks the ingredient
-    bool Cooked();
+    bool cookIngredient();
 
 private:
     std::string ingredientName;

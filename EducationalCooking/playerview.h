@@ -94,7 +94,7 @@ private:
     void setupRecipeHelpLine2(Recipe);
 
     ///Sets up the third line of the recipe help feature
-    void setupRecipeHelpLine3(Recipe);
+    void setupRecipeHelpLine3();
 
     ///Sets up the fourth line of the recipe help feature
     void setupRecipeHelpLine4(Recipe);

@@ -1,6 +1,6 @@
 /*
  * Name: Yukon Zipperer, Caroline Cheng
- * Reviewed By: Nathaniel Taylor
+ * Reviewed By: Caroline Cheng
  * Class: CS 3505
  * Assignment Name: A9: Edu App
  * Description: This implements the methods in startupscreen.h and allows us to process inputs from our ui.
@@ -74,24 +74,12 @@ void StartupScreen::createRecipeCards()
     updateRecipeCardImage(ui->recipeCard5, ":/sprites/Sprites/Cheeseburger.png");
     updateRecipeCardImage(ui->recipeCard6, ":/sprites/Sprites/Pancakes.png");
 
-    connect(ui->recipeCard1, &RecipeCardWidget::clicked, this, [this]() {
-        onRecipeCardClicked(0);
-    });
-    connect(ui->recipeCard2, &RecipeCardWidget::clicked, this, [this]() {
-        onRecipeCardClicked(1);
-    });
-    connect(ui->recipeCard3, &RecipeCardWidget::clicked, this, [this]() {
-        onRecipeCardClicked(2);
-    });
-    connect(ui->recipeCard4, &RecipeCardWidget::clicked, this, [this]() {
-        onRecipeCardClicked(3);
-    });
-    connect(ui->recipeCard5, &RecipeCardWidget::clicked, this, [this]() {
-        onRecipeCardClicked(4);
-    });
-    connect(ui->recipeCard6, &RecipeCardWidget::clicked, this, [this]() {
-        onRecipeCardClicked(5);
-    });
+    connect(ui->recipeCard1, &RecipeCardWidget::clicked, this, [this]() { onRecipeCardClicked(0); });
+    connect(ui->recipeCard2, &RecipeCardWidget::clicked, this, [this]() { onRecipeCardClicked(1); });
+    connect(ui->recipeCard3, &RecipeCardWidget::clicked, this, [this]() { onRecipeCardClicked(2); });
+    connect(ui->recipeCard4, &RecipeCardWidget::clicked, this, [this]() { onRecipeCardClicked(3); });
+    connect(ui->recipeCard5, &RecipeCardWidget::clicked, this, [this]() { onRecipeCardClicked(4); });
+    connect(ui->recipeCard6, &RecipeCardWidget::clicked, this, [this]() { onRecipeCardClicked(5); });
 }
 
 void StartupScreen::updateRecipeCard(RecipeCardWidget *card, const QString &recipeName)

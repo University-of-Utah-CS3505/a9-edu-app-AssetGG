@@ -14,10 +14,6 @@
 #include <QParallelAnimationGroup>
 #include <QProcess>
 
-#ifdef Q_OS_WIN
-#include <Windows.h>
-#endif
-
 FinalScreen::FinalScreen(QWidget *parent) : QWidget(parent)
 {
     score = 100;
@@ -35,13 +31,6 @@ void FinalScreen::setScore(int scoreInput, vector<Ingredient> finalIngredients, 
     ingredients = finalIngredients;
     displayDishOrTrash(scoreInput);
     displayIngredients();
-
-    #ifdef Q_OS_WIN
-    // Play the audio file on Windows
-    //PlaySound(L":/sprites/Sprites/Piss in soup.m4a", NULL, SND_ASYNC | SND_FILENAME);
-    #elif defined(Q_OS_MAC)
-        QProcess::startDetached("afplay", QStringList() << "/sprites/Sprites/Piss-in-soup.wav");
-    #endif
 }
 
 void FinalScreen::setupLayout()
@@ -120,34 +109,20 @@ void FinalScreen::displayDishOrTrash(int scoreInput)
     if (scoreInput > 60)
     {
         if(currentRecipeName.toLower() == "spaghetti")
-        {
             imageOfDish = QImage(":/sprites/Sprites/Pasta Tomato.png");
-        }
         else if(currentRecipeName.toLower() == "salad")
-        {
             imageOfDish = QImage(":/sprites/Sprites/Salad Dish.png");
-        }
         else if(currentRecipeName.toLower() == "pepperoni pizza")
-        {
             imageOfDish = QImage(":/sprites/Sprites/Pepperoni Pizza.png");
-        }
         else if(currentRecipeName.toLower() == "soup")
-        {
             imageOfDish = QImage(":/sprites/Sprites/Chicken Soup.png");
-        }
         else if(currentRecipeName.toLower() == "hamburger")
-        {
             imageOfDish = QImage(":/sprites/Sprites/Cheeseburger.png");
-        }
         else if(currentRecipeName.toLower() == "pancakes")
-        {
             imageOfDish = QImage(":/sprites/Sprites/Pancakes.png");
-        }
     }
     else
-    {
         imageOfDish = QImage(":/sprites/Sprites/Trash.png");
-    }
 
     dishOrTrashLabel->setPixmap(QPixmap::fromImage(imageOfDish).scaled(200, 200));
 }
@@ -167,13 +142,13 @@ void FinalScreen::displayIngredients()
         QHBoxLayout* ingredientLayout = new QHBoxLayout(ingredientWidget);
 
         QLabel* ingredientLabel = new QLabel;
-        ingredientLabel->setText(QString::fromStdString(ingredient.GetName()));
+        ingredientLabel->setText(QString::fromStdString(ingredient.getName()));
         ingredientLabel->setAlignment(Qt::AlignCenter);
         ingredientLabel->setStyleSheet("font-size: 12pt;");
         ingredientLabel->setMinimumHeight(24);
 
         QLabel* ingredientImageLabel = new QLabel;
-        ingredientImageLabel->setPixmap(QPixmap::fromImage(ingredient.GetImage()).scaled(24, 24));
+        ingredientImageLabel->setPixmap(QPixmap::fromImage(ingredient.getImage()).scaled(24, 24));
         ingredientImageLabel->setMinimumHeight(24);
 
         ingredientLayout->addWidget(ingredientImageLabel);

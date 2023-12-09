@@ -86,14 +86,14 @@ int PlayerModel::calculateScore()
 
         for (const auto &usedIngredient : finalIngredients)
         {
-            if (requiredIngredient.GetName() == usedIngredient.GetName())
+            if (requiredIngredient.getName() == usedIngredient.getName())
             {
                 found = true;
 
-                if (usedIngredient.IsCooked() != requiredIngredient.IsCooked())
+                if (usedIngredient.isCooked() != requiredIngredient.isCooked())
                     totalPoints -= baseIngredientImproper;
 
-                if (usedIngredient.IsCut() != requiredIngredient.IsCut())
+                if (usedIngredient.isCut() != requiredIngredient.isCut())
                     totalPoints -= baseIngredientImproper;
             }
         }
@@ -105,7 +105,7 @@ int PlayerModel::calculateScore()
     // Checks for usage of bonus ingredients
     for (const auto &bonusIngredient : recipe.getBonusIngredients())
         for (const auto &usedIngredient : finalIngredients)
-            if (bonusIngredient.GetName() == usedIngredient.GetName())
+            if (bonusIngredient.getName() == usedIngredient.getName())
                 totalPoints += 10;
 
     totalPoints = std::max(totalPoints, 0); // Prevents negative points
@@ -141,10 +141,10 @@ void PlayerModel::setupWalls()
 
 void PlayerModel::setupIngredientPhysics(Ingredient &ingredient)
 {
-    QRect spriteBounds = ingredient.GetImage().rect();
+    QRect spriteBounds = ingredient.getImage().rect();
     float radius = std::min(spriteBounds.width(), spriteBounds.height()) / 2.0;
     auto circle = Physics::createCircleShape(radius);
-    auto obj = physics.registerDynamicObject(ingredient.GetName(),
+    auto obj = physics.registerDynamicObject(ingredient.getName(),
                                              &circle,
                                              ingredient.xLocation,
                                              ingredient.yLocation);
@@ -165,7 +165,7 @@ void PlayerModel::setupIngredientPhysics(Ingredient &ingredient)
 void PlayerModel::setupCookingToolPhysics(Tool tool)
 {
     // create a physics object for the tool
-    QImage img = tool.GetImage();
+    QImage img = tool.getImage();
     auto boxShape = Physics::createBoxShape(img.width() * 0.8, img.height() * 0.8);
 
     b2Filter collisionFilter;
@@ -175,11 +175,11 @@ void PlayerModel::setupCookingToolPhysics(Tool tool)
     collisionFilter.maskBits = 0x0001 | 0x0004;
 
     Physics::PhysicsObject *obj = nullptr;
-    if (tool.IsMovable())
-        obj = &physics.registerDynamicObject(tool.GetName(), &boxShape, tool.xLocation, tool.yLocation);
+    if (tool.isMovable())
+        obj = &physics.registerDynamicObject(tool.getName(), &boxShape, tool.xLocation, tool.yLocation);
 
     else
-        obj = &physics.registerStaticObject(tool.GetName(), &boxShape, tool.xLocation, tool.yLocation);
+        obj = &physics.registerStaticObject(tool.getName(), &boxShape, tool.xLocation, tool.yLocation);
 
     obj->body->SetLinearDamping(15.0);
     obj->fixture->SetFilterData(collisionFilter);
@@ -454,10 +454,9 @@ void PlayerModel::setupTools()
     tools.insert({"CuttingBoard", new CuttingBoard(230, 410)});
     tools.insert({"FryingPan", new FryingPan(282, 90)});
     tools.insert({"Pot", new Pot(405, 75)});
+
     for (auto &[toolName, tool] : tools)
-    {
         setupCookingToolPhysics(*tool);
-    }
 }
 
 void PlayerModel::setupIngredients()
@@ -471,7 +470,5 @@ void PlayerModel::setupIngredients()
         }
     }
     for (Ingredient &ingredient : selectedRecipe.getAvaliableIngredients())
-    {
         setupIngredientPhysics(ingredient);
-    }
 }

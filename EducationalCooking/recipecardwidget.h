@@ -1,3 +1,11 @@
+/*
+ * Name: Everyone
+ * Reviewed By: Nathaniel Taylor
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: Sets up the data for the recipe cards that appear on the startScreen
+ */
+
 #ifndef RECIPECARDWIDGET_H
 #define RECIPECARDWIDGET_H
 
@@ -30,13 +38,6 @@ public:
     /// Check if the recipe card is selected
     bool isSelected() const;
 
-signals:
-    /// Signal emitted when the recipe card is clicked
-    void clicked();
-
-    /// Signal emitted when a specific recipe is clicked
-    void recipeClicked(const QString&);
-
 protected:
     /// Handle mouse press events on the recipe card
     void mousePressEvent(QMouseEvent *) override;
@@ -49,6 +50,13 @@ private:
 
     /// Method called when the recipe card is clicked
     void onCardClicked();
+
+signals:
+    /// Signal emitted when the recipe card is clicked
+    void clicked();
+
+    /// Signal emitted when a specific recipe is clicked
+    void recipeClicked(const QString&);
 };
 
 #endif // RECIPECARDWIDGET_H

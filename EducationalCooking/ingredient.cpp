@@ -49,23 +49,23 @@ Ingredient::Ingredient()
     // ingredients don't have to be set to something in the constructor
 }
 
-std::string Ingredient::GetName() const
+std::string Ingredient::getName() const
 {
     return ingredientName;
 }
 
-QImage Ingredient::GetImage() const
+QImage Ingredient::getImage() const
 {
     return currentImage;
 }
 
-QRect Ingredient::GetRect()
+QRect Ingredient::getRect()
 {
     QRect rectangle = QRect(xLocation, yLocation, currentImage.width(), currentImage.height());
     return rectangle;
 }
 
-bool Ingredient::Cut()
+bool Ingredient::cutIngredient()
 {
     if ((cuttable && !cooked) || (ingredientName == "chicken" || ingredientName == "sausage"))
     {
@@ -73,13 +73,10 @@ bool Ingredient::Cut()
         currentImage = cutImage;
         return true;
     }
-    else
-    {
-        return false;
-    }
+    return false;
 }
 
-bool Ingredient::Cooked()
+bool Ingredient::cookIngredient()
 {
     if (cookable)
     {
@@ -89,17 +86,17 @@ bool Ingredient::Cooked()
     return cookable;
 }
 
-bool Ingredient::IsCooked() const
+bool Ingredient::isCooked() const
 {
     return cooked;
 }
 
-bool Ingredient::IsCut() const
+bool Ingredient::isCut() const
 {
     return cut;
 }
 
-bool Ingredient::IsCuttable() const
+bool Ingredient::isCuttable() const
 {
     return cuttable;
 }
@@ -111,7 +108,7 @@ bool Ingredient::isCookable() const
 
 bool Ingredient::operator ==(Ingredient lhs)
 {
-    if (this->GetName() == lhs.GetName())
+    if (this->getName() == lhs.getName())
         return true;
     return false;
 }

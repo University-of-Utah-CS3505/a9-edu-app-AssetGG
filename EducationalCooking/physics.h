@@ -39,13 +39,6 @@ public:
         PhysicsObject(b2Body *, b2Fixture *);
     };
 
-private:
-    b2World world;
-    std::map<std::string, Physics::PhysicsObject> objects;
-
-    /// Internal method for updating PhysicsObjects
-    void update();
-
 public:
 
     /// Constructs a physics simulator that will update `updateHz` times
@@ -82,6 +75,13 @@ public:
 
     /// stops the physics simulation.
     void stop();
+
+private:
+    b2World world;
+    std::map<std::string, Physics::PhysicsObject> objects;
+
+    /// Internal method for updating PhysicsObjects
+    void update();
 
 signals:
 

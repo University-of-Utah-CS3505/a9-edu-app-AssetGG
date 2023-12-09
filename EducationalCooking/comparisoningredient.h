@@ -2,7 +2,7 @@
  * Name: Kazimar Guenther, Yukon Zipperer
  * Class: CS 3505
  * Assignment Name: A9: Edu App
- * Description: This class is used for comparing
+ * Description: This class sets up the data used for comparing
  * final ingredient with current ingredient
  * Reviewed By: Asset Yerzhigit
  */
@@ -25,13 +25,13 @@ public:
     bool legalIngredient(Ingredient);
 
     /// Getter for the name of ComparisonIngredient.
-    std::string GetName() const;
+    std::string getName() const;
 
     /// Getter for cooked of ComparisonIngredient
-    bool IsCooked() const;
+    bool isCooked() const;
 
     /// Getter for the cut of ComparisonIngrdient
-    bool IsCut() const;
+    bool isCut() const;
 
 private:
     bool cut;

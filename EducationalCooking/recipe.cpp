@@ -1,3 +1,11 @@
+/*
+ * Name: Everyone
+ * Class: CS 3505
+ * Assignment Name: A9: Edu App
+ * Description: This class handles functionality for recipe objects.
+ * Reviewed By: David Cosby
+ */
+
 #include "recipe.h"
 #include "comparisoningredient.h"
 
@@ -20,7 +28,9 @@ Recipe::Recipe(string name,
 Recipe::Recipe()
     : xLocation(0)
     , yLocation(0)
-{}
+{
+
+}
 
 vector<ComparisonIngredient> Recipe::getBaseIngredients() const
 {
