@@ -15,17 +15,14 @@ class RecipeCardWidget : public QWidget
     Q_OBJECT
 
 public:
-    /// Constructor
     explicit RecipeCardWidget(QWidget *parent = nullptr);
-
-    /// Destructor
     ~RecipeCardWidget();
 
     /// Set the name of the recipe
-    void setRecipeName(const QString &name);
+    void setRecipeName(const QString&);
 
     /// Set the image for the recipe card
-    void setRecipeImage(const QString &imagePath);
+    void setRecipeImage(const QString&);
 
     /// Get the name of the recipe
     QString getRecipeName();
@@ -38,11 +35,11 @@ signals:
     void clicked();
 
     /// Signal emitted when a specific recipe is clicked
-    void recipeClicked(const QString &recipeName);
+    void recipeClicked(const QString&);
 
 protected:
     /// Handle mouse press events on the recipe card
-    void mousePressEvent(QMouseEvent *event) override;
+    void mousePressEvent(QMouseEvent *) override;
 
 private:
     Ui::RecipeCardWidget *ui;

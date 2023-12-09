@@ -18,8 +18,8 @@ Recipe::Recipe(string name,
 }
 
 Recipe::Recipe()
-    : xLoc(0)
-    , yLoc(0)
+    : xLocation(0)
+    , yLocation(0)
 {}
 
 vector<ComparisonIngredient> Recipe::getBaseIngredients() const
@@ -54,10 +54,10 @@ QImage Recipe::getLargeHelpSprite() const
 
 int Recipe::getXLocation() const
 {
-    return xLoc;
+    return xLocation;
 }
 
 int Recipe::getYLocation() const
 {
-    return yLoc;
+    return yLocation;
 }

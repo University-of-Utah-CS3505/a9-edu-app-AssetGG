@@ -42,32 +42,32 @@ public:
     ~PlayerView();
 
     /// Sets up the recipe help feature and adds all of the ingredient sprites needed for the chosen recipe to the view
-    void setupScene(Recipe &recipe, std::map<std::string, Tool *> &tools);
+    void setupScene(Recipe, std::map<std::string, Tool *>&);
 
     /// Updates a sprites position based on whether it is an ingredient or cooking tool
-    void updateSpritePositions(const std::map<std::string, Physics::PhysicsObject> &physicsObjects);
+    void updateSpritePositions(const std::map<std::string, Physics::PhysicsObject>&);
 
     /// Fire's signals to determine the user's final score and their final dish and sets up the user's end game screen
     void onScoreButtonClicked();
 
     /// Returns a pointer to the view Ingredient if it exists, or
     /// a nullptr if it doesn't.
-    Ingredient *getIngredientByName(std::string name);
+    Ingredient *getIngredientByName(std::string);
 
 public slots:
 
     ///Repaints all sprites and kitchen tools at their positions
     /// (positions only update if the user clicks on them and drags them around)
-    void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *);
 
     ///Updates the position of the sprite clicked on
-    void mouseMoveEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *);
 
     ///Determines if the mouse press happened on an ingredient or a cooking tool
-    void mousePressEvent(QMouseEvent *event);
+    void mousePressEvent(QMouseEvent *);
 
     ///Tells the model no ingredient or cooking tool is clicked on anymore
-    void mouseReleaseEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *);
 
 private slots:
 
@@ -101,20 +101,20 @@ private:
 
     /// Returns a pointer to the view Tool if it exists,
     /// or a nullptr if it doesn't.
-    Tool *getToolByName(std::string name);
+    Tool *getToolByName(std::string);
 
 signals:
 
     /// Fire's whenever the user presses their mouse while hovering over
     /// an item
-    void itemGrabbed(std::string itemName, bool isIngredient, QPoint mousePos);
+    void itemGrabbed(std::string, bool, QPoint);
 
     /// Fire's when the user, who is dragging an ingredient, releases their
     /// mouse button.
-    void itemDropped(QPoint mousePos);
+    void itemDropped(QPoint);
 
     /// Fire's each time the user's mouse position updates while dragging.
-    void updateDragPosition(QPoint mousePos);
+    void updateDragPosition(QPoint);
 
     /// Retrieves the user's final score from the model
     int calculateScoreRequested();

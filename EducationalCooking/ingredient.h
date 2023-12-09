@@ -17,6 +17,10 @@
 class Ingredient
 {
 public:
+
+    /// Creates an ingredient object from the given name with the given current image, cut image, and cooked image
+    /// (all images are made with the given width and height and scaled by the scaleFactor).
+    /// It also sets the cuttable and cookable properties
     Ingredient(std::string, QImage, QImage, QImage, bool, bool, int, int, float scaleFactor = 1.5);
     Ingredient();
     int xLocation, yLocation;
@@ -35,16 +39,19 @@ public:
 
     /// Getter for cooked property
     bool IsCooked() const;
+
     /// Getter for cut property
     bool IsCut() const;
 
     /// Getter for cuttable property
     bool IsCuttable() const;
+
     /// Getter for cookable property
     bool isCookable() const;
 
     /// Cuts the ingredient
     bool Cut();
+
     /// Cooks the ingredient
     bool Cooked();
 

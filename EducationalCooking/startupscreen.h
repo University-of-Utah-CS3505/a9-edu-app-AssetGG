@@ -15,18 +15,15 @@ class StartupScreen : public QWidget {
     Q_OBJECT
 
 public:
-    /// Constructor
-    StartupScreen(PlayerModel &model, PlayerView &view, QWidget *parent = nullptr);
-
-    /// Destructor
+    StartupScreen(PlayerModel&, PlayerView&, QWidget *parent = nullptr);
     ~StartupScreen();
 
 private slots:
     /// Slot for handling the click event on a recipe card
-    void onRecipeCardClicked(int recipeIndex);
+    void onRecipeCardClicked(int);
 
     /// Slot for handling the click event on a specific recipe card
-    void handleRecipeCardClicked(const QString &recipeName);
+    void handleRecipeCardClicked(const QString&);
 
     /// Slot for handling the click event on the "Learn Recipe" button
     void onLearnRecipeClicked();
@@ -56,10 +53,10 @@ private:
     void createRecipeCards();
 
     /// Method to update a recipe card with a given recipe name
-    void updateRecipeCard(RecipeCardWidget* card, const QString& recipeName);
+    void updateRecipeCard(RecipeCardWidget*, const QString&);
 
     /// Method to update the image of a recipe card with a given image path
-    void updateRecipeCardImage(RecipeCardWidget* card, const QString& imagePath);
+    void updateRecipeCardImage(RecipeCardWidget*, const QString&);
 };
 
 #endif // STARTUPSCREEN_H

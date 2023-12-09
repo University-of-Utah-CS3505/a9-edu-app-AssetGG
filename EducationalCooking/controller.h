@@ -33,19 +33,19 @@ class Controller : public QObject
     QPoint mousePos;
 
 public:
-    explicit Controller(PlayerModel &model, PlayerView &view, QObject *parent = nullptr);
+    explicit Controller(PlayerModel&, PlayerView&, QObject *parent = nullptr);
 
 public slots:
     /// finds the physics object for the grabbed item and preps it
     /// so the updateGrabForces() method will start moving it around.
-    void onItemGrabbed(std::string itemName, bool isIngredient, QPoint mousePos);
+    void onItemGrabbed(std::string, bool, QPoint);
 
     /// Updates the controller's copy of the mousePos, for use by updateGrabForces()
-    void onMouseMoved(QPoint mousePos);
+    void onMouseMoved(QPoint);
 
     /// Temporarily decreases friction on the grabbed object for some
     /// satisfying "throwing" and then clears up references to the dragged object.
-    void onItemDropped(QPoint mousePos);
+    void onItemDropped(QPoint);
 
 private:
     /// establishes connections between the view's grab-specific events and the slots on this class
@@ -56,7 +56,7 @@ private:
 
     /// Returns a pointer to the tool under the position provided, if one exists.
     /// Otherwise returns a nullptr. Useful for telling which tool a user is mousing over.
-    Tool *getToolAtPoint(QPoint point);
+    Tool *getToolAtPoint(QPoint);
 };
 
 #endif // CONTROLLER_H

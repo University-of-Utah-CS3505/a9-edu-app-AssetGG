@@ -17,12 +17,13 @@
 class Recipe
 {
 public:
-    /// Constructor that takes in our base, bonus, and avaliable ingredients
+
+    /// Builds a recipe from the given base, bonus, and available ingredients
     Recipe(std::string,
            std::vector<ComparisonIngredient>,
            std::vector<ComparisonIngredient>,
            std::vector<Ingredient>);
-    /// Description: Default constructor.
+
     Recipe();
 
     /// Getter method for vector of base ingredients

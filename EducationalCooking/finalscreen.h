@@ -14,11 +14,10 @@ class FinalScreen : public QWidget
     Q_OBJECT
 
 public:
-    /// Constructor
     FinalScreen(QWidget *parent = nullptr);
 
     /// Set the score and display the final screen
-    void setScore(int score, vector<Ingredient> ingredients, const QString& recipeName);
+    void setScore(int, vector<Ingredient>, const QString&);
 
 private:
     /// Initialize the layout of the final screen
@@ -28,16 +27,13 @@ private:
     void updateLayout();
 
     /// Display the dish or trash image based on the score
-    void displayDishOrTrash(int score);
+    void displayDishOrTrash(int);
 
     /// Display the list of ingredients used in the final dish
     void displayIngredients();
 
     /// Add an ingredient to the list displayed on the final screen
-    void addIngredient(const QString &name, const QString &imagePath);
-
-    /// Play the audio associated with the final screen
-    void playAudio();
+    void addIngredient(const QString&, const QString&);
 
     /// Vector to store the ingredients used in the final dish
     vector<Ingredient> ingredients;
@@ -59,7 +55,7 @@ private:
 
     /// Labels for displaying the score, stars, Gordon Ramsay image, and dish or trash image
     QLabel *scoreLabel;
-    QList<QLabel *> stars;
+    QList<QLabel*> stars;
     QLabel *gordonLabel;
     QLabel *dishOrTrashLabel;
 };

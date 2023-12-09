@@ -16,10 +16,9 @@
 class ComparisonIngredient
 {
 public:
-    /// Constructor with given name, cut and cooked variables
-    ComparisonIngredient(std::string, bool, bool);
 
-    /// Default Constructor
+    /// Builds a comparison object with the given name and sets the cut and cooked properties
+    ComparisonIngredient(std::string, bool, bool);
     ComparisonIngredient();
 
     /// Compares the state of ingredient sent in to this ComparisonIngredient's state.

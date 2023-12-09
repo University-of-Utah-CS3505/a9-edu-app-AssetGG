@@ -30,7 +30,9 @@ public:
     int xLocation;
     int yLocation;
 
-    Tool(std::string name, bool movable, int locX, int locY);
+    /// Builds a Tool object with the given name and sets the moveable property.
+    /// All Tool images are made with the given width and height
+    Tool(std::string, bool, int, int);
 
     /// Returns true if the tool is intended to move or not.
     bool IsMovable();
@@ -43,33 +45,39 @@ public:
 
     /// Whatever should happen to an ingredient when it is
     /// dropped on this tool.
-    virtual void ProcessIngredient(Ingredient &ingredient);
+    virtual void ProcessIngredient(Ingredient&);
 };
 
 class CuttingBoard : public Tool
 {
 public:
+
     /// Creates a CuttingBoard tool at (locX, locY)
     CuttingBoard(int locX, int locY);
+
     /// Cuts the ingredient if it is cuttable.
-    void ProcessIngredient(Ingredient &ingredient);
+    void ProcessIngredient(Ingredient&);
 };
 
 class FryingPan : public Tool
 {
 public:
+
     /// Creates a FryingPan tool at (locX, locY)
     FryingPan(int locX, int locY);
+
     /// Cooks certain ingredients
-    void ProcessIngredient(Ingredient &ingredient);
+    void ProcessIngredient(Ingredient&);
 };
 
 class Pot : public Tool
 {
 public:
+
     /// Creates a Pot tool at (locX, locY)
     Pot(int locX, int locY);
+
     /// Cooks certain ingredients
-    void ProcessIngredient(Ingredient &ingredient);
+    void ProcessIngredient(Ingredient&);
 };
 #endif // TOOLS_H
