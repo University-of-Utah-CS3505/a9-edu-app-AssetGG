@@ -42,7 +42,7 @@ public:
     ~PlayerView();
 
     /// Sets up the recipe help feature and adds all of the ingredient sprites needed for the chosen recipe to the view
-    void setupScene(Recipe, std::map<std::string, Tool *>&);
+    void setupScene(Recipe &recipe, std::map<std::string, Tool*> &tools);
 
     /// Updates a sprites position based on whether it is an ingredient or cooking tool
     void updateSpritePositions(const std::map<std::string, Physics::PhysicsObject>&);
