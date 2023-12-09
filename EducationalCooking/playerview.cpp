@@ -212,7 +212,7 @@ void PlayerView::setupRecipeHelpLine1(Recipe recipe)
 
     recipeHelpLine1->setText(QString::fromStdString(recipe.getRecipeName()) + QString::fromStdString(" Ingredients:\n"));
     recipeHelpLine1->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
-    recipeHelpLine1->setGeometry(QRect(165, 250, 350, 50));
+    recipeHelpLine1->setGeometry(QRect(165, 250, 350, 35));
     recipeHelpLine1->setHidden(true);
 }
 
@@ -222,11 +222,20 @@ void PlayerView::setupRecipeHelpLine2(Recipe recipe)
     recipeHelpLine2 = new QLabel(this);
 
     for(ComparisonIngredient ingredient : recipe.getBaseIngredients())
+    {
         helpLine2Text += QString::fromStdString(ingredient.getName()) + QString::fromStdString("--");
 
-    recipeHelpLine2->setText(QString::fromStdString("--") + helpLine2Text + QString::fromStdString("\n"));
+        if (ingredient.isCut() == true)
+            helpLine2Text += QString::fromStdString("cut") + QString::fromStdString("--");
+        if (ingredient.isCooked() == true)
+            helpLine2Text += QString::fromStdString("cooked") + "--";
+
+        helpLine2Text += "\n";
+    }
+
+    recipeHelpLine2->setText(helpLine2Text + QString::fromStdString("\n"));
     recipeHelpLine2->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
-    recipeHelpLine2->setGeometry(QRect(165, 275, 550, 50));
+    recipeHelpLine2->setGeometry(QRect(165, 275, 550, 75));
     recipeHelpLine2->setHidden(true);
 }
 
@@ -235,7 +244,7 @@ void PlayerView::setupRecipeHelpLine3()
     recipeHelpLine3 = new QLabel(this);
     recipeHelpLine3->setText(QString::fromStdString("Would any of these ingredients be good?\n"));
     recipeHelpLine3->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
-    recipeHelpLine3->setGeometry(QRect(125, 350, 350, 50));
+    recipeHelpLine3->setGeometry(QRect(125, 350, 350, 35));
     recipeHelpLine3->setHidden(true);
 }
 
@@ -245,11 +254,11 @@ void PlayerView::setupRecipeHelpLine4(Recipe recipe)
     recipeHelpLine4 = new QLabel(this);
 
     for(ComparisonIngredient ingredient : recipe.getBonusIngredients())
-        helpLine4Text += ingredient.getName() + "--";
+        helpLine4Text += "--" + ingredient.getName() + "\n";
 
-    recipeHelpLine4->setText(QString::fromStdString("--") + helpLine4Text + QString::fromStdString("\n"));
+    recipeHelpLine4->setText(helpLine4Text + QString::fromStdString("\n"));
     recipeHelpLine4->setAlignment(Qt::AlignBottom | Qt::AlignLeft);
-    recipeHelpLine4->setGeometry(QRect(125, 380, 550, 50));
+    recipeHelpLine4->setGeometry(QRect(125, 375, 550, 85));
     recipeHelpLine4->setHidden(true);
 }
 

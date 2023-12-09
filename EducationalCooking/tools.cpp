@@ -11,6 +11,7 @@
 
 #include "tools.h"
 #include <QMouseEvent>
+#include <iostream>
 
 Tool::Tool(std::string name, bool movable, int locX, int locY):
     name(name),
@@ -64,19 +65,14 @@ void CuttingBoard::processIngredient(Ingredient &ingredient)
 
 void FryingPan::processIngredient(Ingredient &ingredient)
 {
-    if (ingredient.isCookable() == true)
-    {
-        if (ingredient.getName() == "chicken" || ingredient.getName() == "dough"
-            || ingredient.getName() == "patty" || ingredient.getName() == "bun"
-            || ingredient.getName() == "sausage" || ingredient.getName() == "eggs")
+    if (ingredient.isCookable())
             ingredient.cookIngredient();
-    }
 }
 
 void Pot::processIngredient(Ingredient &ingredient)
 {
-    if (ingredient.isCookable() == true)
-        if (ingredient.getName() == "noodles" || ingredient.getName() == "meatballs")
+    if (ingredient.isCookable())
+        if (ingredient.getName() == "noodles")
             ingredient.cookIngredient();
 }
 
